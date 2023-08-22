@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CompaniesController;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PortfolioController;
@@ -14,20 +15,14 @@ use App\Http\Controllers\PortfolioController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+// to add company to portfolio
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// show all companies
 
-Route::get('/portfolio', function () {
-    $apiToken = '31LXGmuxEsnvpac594GRnXyXZFn3s70kYvlLoxwY';
-    $response = Http::get("https://api.marketaux.com/v1/entity/search", [
-        'search' => 'tsla',
-        'countries' => 'us',
-        'api_token' => $apiToken,
-    ]);
+Route::get('/companies', [CompaniesController::class, 'index'])->name('companies.index');
 
-    $companies = $response->json();
 
-    return view('portfolio.show', compact('companies'));
-});
+// ROUTES FOR PORTFOLIO
+
+Route::get('/portfolio', [PortfolioController::class, 'index']);
+
