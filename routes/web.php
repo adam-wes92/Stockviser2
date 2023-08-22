@@ -1,6 +1,8 @@
 <?php
 
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PortfolioController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +19,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-/* Route::get('/portfolio', function () {
-    return view('index');
+Route::get('/portfolio', function () {
+    $apiToken = '31LXGmuxEsnvpac594GRnXyXZFn3s70kYvlLoxwY';
+    $response = Http::get("https://api.marketaux.com/v1/entity/search", [
+        'search' => 'tsla',
+        'countries' => 'us',
+        'api_token' => $apiToken,
+    ]);
+
+    $companies = $response->json();
+
+    return view('portfolio.show', compact('companies'));
 });
