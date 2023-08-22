@@ -73,6 +73,10 @@
                     <a href="/" class="bg-black text-white py-2 px-4 rounded text-sm">Create Portfolio</a>
                 </li>
 
+                <li>
+                    <a href="/companies/index" class="bg-black text-white py-2 px-4 rounded text-sm">List of Companies</a>
+                </li>
+
                 {{-- <li>
                     <a href="{{ route('cart.show') }}" class="hover:text-laravel"><i class="fa-sharp fa-solid fa-lg fa-cart-shopping"></i>&nbsp
                        My Cart</a>

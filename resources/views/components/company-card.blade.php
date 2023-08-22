@@ -7,7 +7,7 @@
         {{-- We updated the image to come from the asset function taht will pull the file we need from the public/images folder --}}
 
         {{-- We adjusted the src="{{ asset('images/no-image.png')}}" to src="{{$listing->logo ? asset('storage/' . $listing->logo) : asset('images/no-image.png')}}" --}}
-        <img class="hidden w-48 mr-6 md:block" src="{{ asset('images/noImage.jpg')}}" alt="" />
+        <img class="hidden w-48 mr-6 md:block" src="{{ asset('images/logo.png')}}" alt="" />
         <div>
             <h3 class="text-2xl">
                 {{-- Updated this to $listing->title so that it will import the information we need from the  --}}
