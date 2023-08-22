@@ -26,4 +26,4 @@ Route::post('users/authenticate', [UserController::class, 'authenticate']);
 Route::post('user/{user}/edit', [UserController::class, 'edit']);
 
 // Display user data
-Route::get('/user/{user}', [UserController::class, 'show']);
+Route::get('/dashboard', [UserController::class, 'dashboard'])->middleware('auth')->name('dashboard');

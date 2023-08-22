@@ -66,7 +66,7 @@ class UserController extends Controller
         ]);
         if (auth()->attempt($formFields)) {
             $request->session()->regenerate(); //generate new session
-            return redirect('/edit')->with('message', 'User logged in');
+            return redirect('/dashboard')->with('message', 'User logged in');
         } else {
             // return redirect('/login')->with('message', '╰( ⁰ ਊ ⁰)━☆ﾟ☆ﾟ.*･｡ Fuck you. *･｡');
             return back()->withErrors(['email' => 'Wrong email or password', 'password' => 'Wrong email or password']);
@@ -75,6 +75,6 @@ class UserController extends Controller
     public function dashboard()
     {
         $user = Auth::user(); // Get the currently authenticated user
-        return view('dashboard', compact('user'));
+        return view('users.dashboard', compact('user'));
     }
 }
