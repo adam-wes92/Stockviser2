@@ -6,8 +6,8 @@
     
 
     
-    <div class="lg:grid lg:grid-cols-2 gap-4 space-y-4 md:space-y-0 mx-4">
-    @include('components.contact')
+    {{-- <div class="lg:grid lg:grid-cols-2 gap-4 space-y-4 md:space-y-0 mx-4"> --}}
+    
     
     {{-- BLADE WAY : Blade directives start with @ --}}
     {{-- foreach --}}
@@ -16,7 +16,8 @@
     
         {{-- <x-company-card :company="$company" /> 
     @endforeach --}} 
-    </div>
+    {{-- </div> --}}
+    @include('components.contact')
     
     {{-- adding new div to add page direct buttons : This is sick and much easier than the way we had to do it in PHP : WOO!--}}
     {{-- <div class="mt-6 p-4">
