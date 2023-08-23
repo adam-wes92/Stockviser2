@@ -14,6 +14,7 @@ class UserController extends Controller
     {
         return view('users.register');
     }
+
     public function store(Request $request)
     {
         // Form validation accordingly to the model
@@ -41,7 +42,7 @@ class UserController extends Controller
         auth()->login($user);
 
         // User logged in and... :
-        return redirect('/user')->with('message', 'User created and logged in');
+        return redirect('/')->with('message', 'User created and logged in');
     }
 
 
@@ -54,10 +55,12 @@ class UserController extends Controller
         $request->session()->regenerateToken();
         return redirect('/')->with('message', 'User logged out');
     }
+
     public function login()
     {
         return view('users.login');
     }
+
     public function authenticate(Request $request)
     {
         $formFields = $request->validate([
@@ -66,12 +69,13 @@ class UserController extends Controller
         ]);
         if (auth()->attempt($formFields)) {
             $request->session()->regenerate(); //generate new session
-            return redirect('/dashboard')->with('message', 'User logged in');
+            return redirect('/companies.index')->with('message', 'User logged in');
         } else {
             // return redirect('/login')->with('message', '╰( ⁰ ਊ ⁰)━☆ﾟ☆ﾟ.*･｡ Fuck you. *･｡');
             return back()->withErrors(['email' => 'Wrong email or password', 'password' => 'Wrong email or password']);
         }
     }
+
     public function dashboard()
     {
         $user = Auth::user(); // Get the currently authenticated user

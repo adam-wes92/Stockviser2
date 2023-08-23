@@ -8,14 +8,6 @@ use App\Http\Controllers\ViewController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\UserController;
 
-
-// Present the registration form
-Route::get('/register', [UserController::class, 'create']);
-
-
-
-
-
 // Route::get('/', [CompanyController::class, 'index']);
 
 

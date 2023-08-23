@@ -1,7 +1,6 @@
-{{-- <x-layout>
-    <x-card class="p-10 max-w-lg mx-auto mt-24"> --}}
+<x-layout>
+    <x-card class="p-10 max-w-lg mx-auto mt-24"> 
 {{-- ! Temproary template to keep minimum css \/ \/ --}}
-@include('html_head')
 
 
 <header class="text-center">
@@ -56,7 +55,7 @@
     </div>
     <div class="mb-6">
         <label for="phone_number" class="inline-block text-lg mb-2">Phone number</label>
-        <input type="tel" name="phone_number" pattern="[0-9]{9}" class="border border-gray-200 rounded p-2 w-full"
+        <input type="tel" name="phone_number" class="border border-gray-200 rounded p-2 w-full"
             name="phone_number" placeholder="661661661" value="{{ old('phone_number') }}" />
         @error('phone_number')
             <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
@@ -126,7 +125,7 @@
         </p>
     </div>
 </form>
-{{--
+
 
     </x-card>
-</x-layout> --}}
+</x-layout> 
