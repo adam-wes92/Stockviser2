@@ -111,7 +111,7 @@
     </nav>
     
     <main>
-        @yield('newss')        
+        {{$slot}}        
     </main>
     
     <footer
