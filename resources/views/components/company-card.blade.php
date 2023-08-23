@@ -17,17 +17,11 @@
             <div class="text-xl font-bold mb-4">Company Price</div>
 
             <div class="text-xl font-bold mb-4">Company Description</div>
-            {{-- <x-company-tags :tagsCsv="$product->tags" /> --}}
-
             {{-- <form action="{{ route('add.to.cart', $company->id) }}" method="GET">
                 @csrf
                 <button type="submit" class="bg-black mr-3 text-sm text-white px-3 py-1 ml-10 hover:text-laravel rounded">Add to Portfolio</button>
             </form> --}}
- 
 
-            {{-- <div class="text-lg mt-4">
-                <i class="fa-solid fa-location-dot"></i>&nbsp&nbsp{{$listing->location}}
-            </div> --}}
             <?php
             $apiKey = 'c27b5612b9msh8ab4f6395705c09p18166cjsn91e9563d42d2'; // Replace with your actual API key
             $symbol = 'AAPL'; // Replace with the desired stock symbol

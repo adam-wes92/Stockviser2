@@ -16,8 +16,7 @@ class UserController extends Controller
     }
 
     public function store(Request $request)
-    {
-        // Form validation accordingly to the model
+    {   // Form validation accordingly to the model
         $formFields = $request->validate([
             'first_name' => ['required', 'min:3'],
             'last_name' => ['required', 'min:3'],
@@ -39,10 +38,37 @@ class UserController extends Controller
 
         // Create a new user
         $user = User::create($formFields);
+
         auth()->login($user);
 
         // User logged in and... :
         return redirect('/')->with('message', 'User created and logged in');
+    }
+
+    // This is for the edit form 
+    public function edit(User $user){
+    return view('users.edit', ['user' => $user]);
+    }
+
+    // Update User Info
+    public function update(Request $request, User $user) {
+        // Now for some walidation, there is very minimal code we need to write:
+        $formFields = $request->validate([
+            'first_name' => 'required', 
+            'last_name' => 'required', 
+            'birth_date' => 'required',
+            'email' => ['required', 'email'],  
+            'phone_number' => 'required',
+            'address' => 'required', 
+            'city' => 'required', 
+            'zip' => 'required', 
+            'password' => ['required', Password::min(6)->mixedCase()->numbers()->symbols()] // The password class is what we use to implement requirements for what the password should contain
+        ]);
+            
+        // update() changes the data in the table for us
+        $user->update($formFields);
+        
+        return redirect("/")->with('message', 'User Information updated');
     }
 
 
