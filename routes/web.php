@@ -15,14 +15,17 @@ use App\Http\Controllers\PortfolioController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+
 // to add company to portfolio
 
 // show all companies
+Route::get('/test', function () {
+    return view('test');
+});
 
-Route::get('/companies', [CompaniesController::class, 'index'])->name('companies.index');
+Route::get('/companies', [CompaniesController::class, 'index']);
 
 
-// ROUTES FOR PORTFOLIO
 
-Route::get('/portfolio', [PortfolioController::class, 'index']);
 
