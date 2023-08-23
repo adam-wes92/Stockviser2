@@ -35,7 +35,7 @@
     </div>
     <div class="mb-6">
         <label for="birth_date" class="inline-block text-lg mb-2">
-            Last Name
+            Date of Birth
         </label>
         <input type="date" class="border border-gray-200 rounded p-2 w-full" name="birth_date"
             value="{{ old('birth_date') }}" />

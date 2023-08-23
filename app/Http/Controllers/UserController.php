@@ -24,12 +24,10 @@ class UserController extends Controller
 
             'email' => ['required', 'email', Rule::unique('users', 'email')],
             'phone_number' => 'required',
-
             'address' => 'required',
             'city' => 'required',
             'country' => 'required',
             'zip' => 'required',
-
             'password' => ['required', Password::min(6)->mixedCase()->numbers()->symbols()]
         ]);
 

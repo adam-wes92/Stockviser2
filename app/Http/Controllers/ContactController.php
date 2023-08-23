@@ -11,11 +11,14 @@ class ContactController extends Controller
         return view('contact');
     }
 
-    public function submitForm(Request $request)
-    {
-        // Add your form submission logic here
-        // For example, sending an email or saving to a database
+    // public function submitForm(Request $request)
+    // {
+    //     $formFields = $request->validate([
 
-        return redirect()->route('contact.form')->with('success', 'Message sent successfully!');
-    }
+    //     ]);
+    //     // Add your form submission logic here
+    //     // For example, sending an email or saving to a database
+    //     ContactUs::create($formFields);
+    //     return redirect()->back()->with('success', 'Thank you for contacting us. One of our adivsers will take a look at your question and respond to you ASAP');
+    // }
 }
