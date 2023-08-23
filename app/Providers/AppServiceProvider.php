@@ -22,5 +22,6 @@ class AppServiceProvider extends ServiceProvider
     {
         // This negates the protected fillable we added to the Listing Model yesterday, so we will not need it
         Model::unguard();
+
     }
 }
