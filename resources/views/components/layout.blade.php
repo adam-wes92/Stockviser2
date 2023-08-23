@@ -70,9 +70,12 @@
                 {{-- <li>
                     <a href="/" class="bg-black text-white py-2 px-4 rounded text-sm">Create Portfolio</a>
                 </li> --}}
-
+{{-- 
                 <li>
                     <a href="/companies/index" class="bg-black text-white py-2 px-4 rounded text-sm">List of Companies</a>
+                </li> --}}
+                <li>
+                    <a href="/users/{{ auth()->user()->id }}/edit" class="bg-black text-white px-5 py-2 ml-10 hover:text-laravel rounded"><i class="fa-sharp fa-solid fa-user"></i>&nbsp My Profile</a>
                 </li>
 
                 {{-- <li>
@@ -118,10 +121,7 @@
 
     <ul>
      @auth
-        <li>
-            {{-- href="/users/{{ auth()->user()->id }}/edit" --}}
-            <a href="/" class="bg-black px-5 py-2 ml-10 hover:text-laravel rounded"><i class="fa-sharp fa-solid fa-user"></i>&nbsp My Profile</a>
-        </li>
+
          @endauth 
     </ul>
     </footer>

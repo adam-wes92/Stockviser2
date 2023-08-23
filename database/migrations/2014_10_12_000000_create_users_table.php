@@ -19,7 +19,7 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('address'); // New field
-            $table->string('zip_code'); // New field
+            $table->string('zip'); // New field
             $table->string('city'); // New field
             $table->string('country'); // New field
             $table->date('birth_date'); // New field
