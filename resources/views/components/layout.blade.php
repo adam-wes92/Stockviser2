@@ -12,7 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
 
     {{-- Added this script from alpinejs.dev --}}
-    <script src="//unpkg.com/alpinejs" defer></script> 
+    <script src="//unpkg.com/alpinejs" defer></script>
 
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
