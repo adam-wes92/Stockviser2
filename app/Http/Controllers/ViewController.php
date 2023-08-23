@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Company;
-class CompanyController extends Controller
+class ViewController extends Controller
 {
     // Show all companies
     public function index() {

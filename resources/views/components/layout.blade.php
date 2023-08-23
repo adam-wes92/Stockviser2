@@ -7,7 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="images/favicon.ico" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <link rel="stylesheet" href="{{asset('styles/style.css')}}">
+
+
     {{-- Added this script from alpinejs.dev --}}
     <script src="//unpkg.com/alpinejs" defer></script> 
     <script src="https://cdn.tailwindcss.com"></script>
@@ -19,7 +22,8 @@
                     colors: {
                         laravel: "#081175",
                         // You can change the 'laravel' hardcoded color so that when you use the bg-laravel, the color will be whatever you want it to be This is the OG Laravel Color Code: #2563eb
-                        laravel2: "#3fe86f",
+                        laravel2: "#65a147",
+                        laravel3: "#acce22"
                     },
                 },
             },
@@ -67,6 +71,10 @@
               {{-- Create product Button --}}
                 <li>
                     <a href="/" class="bg-black text-white py-2 px-4 rounded text-sm">Create Portfolio</a>
+                </li>
+
+                <li>
+                    <a href="/companies/index" class="bg-black text-white py-2 px-4 rounded text-sm">List of Companies</a>
                 </li>
 
                 {{-- <li>
