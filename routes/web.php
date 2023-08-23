@@ -1,24 +1,19 @@
 <?php
 
-
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\ViewController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\UserController;
 
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
+// Present the registration form
+Route::get('/register', [UserController::class, 'create']);
+
+
+
 
 
 // Route::get('/', [CompanyController::class, 'index']);
@@ -31,4 +26,28 @@ Route::get('/contact', [ContactController::class, 'showForm'])->name('contact.fo
 
 // This is to submit contact form
 Route::post('/contact', [ContactController::class, 'submitForm'])->name('contact.submit');
+
+// Present the registration form
+Route::get('/register', [UserController::class, 'create']);
+
+// User is registered
+Route::post('/users', [UserController::class, 'store']);
+
+// Logout
+Route::post('/logout', [UserController::class, 'logout'])->middleware('auth');
+
+// Present the login form
+Route::get('/login', [UserController::class, 'login'])->name('login')->middleware('guest');
+
+// User logged in
+Route::post('users/authenticate', [UserController::class, 'authenticate']);
+
+// User edit
+Route::post('user/{id}/edit', [UserController::class, 'edit']);
+
+// Display user data
+Route::get('/user/{id}', [UserController::class, 'show']);
+
+// Display one of the companies
+Route::get('/company/{id}', [CompanyController::class], 'show');
 
