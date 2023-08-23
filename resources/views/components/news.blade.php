@@ -1,5 +1,5 @@
-@extends('components.layout')
-@section('newss')
+
+
 <div class='bg-b m-ver bg-img-stock'>
     <div class='flex-c-center m-ver sh-g'>    
         @foreach($news as $new)
@@ -15,4 +15,4 @@
         @endforeach
     </div>
 </div>
-@endsection
+

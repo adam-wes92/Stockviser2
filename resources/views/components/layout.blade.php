@@ -7,7 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="images/favicon.ico" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <link rel="stylesheet" href="{{asset('styles/style.css')}}">
+
+
     {{-- Added this script from alpinejs.dev --}}
     <script src="//unpkg.com/alpinejs" defer></script> 
     <script src="https://cdn.tailwindcss.com"></script>
@@ -19,7 +22,8 @@
                     colors: {
                         laravel: "#081175",
                         // You can change the 'laravel' hardcoded color so that when you use the bg-laravel, the color will be whatever you want it to be This is the OG Laravel Color Code: #2563eb
-                        laravel2: "#3fe86f",
+                        laravel2: "#65a147",
+                        laravel3: "#acce22"
                     },
                 },
             },
@@ -59,51 +63,53 @@
         {{-- Create product Button --}}
         <ul class="flex space-x-6 mr-6 text-lg">
             {{-- Adding this auth directive so that it doesn't display the register and login links after the user has been logged in --}}
-            {{-- @auth content to be displayed when user is logged in --}}
-            <li>
+             @auth {{-- content to be displayed when user is logged in --}}
 
-            </li>
 
               {{-- Create product Button --}}
-                <li>
+                {{-- <li>
                     <a href="/" class="bg-black text-white py-2 px-4 rounded text-sm">Create Portfolio</a>
+                </li> --}}
+
+                <li>
+                    <a href="/companies/index" class="bg-black text-white py-2 px-4 rounded text-sm">List of Companies</a>
                 </li>
 
                 {{-- <li>
                     <a href="{{ route('cart.show') }}" class="hover:text-laravel"><i class="fa-sharp fa-solid fa-lg fa-cart-shopping"></i>&nbsp
                        My Cart</a>
-                </li> --}}
-{{--                 
-                <li>
+          </li> --}}
+               
+               {{-- <li>
                     <a href="/" class="hover:text-laravel"><i class="fa-sharp fa-solid fa-lg fa-tag"></i>&nbsp
                         My Portfolio</a>
-                </li>
+                </li> --}}
 
                 <li> {{-- added this LI to incorporate Logout ability --}}
-                    {{-- <form class="inline" method="POST" action="/logout">
+                <form class=" text-white inline" method="POST" action="/logout">
                         @csrf
                         <button>
                             <i class="fa-solid fa-sharp fa-lg fa-door-closed" ></i>&nbsp Logout
                         </button>
                     </form>
-                </li>  --}}
+                </li>  
 
-            {{-- @else content to be displayed when user is loggeed out --}}
+            @else {{-- content to be displayed when user is loggeed out --}} 
                 <li>
-                    <a href="/" class="hover:text-laravel text-white"><i class="fa-solid fa-user-plus"></i>
+                    <a href="/register" class="hover:text-laravel2 text-white"><i class="fa-solid fa-user-plus"></i>
                         Register</a>
                 </li>
                 
                 <li>
-                    <a href="/" class="hover:text-laravel text-white"><i class="fa-solid fa-arrow-right-to-bracket"></i>
+                    <a href="/login" class="hover:text-laravel2 text-white"><i class="fa-solid fa-arrow-right-to-bracket"></i>
                         Login</a>
                 </li>
-            {{-- @endauth --}}
+             @endauth 
         </ul>
     </nav>
     
     <main>
-        @yield('newss')        
+        {{$slot}}        
     </main>
     
     <footer
@@ -111,12 +117,12 @@
         <p class="ml-2">Copyright &copy; 2023, All Rights reserved.</p>
 
     <ul>
-        {{-- @auth --}}
+     @auth
         <li>
             {{-- href="/users/{{ auth()->user()->id }}/edit" --}}
             <a href="/" class="bg-black px-5 py-2 ml-10 hover:text-laravel rounded"><i class="fa-sharp fa-solid fa-user"></i>&nbsp My Profile</a>
         </li>
-        {{-- @endauth --}}
+         @endauth 
     </ul>
     </footer>
 </body>

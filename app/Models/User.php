@@ -10,6 +10,7 @@ use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
+    public $timestamps = false;
     use HasApiTokens, HasFactory, Notifiable;
 
     /**
@@ -18,9 +19,16 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'first_name',
+        'last_name',
+        'birth_date',
         'email',
-        'password',
+        'phone_number',
+        'address',
+        'city',
+        'country',
+        'zip',
+        'password'
     ];
 
     /**
