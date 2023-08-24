@@ -20,4 +20,14 @@ class Portfolio extends Model
             'last_purchase_date'        
     ];
 
+    // relationship to User model
+    public function user() {
+        // Now for Laravel, our Listing belongs to a sinlge User
+        return $this->belongsTo(User::class, 'user_id');
+    }
+    
+    public function company() {
+        return $this->belongsTo(Company::class, 'company_id');
+    }
+
 }
