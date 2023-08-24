@@ -54,10 +54,10 @@
                 </li> --}}
 
                 <li>
-                    <a href="/users/dashboard" class="bg-black text-white py-2 px-4 rounded text-sm">My Dashboard</a>
+                    <a href="/users/dashboard" class="bg-black text-white py-2 px-4 rounded text-sm hover:text-laravel2">My Dashboard</a>
                 </li>
                 <li>
-                    <a href="/users/{{ auth()->user()->id }}/edit" class="bg-black text-white px-5 py-2 ml-10 hover:text-laravel rounded"><i class="fa-sharp fa-solid fa-user"></i>&nbsp My Profile</a>
+                    <a href="/users/{{ auth()->user()->id }}/edit" class=" text-sm bg-black text-white px-5 py-2 hover:text-laravel2 rounded"><i class="fa-sharp fa-solid fa-user"></i>&nbsp My Profile</a>
                 </li>
 
                 {{-- <li>
@@ -73,8 +73,8 @@
                 <li> {{-- added this LI to incorporate Logout ability --}}
                 <form class=" text-white inline" method="POST" action="/logout">
                         @csrf
-                        <button>
-                            <i class="fa-solid fa-sharp fa-lg fa-door-closed" ></i>&nbsp Logout
+                        <button class="hover:text-laravel2">
+                            <i class="fa-solid fa-sharp fa-door-closed " ></i>&nbsp Logout
                         </button>
                     </form>
                 </li>  
