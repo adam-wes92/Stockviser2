@@ -41,4 +41,4 @@ Route::post('user/{user}/edit', [UserController::class, 'edit']);
 Route::get('/user/{user}', [UserController::class, 'show']);
 
 // Display one of the companies
-Route::get('/company{company}', [CompanyController::class, 'show']);
+Route::get('/company', [CompanyController::class, 'show']);

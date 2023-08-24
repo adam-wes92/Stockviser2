@@ -13,7 +13,7 @@ class CompanyController extends Controller
     {
         $noData = 'No data available';
         $apiKey = 'c27b5612b9msh8ab4f6395705c09p18166cjsn91e9563d42d2'; // Replace with your actual API key
-        $symbol = $company; //
+        $symbol = 'AAPL'; //
 
         $url = "https://query1.finance.yahoo.com/v8/finance/chart/{$symbol}?apiKey={$apiKey}";
 
@@ -21,14 +21,14 @@ class CompanyController extends Controller
         $data = json_decode($response, true);
 
         // Extract high prices from yesterday and two days ago
-        $lowPrices = $data['chart']['result'][0]['indicators']['quote'][0]['high'];
+        $highPrices = $data['chart']['result'][0]['indicators']['quote'][0]['high'];
 
-        if (count($lowPrices) >= 6) {
-            $highest0 = $lowPrices[count($lowPrices) - 1];
-            $highest1 = $lowPrices[count($lowPrices) - 2];
-            $highest2 = $lowPrices[count($lowPrices) - 3];
-            $highest3 = $lowPrices[count($lowPrices) - 4];
-            $highest4 = $lowPrices[count($lowPrices) - 5];
+        if (count($highPrices) >= 6) {
+            $highest0 = $highPrices[count($highPrices) - 1];
+            $highest1 = $highPrices[count($highPrices) - 2];
+            $highest2 = $highPrices[count($highPrices) - 3];
+            $highest3 = $highPrices[count($highPrices) - 4];
+            $highest4 = $highPrices[count($highPrices) - 5];
         }
 
         // Pass the lowest prices to the view
