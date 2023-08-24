@@ -6,7 +6,7 @@
     <h2 class="text-2xl font-bold uppercase mb-1">
         Login
     </h2>
-    <p class="mb-4">Log in for secret knowledge</p>
+
 </header>
 <form action="/users/authenticate" method="POST">
     @csrf

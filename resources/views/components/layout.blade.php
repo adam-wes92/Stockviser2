@@ -34,33 +34,15 @@
 </head>
 
 <body class="mb-48">
-    {{-- <x-flash-message /> --}}
+    <x-flash-message /> 
     
     <nav class="flex justify-between bg-laravel items-center mb-4">
 
         <a href="/">
             <img class="w-20 logo ml-5" src="{{ asset('images/logo.png') }}" alt="" />
             
-            {{-- Inside public folder we add the images folder so that our asset function that will call the image we want --}}
-        </a>
+        </a>        
 
-        {{-- category filter links --}}
-        {{-- <ul class="flex">
-            <li class="flex items-center justify-center bg-black text-white rounded-xl py-1 px-3 mr-2 text-xs">
-                <a href="{{ route('category', ['category' => 1]) }}">Tops</a>
-            </li>
-            <li class="flex items-center justify-center bg-black text-white rounded-xl py-1 px-3 mr-2 text-xs">
-                <a href="{{ route('category', ['category' => 2]) }}">Jeans</a>
-            </li>
-            <li class="flex items-center justify-center bg-black text-white rounded-xl py-1 px-3 mr-2 text-xs">
-                <a href="{{ route('category', ['category' => 3]) }}">Shoes</a>
-            </li>
-            <li class="flex items-center justify-center bg-black text-white rounded-xl py-1 px-3 mr-2 text-xs">
-                <a href="{{ route('category', ['category' => 4]) }}">Accessories</a>
-            </li>
-        </ul> --}}
-        
-        {{-- Create product Button --}}
         <ul class="flex space-x-6 mr-6 text-lg">
             {{-- Adding this auth directive so that it doesn't display the register and login links after the user has been logged in --}}
              @auth {{-- content to be displayed when user is logged in --}}
@@ -72,7 +54,10 @@
                 </li> --}}
 
                 <li>
-                    <a href="/companies/index" class="bg-black text-white py-2 px-4 rounded text-sm">List of Companies</a>
+                    <a href="/users/dashboard" class="bg-black text-white py-2 px-4 rounded text-sm hover:text-laravel2">My Dashboard</a>
+                </li>
+                <li>
+                    <a href="/users/{{ auth()->user()->id }}/edit" class=" text-sm bg-black text-white px-5 py-2 hover:text-laravel2 rounded"><i class="fa-sharp fa-solid fa-user"></i>&nbsp My Profile</a>
                 </li>
 
                 {{-- <li>
@@ -88,8 +73,8 @@
                 <li> {{-- added this LI to incorporate Logout ability --}}
                 <form class=" text-white inline" method="POST" action="/logout">
                         @csrf
-                        <button>
-                            <i class="fa-solid fa-sharp fa-lg fa-door-closed" ></i>&nbsp Logout
+                        <button class="hover:text-laravel2">
+                            <i class="fa-solid fa-sharp fa-door-closed " ></i>&nbsp Logout
                         </button>
                     </form>
                 </li>  
@@ -117,12 +102,10 @@
         <p class="ml-2">Copyright &copy; 2023, All Rights reserved.</p>
 
     <ul>
-     @auth
+        {{-- Social media tags (if we had some socials) --}}
         <li>
-            {{-- href="/users/{{ auth()->user()->id }}/edit" --}}
-            <a href="/" class="bg-black px-5 py-2 ml-10 hover:text-laravel rounded"><i class="fa-sharp fa-solid fa-user"></i>&nbsp My Profile</a>
+
         </li>
-         @endauth 
     </ul>
     </footer>
 </body>

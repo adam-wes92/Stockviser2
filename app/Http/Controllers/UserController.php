@@ -24,12 +24,10 @@ class UserController extends Controller
 
             'email' => ['required', 'email', Rule::unique('users', 'email')],
             'phone_number' => 'required',
-
             'address' => 'required',
             'city' => 'required',
             'country' => 'required',
             'zip' => 'required',
-
             'password' => ['required', Password::min(6)->mixedCase()->numbers()->symbols()]
         ]);
 
@@ -71,7 +69,7 @@ class UserController extends Controller
         return redirect("/")->with('message', 'User Information updated');
     }
 
-
+    // Logout User
     public function logout(Request $request)
     {
         auth()->logout();
@@ -82,11 +80,13 @@ class UserController extends Controller
         return redirect('/')->with('message', 'User logged out');
     }
 
+    // Login User
     public function login()
     {
         return view('users.login');
     }
 
+    // Authenticate User
     public function authenticate(Request $request)
     {
         $formFields = $request->validate([
@@ -95,9 +95,10 @@ class UserController extends Controller
         ]);
         if (auth()->attempt($formFields)) {
             $request->session()->regenerate(); //generate new session
-            return redirect('/companies.index')->with('message', 'User logged in');
+
+            return redirect('/')->with('message', 'User logged in');
         } else {
-            // return redirect('/login')->with('message', '╰( ⁰ ਊ ⁰)━☆ﾟ☆ﾟ.*･｡ Fuck you. *･｡');
+
             return back()->withErrors(['email' => 'Wrong email or password', 'password' => 'Wrong email or password']);
         }
     }
@@ -105,6 +106,6 @@ class UserController extends Controller
     public function dashboard()
     {
         $user = Auth::user(); // Get the currently authenticated user
-        return view('users.dashboard', compact('user'));
+        return view('users.dashboard');
     }
 }
