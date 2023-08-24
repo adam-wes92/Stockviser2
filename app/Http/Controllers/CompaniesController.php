@@ -31,39 +31,39 @@ class CompaniesController extends Controller
         ])->get("https://yahoo-finance15.p.rapidapi.com/api/yahoo/mo/module/{$symbol}", [
             'module' => 'asset-profile,financial-data,earnings'
         ]);
-         $arrayresponse[] = $response;
-// dd($response);
+        $arrayresponse[] = $response;
+        // dd($response);
         if ($response->successful()) {
             $jsonData = $response->json();
-    // dd($jsonData);
+        // dd($jsonData);
 
 
 
- if ($response->successful()) {
-    $jsonData = $response->json();
+        if ($response->successful()) {
+            $jsonData = $response->json();
 
-    $data[$symbol] = [
-        'name' => $company->name,
-        'revenue' => $company->revenue,
-        'founded_year' => $company->founded_year,
-        'share_price' => $company->share_price,
-        'country' => $company->country,
+        $data[$symbol] = [
+            'name' => $company->name,
+            'revenue' => $company->revenue,
+            'founded_year' => $company->founded_year,
+            'share_price' => $company->share_price,
+            'country' => $company->country,
 
-        'currency' => $jsonData['financialData']['currency'] ?? null,
-        'longBusinessSummary' => $jsonData['assetProfile']['longBusinessSummary'] ?? null,
-        'industry' => $jsonData['assetProfile']['industry'] ?? null
+            'currency' => $jsonData['financialData']['currency'] ?? null,
+            'longBusinessSummary' => $jsonData['assetProfile']['longBusinessSummary'] ?? null,
+            'industry' => $jsonData['assetProfile']['industry'] ?? null
 
 
-    ];
-}}  else {
+        ];
+    }}  else {
 
-            // Handle the error
+                // Handle the error
+            }
+            
         }
-        
+            // dd($arrayresponse);
+            return view('companies.index', ['data' => $data]);
     }
-        // dd($arrayresponse);
-        return view('companies.index', ['data' => $data]);
-}
 }
     
 

@@ -1,8 +1,9 @@
 <?php
 
-use App\Http\Controllers\CompaniesController;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\CompaniesController;
 use App\Http\Controllers\PortfolioController;
 
 /*
@@ -24,7 +25,13 @@ Route::get('/test', function () {
     return view('test');
 });
 
+
+// display all companies
 Route::get('/companies', [CompaniesController::class, 'index']);
+
+
+// Display one of the companies
+Route::get('/company', [CompanyController::class, 'show']);
 
 
 
