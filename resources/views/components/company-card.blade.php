@@ -1,18 +1,13 @@
-{{-- This code was originally in our listings.blade.php file inside our foreach. We transferred that code here and will call the prop inside the listings.blade.php file --}}
+{{-- @props(['company']) --}}
 
-<x-card> {{-- This is to connect the card.blade.php in order to replace the card style choices --}}
-
-    {{-- We removed the div with the grey bg color and other card styling elements applied and place it into the card.blade.php --}}
+<x-card>
     <div class="flex">
-        {{-- We updated the image to come from the asset function taht will pull the file we need from the public/images folder --}}
 
         {{-- We adjusted the src="{{ asset('images/no-image.png')}}" to src="{{$listing->logo ? asset('storage/' . $listing->logo) : asset('images/no-image.png')}}" --}}
         <img class="hidden w-48 mr-6 md:block" src="{{ asset('images/logo.png') }}" alt="" />
         <div>
             <h3 class="text-2xl">
-                {{-- Updated this to $listing->title so that it will import the information we need from the  --}}
-                <a href="/">Company Name</a>
-                {{-- <a href="/companies/{{ $company->id }}">{{ $company->name }}</a> --}}
+                <a href="/companies/{{ $company->id }}">{{ $company->name }}</a>
             </h3>
             <div class="text-xl font-bold mb-4">Company Price</div>
 
@@ -46,8 +41,7 @@
             $percentChange = ($change / $previousClose) * 100;
             echo "Change from Previous Close: $" . $change . '<br>';
             echo 'Percent Change: ' . number_format($percentChange, 2) . '%<br>';
-            
-        
+                   
             
             // Display trading volume
             echo 'Trading Volume: ' . number_format($volume) . ' shares<br>';
