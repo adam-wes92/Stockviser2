@@ -23,9 +23,11 @@ class UserFactory extends Factory
             'email' => $this->faker->unique()->safeEmail(),
             'email_verified_at' => now(),
             'password' => bcrypt('password'), // You can set a default password or use $faker->password()
-            //'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+    
             'address' => $this->faker->streetAddress(),
-            'zip_code' => $this->faker->postcode(),
+
+            'zip' => $this->faker->postcode(),
+
             'city' => $this->faker->city(),
             'country' => $this->faker->country(),
             'birth_date' => $this->faker->date($format = 'Y-m-d', $max='now'),
