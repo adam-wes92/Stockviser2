@@ -13,7 +13,7 @@ class Portfolio extends Model
             'user_id',
             'company_id',
             'shares_qty',
-            'purchase_cost',
+            'total_invested',
             'current_cost',
             'gain',
             'performance_percentage',

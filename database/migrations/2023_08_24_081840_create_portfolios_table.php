@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('company_id')->constrained()->onDelete('cascade');
             $table->integer('shares_qty');
-            $table->decimal('purchase_cost');
+            $table->decimal('total_invested');
             $table->decimal('current_cost');
             $table->decimal('gain');
             $table->float('performance_percentage');

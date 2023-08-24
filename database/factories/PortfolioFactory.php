@@ -18,7 +18,7 @@ class PortfolioFactory extends Factory
     {
         return [
             'shares_qty'=>$this->faker->numberBetween(1,100),
-            'purchase_cost'=>$this->faker->randomFloat(2,0,100),
+            'total_invested'=>$this->faker->randomFloat(2,0,100),
             'current_cost'=>$this->faker->randomFloat(2, 0,100),
             'gain'=>$this->faker->randomFloat(2, -100, 100),
             'performance_percentage'=>$this->faker->randomFloat(2, -100, 100),
