@@ -17,9 +17,13 @@ class PortfolioFactory extends Factory
     public function definition(): array
     {
         return [
-            'name'=>$this->faker->name(),
-            'description'=>$this->faker->text(),
-            ''
+            'shares_qty'=>$this->faker->numberBetween(1,100),
+            'purchase_cost'=>$this->faker->randomFloat(2,0,100),
+            'current_cost'=>$this->faker->randomFloat(2, 0,100),
+            'gain'=>$this->faker->randomFloat(2, -100, 100),
+            'performance_percentage'=>$this->faker->randomFloat(2, -100, 100),
+            'last_purchase_date'=>$this->faker->dateTime()
+
         ];
     }
 }

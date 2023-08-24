@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\User;
+use App\Models\Company;
+use App\Models\Portfolio;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -25,5 +27,14 @@ class DatabaseSeeder extends Seeder
             'email' => 'banana.man@gmail.com',
             'password' => 'Pa$$word123?'
         ]);
+        $companies=Company::factory(20)->create();
+        foreach($companies as $company){
+            $user_id=1;
+            Portfolio::factory(1)->create([
+                'user_id'=>$user_id,
+                'company_id'=>$company->id
+            ]);
+        }
+        
     }
 }
