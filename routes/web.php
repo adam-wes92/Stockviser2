@@ -49,5 +49,5 @@ Route::get('/users/{id}', [UserController::class, 'show'])->middleware('auth');
 
 
 
-Route::get('/users/dashboard', [UserController::class, 'dashbaord'])->middleware('auth');
+Route::get('/users/{id}/dashboard', [UserController::class, 'dashbaord'])->middleware('auth');
 
