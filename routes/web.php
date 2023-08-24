@@ -6,6 +6,7 @@ use App\Http\Controllers\NewsController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\ViewController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\PortfolioController;
 use App\Http\Controllers\UserController;
 
 // List of all companies
@@ -49,5 +50,5 @@ Route::get('/users/{id}', [UserController::class, 'show'])->middleware('auth');
 
 
 
-Route::get('/users/{id}/dashboard', [UserController::class, 'dashbaord'])->middleware('auth');
+Route::get('/users/{user}/dashboard', [UserController::class, 'dashboard'])->middleware('auth');
 

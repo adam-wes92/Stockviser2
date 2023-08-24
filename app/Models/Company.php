@@ -23,6 +23,6 @@ class Company extends Model
         'volatility',
         'EPS'
     ];
-
+ 
 
 }

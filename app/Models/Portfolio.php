@@ -20,6 +20,10 @@ class Portfolio extends Model
             'last_purchase_date'        
     ];
 
+    public function scopeFilter($query, $filters){       
+            $query->where('user_id', '=', $filters);        
+    }
+
     // relationship to User model
     public function user() {
         // Now for Laravel, our Listing belongs to a sinlge User
