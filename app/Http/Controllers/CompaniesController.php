@@ -31,6 +31,7 @@ class CompaniesController extends Controller
         ])->get("https://yahoo-finance15.p.rapidapi.com/api/yahoo/mo/module/{$symbol}", [
             'module' => 'asset-profile,financial-data,earnings'
         ]);
+        // dd($response);
          $arrayresponse[] = $response;
 // dd($response);
         if ($response->successful()) {
