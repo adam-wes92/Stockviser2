@@ -35,11 +35,10 @@ Route::get('/login', [UserController::class, 'login'])->name('login')->middlewar
 Route::post('users/authenticate', [UserController::class, 'authenticate']);
 
 // User edit
-Route::post('user/{id}/edit', [UserController::class, 'edit']);
+Route::post('user/{user}/edit', [UserController::class, 'edit']);
 
 // Display user data
-Route::get('/user/{id}', [UserController::class, 'show']);
+Route::get('/user/{user}', [UserController::class, 'show']);
 
 // Display one of the companies
-Route::get('/company/{id}', [CompanyController::class], 'show');
-
+Route::get('/company{company}', [CompanyController::class, 'show']);
