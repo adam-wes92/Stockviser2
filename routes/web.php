@@ -9,7 +9,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\UserController;
 
 // List of all companies
-// Route::get('/', [CompanyController::class, 'index']);
+//Route::get('/', [CompanyController::class, 'index']);
 
 // Display News Component
 Route::get('/', [NewsController::class, 'getNews']);
@@ -44,8 +44,8 @@ Route::get('/users/{id}', [UserController::class, 'show'])->middleware('auth');
 // User Dashboard Display
 Route::get('/users/{id}/dashboard', [UserController::class, 'show'])->middleware('auth');
 
-// Show the Contact form
-Route::get('/contact', [ContactController::class, 'showForm'])->name('contact.form');
 
-// Submit contact form
-Route::post('/contact', [ContactController::class, 'submitForm'])->name('contact.submit');
+
+Route::get('contact-us', [ContactController::class, 'index']);
+
+Route::post('contact-us', [ContactController::class, 'store'])->name('contact.us.store');

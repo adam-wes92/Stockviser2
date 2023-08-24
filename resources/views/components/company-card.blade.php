@@ -4,8 +4,8 @@
     <div class="flex">
 
         {{-- We adjusted the src="{{ asset('images/no-image.png')}}" to src="{{$listing->logo ? asset('storage/' . $listing->logo) : asset('images/no-image.png')}}" --}}
-        <img class="hidden w-48 mr-6 md:block" src="{{ asset('images/logo.png') }}" alt="" />
-        <div>
+        {{-- <img class="hidden w-48 mr-6 md:block" src="{{ asset('images/logo.jpg') }}" alt="" />
+        <div> --}}
             <h3 class="text-2xl">
                 <a href="/companies/{{ $company->id }}">{{ $company->name }}</a>
             </h3>
