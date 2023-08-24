@@ -103,9 +103,9 @@ class UserController extends Controller
         }
     }
 
-    public function dashboard()
+    public function show()
     {
-        $user = Auth::user(); // Get the currently authenticated user
+        //$user = Auth::user(); // Get the currently authenticated user
         return view('users.dashboard');
     }
 }

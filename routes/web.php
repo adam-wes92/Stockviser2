@@ -14,12 +14,6 @@ use App\Http\Controllers\UserController;
 // Display News Component
 Route::get('/', [NewsController::class, 'getNews']);
 
-// Show the Contact form
-Route::get('/contact', [ContactController::class, 'showForm'])->name('contact.form');
-
-// Submit contact form
-Route::post('/contact', [ContactController::class, 'submitForm'])->name('contact.submit');
-
 // Show edit form for Users
 Route::get('/users/{user}/edit', [UserController::class, 'edit'])->middleware('auth')->name('user.edit');
 
@@ -47,7 +41,11 @@ Route::post('/users/authenticate', [UserController::class, 'authenticate']);
 // Display user data
 Route::get('/users/{id}', [UserController::class, 'show'])->middleware('auth');
 
+// User Dashboard Display
+Route::get('/users/{id}/dashboard', [UserController::class, 'show'])->middleware('auth');
 
+// Show the Contact form
+Route::get('/contact', [ContactController::class, 'showForm'])->name('contact.form');
 
-Route::get('/users/{id}/dashboard', [UserController::class, 'dashbaord'])->middleware('auth');
-
+// Submit contact form
+Route::post('/contact', [ContactController::class, 'submitForm'])->name('contact.submit');
