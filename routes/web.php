@@ -8,23 +8,26 @@ use App\Http\Controllers\ViewController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\UserController;
 
+// List of all companies
 // Route::get('/', [CompanyController::class, 'index']);
 
-
+// Display News Component
 Route::get('/', [NewsController::class, 'getNews']);
-// Route::get('/', [NewsController::class, 'getnews']);
 
-// This is to show the Contact form
+// Show the Contact form
 Route::get('/contact', [ContactController::class, 'showForm'])->name('contact.form');
 
-// This is to submit contact form
+// Submit contact form
 Route::post('/contact', [ContactController::class, 'submitForm'])->name('contact.submit');
 
 // Show edit form for Users
 Route::get('/users/{user}/edit', [UserController::class, 'edit'])->middleware('auth')->name('user.edit');
 
-// Update User Profile
+// Update User Profile information
 Route::put('/users/{user}', [UserController::class, 'update'])->middleware('auth')->name('user.update');
+
+// Display one of the companies
+Route::get('/company/{id}', [CompanyController::class], 'show');
 
 // Present the registration form
 Route::get('/register', [UserController::class, 'create']);
@@ -42,8 +45,9 @@ Route::get('/login', [UserController::class, 'login'])->name('login')->middlewar
 Route::post('/users/authenticate', [UserController::class, 'authenticate']);
 
 // Display user data
-Route::get('/user/{id}', [UserController::class, 'show']);
+Route::get('/users/{id}', [UserController::class, 'show'])->middleware('auth');
 
-// Display one of the companies
-Route::get('/company/{id}', [CompanyController::class], 'show');
+
+
+Route::get('/users/dashboard', [UserController::class, 'dashbaord'])->middleware('auth');
 
