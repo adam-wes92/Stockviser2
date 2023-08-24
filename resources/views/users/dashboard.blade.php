@@ -59,7 +59,12 @@
                 </div>
             </x-card>
             <x-card class="p-10  mx-auto mt-24 sh-b">
-            <div class=""></div>
+            <div class="">
+            <h1 class="pt-2 text-2xl font-bold uppercase text-laravel t-center" style="font:family 'Roboto', sans-serif;">
+                    Portfolio's resume</h1>
+                    <p class="pb-2 text-2xl text-gray-200  my-4 text-laravel"> <span class="font-bold">Companies in portfolio: </span> 
+                {{count($companies)}}</p>
+            </div>
             </x-card>
         </div>
         <div class="">
