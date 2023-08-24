@@ -44,8 +44,6 @@ Route::get('/users/{id}', [UserController::class, 'show'])->middleware('auth');
 // User Dashboard Display
 Route::get('/users/{id}/dashboard', [UserController::class, 'show'])->middleware('auth');
 
+// Route::get('/contact', [ContactController::class, 'index']);
 
-
-Route::get('contact-us', [ContactController::class, 'index']);
-
-Route::post('contact-us', [ContactController::class, 'store'])->name('contact.us.store');
+Route::post('/', [ContactController::class, 'store'])->name('contact.us.store');
