@@ -127,7 +127,7 @@
                             @endforeach       
                 </div>
                 <div class="flex space-x-6 mr-6 my-6 p-6 text-lg ">
-                    <a href="/" class="bg-laravel text-white py-2 px-4 rounded sm:text-lg md:text-xl lg:text-2-xl xl:text-3xl hover:text-laravel2">Add companies to your portfolio</a>
+                    <a href="/" class="bg-laravel text-white py-2 mx-auto px-4 rounded sm:text-lg md:text-xl lg:text-2-xl xl:text-3xl hover:text-laravel2">Add companies to your portfolio</a>
                 </div>
             </x-card>
 
