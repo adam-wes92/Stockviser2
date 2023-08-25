@@ -6,6 +6,7 @@ use App\Http\Controllers\NewsController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\ViewController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\PortfolioController;
 use App\Http\Controllers\UserController;
 
 // List of all companies
@@ -41,9 +42,9 @@ Route::post('/users/authenticate', [UserController::class, 'authenticate']);
 // Display user data
 Route::get('/users/{id}', [UserController::class, 'show'])->middleware('auth');
 
-// User Dashboard Display
-Route::get('/users/{id}/dashboard', [UserController::class, 'show'])->middleware('auth');
-
 // Route::get('/contact', [ContactController::class, 'index']);
 
+Route::get('/users/{user}/dashboard', [UserController::class, 'dashboard'])->middleware('auth');
+
 Route::post('/', [ContactController::class, 'store'])->name('contact.us.store');
+

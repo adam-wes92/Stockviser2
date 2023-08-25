@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Company;
 use App\Models\User;
+use App\Models\Portfolio;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
@@ -103,9 +105,19 @@ class UserController extends Controller
         }
     }
 
-    public function show()
-    {
-        //$user = Auth::user(); // Get the currently authenticated user
-        return view('users.dashboard');
+    public function dashboard(User $user)
+    {   $user_id=$user->id;
+        $companies=[];
+        $companies_in_portfolio=[];
+        $companies_in_portfolio = Portfolio::all()->filter(request($user_id));
+        
+        foreach ($companies_in_portfolio as $cp){
+            array_push($companies, Company::find($cp->company_id));
+        }
+
+        return view('users.dashboard', [
+            'companies_in_portfolio'=>$companies_in_portfolio,
+            'companies'=>$companies
+        ]);
     }
 }
