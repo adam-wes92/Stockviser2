@@ -21,9 +21,10 @@
         </div> 
     </div> --}}
 
+    <div class="flex flex-row flex-wrap justify-center gap-3">
     {{-- News Api --}}
     @include('components.news')
-    
+    </div>
     {{-- c27b5612b9msh8ab4f6395705c09p18166cjsn91e9563d42d2   --}}
 
     @include('components.contactForm')
