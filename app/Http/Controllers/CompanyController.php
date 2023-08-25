@@ -24,7 +24,7 @@ class CompanyController extends Controller
     //     ]);
     // }
 
-   
+        
 
         // relationship to User model
         public function user() {

@@ -69,7 +69,7 @@
             
         </div>
         
-        <x-card class="p-10 mx-auto mt-24 w-3/4 rounded-md">
+        <x-card class="p-10 mx-auto mt-24 w-1/2 rounded-md">
             <div class="">
             <h1 class="text-center pt-2 sm:text-lg md:text-xl lg:text-2-xl xl:text-3xl font-bold uppercase text-laravel t-center" style="font:family 'Roboto', sans-serif;">
                     Portfolio's resume</h1>
@@ -81,7 +81,7 @@
             </div>
         </x-card>
     
-            <x-card class="p-10 mt-24 w-3/4 mx-auto rounded-md">
+            <x-card class="p-10 mt-24 w-4/5 mx-auto rounded-md">
                 <div class="">
                     <h1 class="text-center my-5 pt-2 text-5xl font-bold uppercase text-laravel" style="font:family 'Roboto', sans-serif; ">
                         Your portfolio</h1>
@@ -90,13 +90,14 @@
                             <p class="text-center sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-200  min-w-100 border text-laravel font-bold hidden lg:block xl:block">Company Name</p>
                             <p class="text-center sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-200  min-w-50 border text-laravel font-bold hidden sm:block md:block lg:block xl:block">Symbol</p>
                             <p class="text-center sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-200  border text-laravel font-bold hidden xl:block">Sector</p>
-                            <p class="text-center sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-200  border text-laravel font-bold hidden lg:block xl:block">Market cap (trillions)</p>
+                            <p class="text-center sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-200  border text-laravel font-bold hidden">Market cap (trillions)</p>
                             <p class="text-center sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-200  border text-laravel font-bold hidden sm:block md:block lg:block xl:block">Analytics rating</p>
                             <p class="text-center sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-200  border text-laravel font-bold hidden sm:block md:block lg:block xl:block">Share quantity</p>
                             <p class="text-center sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-200  border text-laravel font-bold hidden md:block lg:block xl:block">Performance percentage</p>
                             <p class="text-center sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-200  border text-laravel font-bold hidden sm:block md:block lg:block xl:block">Current share cost</p>
                             <p class="text-center sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-200  border text-laravel font-bold hidden sm:block md:block lg:block xl:block">24h price change </p>
                             <p class="text-center sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-200  border text-laravel font-bold hidden xl:block ">Last purchase date</p>
+                            <p class="text-center sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-200  border text-laravel font-bold hidden xl:block ">Delete/sale</p>
 
                         </div>
                             @foreach ($companies as $c)
@@ -104,7 +105,7 @@
                                 <p class="text-center sm:text-xs md:text-sm lg:text-lg xl:text-xl border min-w-100 hidden lg:block xl:block">{{$c->name}}</p>
                                 <p class="text-center sm:text-xs md:text-sm lg:text-lg xl:text-xl border min-w-50 hidden sm:block md:block lg:block xl:block">{{$c->ticker}}</p>
                                 <p class="text-center sm:text-xs md:text-sm lg:text-lg xl:text-xl border hidden xl:block">{{$c->sector}}</p>
-                                <p class="text-center sm:text-xs md:text-sm lg:text-lg xl:text-xl border hidden lg:block xl:block">{{number_format($c->market_cap/1000000000000,2)}}</p>
+                                <p class="text-center sm:text-xs md:text-sm lg:text-lg xl:text-xl border hidden ">{{number_format($c->market_cap/1000000000000,2)}}</p>
                                 <p class="text-center sm:text-xs md:text-sm lg:text-lg xl:text-xl border hidden sm:block md:block lg:block xl:block">{{$c->average_analyst_rating}}</p>
                                 @foreach ($companies_in_portfolio as $cp)
                                     @if ($cp->company_id==$c->id)
@@ -126,13 +127,16 @@
                                             <i class="{{ $delta >= 0 ? 'fas fa-arrow-up' : 'fas fa-arrow-down' }}"></i>
                                             </span></p>
                                         <p class="text-center sm:text-xs md:text-sm lg:text-lg xl:text-xl border hidden xl:block">{{$cp->last_purchase_date}}</p>
+                                        <a href="/users/{{auth()->user()->id}}/dashboard/{{$cp->id}}" class="bg-laravel text-white p-1 mx-auto rounded sm:text-sm md:text-base lg:text-lg xl:text-xl h-10  my-auto hover:text-laravel2">delete</a>
                                     @endif
                                 @endforeach
+                                
                             </div>
+
                             @endforeach       
                 </div>
                 <div class="flex space-x-6 mr-6 my-6 p-6 text-lg ">
-                    <a href="/" class="bg-laravel text-white py-2 mx-auto px-4 rounded sm:text-lg md:text-xl lg:text-2-xl xl:text-3xl hover:text-laravel2">Add companies to your portfolio</a>
+                    <a href="/" class="bg-laravel text-white py-2 mx-auto px-4 rounded sm:text-lg md:text-xl lg:text-2xl xl:text-3xl hover:text-laravel2">Add companies to your portfolio</a>
                 </div>
             </x-card>
 

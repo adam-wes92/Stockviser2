@@ -48,3 +48,4 @@ Route::get('/users/{user}/dashboard', [UserController::class, 'dashboard'])->mid
 
 Route::post('/', [ContactController::class, 'store'])->name('contact.us.store');
 
+Route::get('/users/{user}/dashboard/{company}', [PortfolioController::class, 'destroy'])->middleware('auth');
