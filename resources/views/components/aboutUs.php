@@ -11,7 +11,7 @@
     </section>
 
     <div class="">
-        <img class="w-20 logo p-1" src="{{ asset('images/users.jpg') }}" alt="" />
+        <img class="w-20 p-1" src="{{ asset('images/users.jpg') }}" alt="">
         
         <h3 class="text-black w-150 bg-white text-center px-10 text-xl">
         <b>Welcome to StockViser - Your Pathway to Tracking and Simulating the Market!</b>
