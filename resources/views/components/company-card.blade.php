@@ -15,6 +15,7 @@
     <div class="card company-card bg-light-blue mb-4 h-100">
         <div class="card-body text-center"> <!-- Align text to the center -->
             <img src="images/{{$symbol}}.png" alt="" class="card-img-top img-fluid rounded-circle company-logo p-3 img-thumbnail mx-auto d-block" style="width: 100px; height: 100px;"> <!-- Center align logo -->
+            <p class="card-text in-line"><strong>Share Price: </strong>$ {{ $company['regularMarketPrice'] }}</p>
             {{-- <h5 class="card-title mb-2">{{ $company['name'] }}</h5> --}}
             <p class="card-text"><strong></strong>{{ $company['displayName'] }} ({{ $symbol }})</p>
             <p class="card-text in-line"><strong>Share Price: </strong>$ {{ $company['regularMarketPrice'] }}</p>

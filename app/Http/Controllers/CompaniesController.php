@@ -64,6 +64,25 @@ class CompaniesController extends Controller
             $jsonData[2] = $response2->json();
         // dd($jsonData);
 
+        // dd($response);
+        //  $arrayresponse[] = $response;
+// dd($response);
+        $arrayresponse[0] = $response;
+        $arrayresponse[1] = $response1;
+        $arrayresponse[2] = $response2;
+        // dd($response);
+        if ($response && $response1 && $response2->successful()) {
+            $jsonData[0] = $response->json();
+            $jsonData[1] = $response1->json();
+            $jsonData[2] = $response2->json();
+        //dd($jsonData);
+
+        if ($response && $response1 && $response2->successful()) {
+            $jsonData[0] = $response->json();
+            $jsonData[1] = $response1->json();
+            $jsonData[2] = $response2->json();
+        // dd($jsonData);
+
         $data[$symbol] = [
                 // 'name' => $company->name,
             // 'revenue' => $company->revenue,
