@@ -24,9 +24,7 @@ class DatabaseSeeder extends Seeder
             'address' => '456 Somewhere Ave.', 
             'city' => 'Luxembourg City', 
             'country' => 'Luxembourg',
-
             'zip' => '2222', 
-
             'birth_date' => '2022-08-27',
             'phone_number' => '123-123-123',
             'email' => 'banana.man@gmail.com',

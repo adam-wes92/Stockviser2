@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('ticker');
             $table->string('country');
             $table->string('sector');
-            $table->string('inductry');
+            $table->string('industry');
             $table->decimal('market_cap', 15, 2);
             $table->string('average_analyst_rating');
             $table->float('regular_market_price');            

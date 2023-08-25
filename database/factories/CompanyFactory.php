@@ -23,9 +23,8 @@ class CompanyFactory extends Factory
             'ticker'=>$this->faker->lexify('????'),
             'country'=>$this->faker->word(1, true),
             'sector'=>$this->faker->word(2, true),
-            'inductry'=>$this->faker->word(3, true),
-            'market_cap'=>$this->faker->randomFloat(2, 1, 10000000000000),
-           
+            'industry'=>$this->faker->word(3, true),
+            'market_cap'=>$this->faker->randomFloat(2, 1, 10000000000000),       
             'average_analyst_rating'=>$rating,
             'regular_market_price'=>$this->faker->numberBetween(1,1000),            
             'one_year_target'=>$this->faker->numberBetween(1,1000),

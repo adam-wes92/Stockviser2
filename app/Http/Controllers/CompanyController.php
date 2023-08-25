@@ -24,19 +24,7 @@ class CompanyController extends Controller
     //     ]);
     // }
 
-    // Added this to create filtering for our search bar on the page. 
-    public function scopeFilter($query, array $filters){
-
-        
-        if($filters['search'] ?? false) {
-            // Make an array of keyword to search for
-            $keywords = explode(' ', $filters['search']);
-            // dd($keyword); Check to see if the code is working correcting, like console.log()
-
-            foreach($keywords as $keyword) {
-            $query->where('tags', 'like', '%' . $keyword . '%');
-            }
-        }}
+   
 
         // relationship to User model
         public function user() {
