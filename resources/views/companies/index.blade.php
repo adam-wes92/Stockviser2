@@ -15,9 +15,8 @@
     </style>
 </head>
 <body>
-
-{{-- 
-    <div class="container">
+ 
+    {{-- <div class="container">
         <h1 class="mb-4">Company Data</h1>
         <div class="row">
             @foreach ($data as $symbol => $company)
@@ -40,7 +39,7 @@
                 </div>
             @endforeach
         </div>
-    </div> --}}
+    </div>  --}}
 
     <div class="container">
         <h1 class="mb-4">Company Data</h1>

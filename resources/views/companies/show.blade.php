@@ -54,7 +54,6 @@
 // // Display analyst recommendation
 // $analystRecommendation = 'Buy'; // Replace with the actual recommendation if available
 // echo 'Analyst Recommendation: ' . $analystRecommendation . '<br>';
-// dd($data);
 ?>
 
 
@@ -62,11 +61,21 @@
     {{-- Display other information about the company --}}
     <h1>{{ $company->name }}</h1>
     {{-- ... other company details ... --}}
+    <div class="container mt-5">
+    <h2>Add to Portfolio</h2>
+    <form action="{{ route('portfolio.add') }}" method="post">
+        @csrf
+        <input type="hidden" name="company_id" value="{{ $company->id }}">
+        <label for="quantity">Quantity:</label>
+        <input type="number" name="quantity" required>
+        <button type="submit" class="btn btn-primary">Add to Portfolio</button>
+    </form>
+</div>
 
     {{-- Display the lowest prices from yesterday and two days ago --}}
     <h1>
-        {{ $highest0 }}
-        {{ $noData }}
+        {{-- {{ $highest0 }}
+        {{ $noData }} --}}
     </h1>
 </div>
 <!DOCTYPE html>
@@ -89,7 +98,7 @@
                     <th scope="col">Price</th>
                 </tr>
             </thead>
-            <tbody>
+            {{-- <tbody>
                 <tr>
                     <td>Day 0</td>
                     <td>{{ $highest0 }}</td>
@@ -110,7 +119,7 @@
                     <td>Day -4</td>
                     <td>{{ $highest4 }}</td>
                 </tr>
-            </tbody>
+            </tbody> --}}
         </table>
     </div>
 
@@ -179,7 +188,7 @@
     </div>
 
      <div class="card-body">
-        <h5 class="card-title">{{ $company->name }}</h5>
+         {{-- <h5 class="card-title">{{ $company->name }}</h5>  --}}
         <p class="card-text">
             {{ substr($description, 0, 200) }} <!-- Display first 200 characters of description -->
             @if (strlen($description) > 200)

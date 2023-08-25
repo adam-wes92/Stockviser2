@@ -31,8 +31,14 @@ Route::get('/companies', [CompaniesController::class, 'index']);
 
 
 // Display one of the companies
-Route::get('/company', [CompanyController::class, 'show']);
+Route::get('/companies/{symbol}', [CompaniesController::class, 'show'])->name('company.show');
 
+
+
+// Route for adding a company to the portfolio
+Route::post('/portfolio/add', [PortfolioController::class, 'add'])->name('portfolio.add');
+
+Route::get('/portfolio', [PortfolioController::class, 'show'])->name('portfolio.show');
 
 
 
