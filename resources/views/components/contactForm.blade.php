@@ -1,4 +1,5 @@
 <div class="flex justify-center align-center text-xl bg-gray-50 border border-gray-200 text-laravel2  rounded p-10 bg-laravel">
+    <x-flash-message />
     <form action="{{ route('contact.us.store') }}" method="POST" class="w-80 text-lrg">
         @csrf
         <h1 class="mb-3 text-2xl underline">Contact Us</h1>

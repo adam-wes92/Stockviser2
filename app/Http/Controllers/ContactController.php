@@ -36,8 +36,8 @@ class ContactController extends Controller
         $subject = $formFields['subject'];
         $message = $formFields['message'];
     
-        Mail::to('renckrm92@gmail.com')->send(new ContactMail($name, $email, $ticker, $subject, $message));
+        // Mail::to('renckrm92@gmail.com')->send(new ContactMail($name, $email, $ticker, $subject, $message));
     
-        return redirect()->back()->with(['success' => 'Thank you for contacting us. Our advisers will review your message and get back to you ASAP.']);
+        return redirect('/')->with(['message' => 'Thank you for contacting us. Our advisers will review your message and get back to you ASAP.']);
     }
 }

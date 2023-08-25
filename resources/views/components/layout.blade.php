@@ -10,8 +10,7 @@
 
     <link rel="stylesheet" href="{{asset('styles/style.css')}}">
 
-
-    {{-- Added this script from alpinejs.dev --}}
+    {{-- Added this script from alpinejs.dev for search bar --}}
     <script src="//unpkg.com/alpinejs" defer></script> 
     <script src="https://cdn.tailwindcss.com"></script>
     <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js'></script>
