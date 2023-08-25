@@ -20,7 +20,6 @@
                 extend: {
                     colors: {
                         laravel: "#081175",
-                        // You can change the 'laravel' hardcoded color so that when you use the bg-laravel, the color will be whatever you want it to be This is the OG Laravel Color Code: #2563eb
                         laravel2: "#65a147",
                         laravel3: "#acce22"
                     },
