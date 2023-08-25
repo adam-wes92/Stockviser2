@@ -1,7 +1,6 @@
 <!-- Hero -->
 <section class="relative h-50 bg-laravel flex flex-col justify-center align-center space-y-4 mb-4">
 
-
     <div class="absolute top-0 left-0 w-full h-full opacity-10 bg-center"
     style="background-image: url('images/Arrows.jpg'); bg-repeat: repeat; background-size: 25%"></div>
 

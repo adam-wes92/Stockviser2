@@ -3,19 +3,13 @@
 <x-card>
     <div class="flex">
 
-        {{-- We adjusted the src="{{ asset('images/no-image.png')}}" to src="{{$listing->logo ? asset('storage/' . $listing->logo) : asset('images/no-image.png')}}" --}}
-        {{-- <img class="hidden w-48 mr-6 md:block" src="{{ asset('images/logo.jpg') }}" alt="" />
-        <div> --}}
             <h3 class="text-2xl">
                 <a href="/companies/{{ $company->id }}">{{ $company->name }}</a>
             </h3>
             <div class="text-xl font-bold mb-4">Company Price</div>
 
             <div class="text-xl font-bold mb-4">Company Description</div>
-            {{-- <form action="{{ route('add.to.cart', $company->id) }}" method="GET">
-                @csrf
-                <button type="submit" class="bg-black mr-3 text-sm text-white px-3 py-1 ml-10 hover:text-laravel rounded">Add to Portfolio</button>
-            </form> --}}
+
 
             <?php
             $apiKey = 'c27b5612b9msh8ab4f6395705c09p18166cjsn91e9563d42d2'; // Replace with your actual API key

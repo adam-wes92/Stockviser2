@@ -8,8 +8,6 @@
     <link rel="icon" href="images/favicon.ico" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <link rel="stylesheet" href="{{asset('styles/style.css')}}">
-
     {{-- Added this script from alpinejs.dev for search bar --}}
     <script src="//unpkg.com/alpinejs" defer></script> 
     <script src="https://cdn.tailwindcss.com"></script>
@@ -38,36 +36,18 @@
 
         <a href="/">
             <img class="w-20 logo ml-5" src="{{ asset('images/logo.png') }}" alt="" />
-            
-        </a>        
-
+        </a>    
+        
         <ul class="flex space-x-6 mr-6 text-lg">
             {{-- Adding this auth directive so that it doesn't display the register and login links after the user has been logged in --}}
              @auth {{-- content to be displayed when user is logged in --}}
-
-
-              {{-- Create product Button --}}
-                {{-- <li>
-                    <a href="/" class="bg-black text-white py-2 px-4 rounded text-sm">Create Portfolio</a>
-                </li> --}}
-
                 <li>
                     <a href="/users/{{ auth()->user()->id }}/dashboard" class="bg-black text-white py-2 px-4 rounded text-sm hover:text-laravel2">My Dashboard</a>
-
                 </li>
+
                 <li>
                     <a href="/users/{{ auth()->user()->id }}/edit" class=" text-sm bg-black text-white px-5 py-2 hover:text-laravel2 rounded"><i class="fa-sharp fa-solid fa-user"></i>&nbsp My Profile</a>
                 </li>
-
-                {{-- <li>
-                    <a href="{{ route('cart.show') }}" class="hover:text-laravel"><i class="fa-sharp fa-solid fa-lg fa-cart-shopping"></i>&nbsp
-                       My Cart</a>
-          </li> --}}
-               
-               {{-- <li>
-                    <a href="/" class="hover:text-laravel"><i class="fa-sharp fa-solid fa-lg fa-tag"></i>&nbsp
-                        My Portfolio</a>
-                </li> --}}
 
                 <li> {{-- added this LI to incorporate Logout ability --}}
                 <form class=" text-white inline" method="POST" action="/logout">
@@ -78,7 +58,7 @@
                     </form>
                 </li>  
 
-            @else {{-- content to be displayed when user is loggeed out --}} 
+            @else {{-- content to be displayed when user is logged out --}} 
                 <li>
                     <a href="/register" class="hover:text-laravel2 text-white"><i class="fa-solid fa-user-plus"></i>
                         Register</a>
