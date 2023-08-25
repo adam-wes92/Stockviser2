@@ -106,18 +106,40 @@ class UserController extends Controller
     }
 
     public function dashboard(User $user)
-    {   $user_id=$user->id;
+
+    {   $total_gain=0;
+        $total_invest=0;
+        $EPC_array=[];
+        $user_id=$user->id;
         $companies=[];
         $companies_in_portfolio=[];
         $companies_in_portfolio = Portfolio::all()->filter(request($user_id));
         
         foreach ($companies_in_portfolio as $cp){
             array_push($companies, Company::find($cp->company_id));
+            $total_gain+=$cp->gain;
+            $total_invest+=$cp->total_invested;
+            $EPC_array+=$cp->EPS;
+            $perf_array=$cp->performance_percentage;
+        };
+        $sorted_comp_EPS= $EPC_array;
+        $sorted_comp_perf= $perf_array;
+        ksort($sorted_comp_EPS);
+        $best_EPS=array_slice($sorted_comp_EPS,3);
+        $best_perf=array_slice($sorted_comp_perf,3);
+        foreach($best_EPS as $be){
+            
         }
 
+        
         return view('users.dashboard', [
             'companies_in_portfolio'=>$companies_in_portfolio,
-            'companies'=>$companies
+            'companies'=>$companies,
+            'total_gain'=>$total_gain,
+            'total_invest'=>$total_invest,
+            'portfolio_performance'=>$total_gain*100/$total_invest,
+            'delta'=>0,
+            'best'
         ]);
     }
 }
