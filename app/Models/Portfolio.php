@@ -13,12 +13,16 @@ class Portfolio extends Model
             'user_id',
             'company_id',
             'shares_qty',
-            'purchase_cost',
+            'total_invested',
             'current_cost',
             'gain',
             'performance_percentage',
             'last_purchase_date'        
     ];
+
+    public function scopeFilter($query, $filters){       
+            $query->where('user_id', '=', $filters);        
+    }
 
     // relationship to User model
     public function user() {
