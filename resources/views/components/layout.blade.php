@@ -10,8 +10,7 @@
 
     <link rel="stylesheet" href="{{asset('styles/style.css')}}">
 
-
-    {{-- Added this script from alpinejs.dev --}}
+    {{-- Added this script from alpinejs.dev for search bar --}}
     <script src="//unpkg.com/alpinejs" defer></script> 
     <script src="https://cdn.tailwindcss.com"></script>
     <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js'></script>
@@ -55,6 +54,7 @@
 
                 <li>
                     <a href="/users/{{ auth()->user()->id }}/dashboard" class="bg-black text-white py-2 px-4 rounded text-sm hover:text-laravel2">My Dashboard</a>
+
                 </li>
                 <li>
                     <a href="/users/{{ auth()->user()->id }}/edit" class=" text-sm bg-black text-white px-5 py-2 hover:text-laravel2 rounded"><i class="fa-sharp fa-solid fa-user"></i>&nbsp My Profile</a>

@@ -10,16 +10,10 @@ use App\Http\Controllers\PortfolioController;
 use App\Http\Controllers\UserController;
 
 // List of all companies
-// Route::get('/', [CompanyController::class, 'index']);
+//Route::get('/', [CompanyController::class, 'index']);
 
 // Display News Component
 Route::get('/', [NewsController::class, 'getNews']);
-
-// Show the Contact form
-Route::get('/contact', [ContactController::class, 'showForm'])->name('contact.form');
-
-// Submit contact form
-Route::post('/contact', [ContactController::class, 'submitForm'])->name('contact.submit');
 
 // Show edit form for Users
 Route::get('/users/{user}/edit', [UserController::class, 'edit'])->middleware('auth')->name('user.edit');
@@ -48,7 +42,9 @@ Route::post('/users/authenticate', [UserController::class, 'authenticate']);
 // Display user data
 Route::get('/users/{id}', [UserController::class, 'show'])->middleware('auth');
 
-
+// Route::get('/contact', [ContactController::class, 'index']);
 
 Route::get('/users/{user}/dashboard', [UserController::class, 'dashboard'])->middleware('auth');
+
+Route::post('/', [ContactController::class, 'store'])->name('contact.us.store');
 
