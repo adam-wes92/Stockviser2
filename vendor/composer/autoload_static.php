@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInitea13eda77129a6d19dc9ab85ec3871bd
+class ComposerStaticInitb17211407a81b28ea608414d64def761
 {
     public static $files = array (
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
@@ -541,7 +541,9 @@ class ComposerStaticInitea13eda77129a6d19dc9ab85ec3871bd
         'App\\Http\\Middleware\\TrustProxies' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustProxies.php',
         'App\\Http\\Middleware\\ValidateSignature' => __DIR__ . '/../..' . '/app/Http/Middleware/ValidateSignature.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
+        'App\\Mail\\ContactMail' => __DIR__ . '/../..' . '/app/Mail/ContactMail.php',
         'App\\Models\\Company' => __DIR__ . '/../..' . '/app/Models/Company.php',
+        'App\\Models\\Contact' => __DIR__ . '/../..' . '/app/Models/Contact.php',
         'App\\Models\\News' => __DIR__ . '/../..' . '/app/Models/News.php',
         'App\\Models\\Portfolio' => __DIR__ . '/../..' . '/app/Models/Portfolio.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
@@ -6436,9 +6438,9 @@ class ComposerStaticInitea13eda77129a6d19dc9ab85ec3871bd
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInitea13eda77129a6d19dc9ab85ec3871bd::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInitea13eda77129a6d19dc9ab85ec3871bd::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInitea13eda77129a6d19dc9ab85ec3871bd::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInitb17211407a81b28ea608414d64def761::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitb17211407a81b28ea608414d64def761::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInitb17211407a81b28ea608414d64def761::$classMap;
 
         }, null, ClassLoader::class);
     }

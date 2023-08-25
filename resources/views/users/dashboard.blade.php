@@ -16,8 +16,8 @@
                 
                     <h1 class="text-center  pt-2 sm:text-xl md:text-2xl lg:text-3-xl xl:text-4xl font-bold uppercase text-laravel2" style="font:family 'Roboto', sans-serif;">
                     Your personal data</h1>
-                    <p class="pb-2 sm:text-lg md:text-xl lg:text-2xl xl:text-3xl text-gray-200 my-4 text-white"><span class="font-bold">Name:</span> {{ auth()->user()->first_name }} {{ auth()->user()->last_name }}</p>
-                    <p class="pb-2 sm:text-lg md:text-xl lg:text-2xl xl:text-3xl text-gray-200  my-4 text-white"> <span class="font-bold">Age: </span> 
+                    <p class="pb-2 sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-200 my-4 text-white"><span class="font-bold">Name:</span> {{ auth()->user()->first_name }} {{ auth()->user()->last_name }}</p>
+                    <p class="pb-2 sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-200  my-4 text-white"> <span class="font-bold">Age: </span> 
                         @php
                             $bd=auth()->user()->birth_date;
                             $today=date("Y-m-d");
@@ -26,11 +26,11 @@
                         @endphp
                         y.o.
                     </p>
-                    <p class="pb-2 sm:text-lg md:text-xl lg:text-2xl xl:text-3xl text-gray-200 my-4 text-white"><span class="font-bold">E-mail:</span> {{ auth()->user()->email}}</p>
-                    <p class="pb-2 sm:text-lg md:text-xl lg:text-2xl xl:text-3xl text-gray-200 my-4 text-white"><span class="font-bold">Phone number:</span> {{ auth()->user()->phone_number}}</p>
-                    <p class="pb-2 sm:text-lg md:text-xl lg:text-2xl xl:text-3xl text-gray-200 my-4 text-white"><span class="font-bold">Adress:</span> {{ auth()->user()->address}}, {{ auth()->user()->city}}, {{ auth()->user()->country}}, {{ auth()->user()->zip}}</p>
+                    <p class="pb-2 sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-200 my-4 text-white"><span class="font-bold">E-mail:</span> {{ auth()->user()->email}}</p>
+                    <p class="pb-2 sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-200 my-4 text-white"><span class="font-bold">Phone number:</span> {{ auth()->user()->phone_number}}</p>
+                    <p class="pb-2 sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-200 my-4 text-white"><span class="font-bold">Adress:</span> {{ auth()->user()->address}}, {{ auth()->user()->city}}, {{ auth()->user()->country}}, {{ auth()->user()->zip}}</p>
                         <div class="flex space-x-6 mr-6 text-lg ">
-                            <a href="/users/{{ auth()->user()->id }}/edit" class="mx-auto bg-laravel2 text-white py-2 px-4 rounded sm:text-lg md:text-xl lg:text-2xl xl:text-3xl hover:text-laravel">Change my personal data</a>
+                            <a href="/users/{{ auth()->user()->id }}/edit" class="mx-auto bg-laravel2 text-white py-2 px-4 rounded sm:text-lg md:text-xl lg:text-2xl xl:text-3xl hover:text-laravel text-center">Change my personal data</a>
                         </div>
                     
                 
@@ -43,20 +43,25 @@
                     Top 3 companies in your portfolio</h1>
                     <p class="text-center pb-2 sm:text-lg md:text-xl lg:text-2xl xl:text-3xl  text-gray-200 my-4 text-laravel">
                         With the best EPS-index
-                    </p>
-                    <div class="grid grid-cols-3 gap-4 mx-auto">  
+                    </p>                    
+                    <div class="grid grid-cols-3 gap-4 mx-auto">
+                        @foreach($best_EPS as $be)
                         <div class="">
                             <img src="{{asset('images/stock_market1.jpg')}}" style="width:150px" alt="">
-                            <p>56.33</p>
-                        </div>
-                        <div class="flex-c-center">
+                            <p>{{$be['EPS']}}</p>
+                        </div> 
+                        @endforeach                    
+                    </div>
+                    <p class="text-center pb-2 sm:text-lg md:text-xl lg:text-2xl xl:text-3xl  text-gray-200 my-4 text-laravel">
+                        With the best performance
+                    </p>                    
+                    <div class="grid grid-cols-3 gap-4 mx-auto">
+                        @foreach($best_perf as $bp)
+                        <div class="">
                             <img src="{{asset('images/stock_market2.jpg')}}" style="width:150px" alt="">
-                            <p>34.9</p>
-                        </div>
-                        <div class="flex-c-center">
-                            <img src="{{asset('images/stock_market3.jpg')}}" style="width:150px" alt="">
-                            <p>2.5</p>
-                        </div>
+                            <p>{{$bp['perf']}}%</p>
+                        </div> 
+                        @endforeach                    
                     </div>
                 
                 </div>
@@ -70,28 +75,28 @@
                     Portfolio's resume</h1>
                     <p class="pb-2 text-2xl text-gray-200  sm:text-lg md:text-xl lg:text-2-xl xl:text-3xl my-4 text-laravel"> <span class="font-bold">Companies in portfolio: </span> 
                 {{count($companies)}}</p>
-                    <p class="pb-2 sm:text-lg md:text-xl lg:text-2xl xl:text-3xl text-gray-200 my-4 text-laravel"><span class="font-bold">Portfolio gain:</span> {{$total_gain}}</p>
-                    <p class="pb-2 sm:text-lg md:text-xl lg:text-2xl xl:text-3xl text-gray-200 my-4 text-laravel"><span class="font-bold">Total investment:</span> {{$total_invest}}</p>
+                    <p class="pb-2 sm:text-lg md:text-xl lg:text-2xl xl:text-3xl text-gray-200 my-4 text-laravel"><span class="font-bold">Portfolio gain:</span> {{$total_gain}} EUR</p>
+                    <p class="pb-2 sm:text-lg md:text-xl lg:text-2xl xl:text-3xl text-gray-200 my-4 text-laravel"><span class="font-bold">Total investment:</span> {{$total_invest}} EUR</p>
                     <p class="pb-2 sm:text-lg md:text-xl lg:text-2xl xl:text-3xl text-gray-200 my-4 text-laravel"><span class="font-bold">Portfolio performance:</span> {{number_format($portfolio_performance,2)}} %</p>
             </div>
         </x-card>
     
             <x-card class="p-10 mt-24 w-3/4 mx-auto rounded-md">
                 <div class="">
-                    <h1 class="pt-2 text-5xl font-bold uppercase text-laravel" style="font:family 'Roboto', sans-serif; ">
+                    <h1 class="text-center my-5 pt-2 text-5xl font-bold uppercase text-laravel" style="font:family 'Roboto', sans-serif; ">
                         Your portfolio</h1>
                     
                         <div class="grid sm:grid-cols-5 md:grid-cols-6 lg:grid-cols-8 xl:grid-cols-10">
-                            <p class="text-center sm:text-sm md:text-lg lg:text-xl xl:text-2xl text-gray-200  min-w-100 border text-laravel font-bold hidden lg:block xl:block">Company Name</p>
-                            <p class="text-center sm:text-sm md:text-lg lg:text-xl xl:text-2xl text-gray-200  min-w-50 border text-laravel font-bold hidden sm:block md:block lg:block xl:block">Symbol</p>
-                            <p class="text-center sm:text-sm md:text-lg lg:text-xl xl:text-2xl text-gray-200  border text-laravel font-bold hidden xl:block">Sector</p>
-                            <p class="text-center sm:text-sm md:text-lg lg:text-xl xl:text-2xl text-gray-200  border text-laravel font-bold hidden lg:block xl:block">Market cap (trillions)</p>
-                            <p class="text-center sm:text-sm md:text-lg lg:text-xl xl:text-2xl text-gray-200  border text-laravel font-bold hidden sm:block md:block lg:block xl:block">Analytics rating</p>
-                            <p class="text-center sm:text-sm md:text-lg lg:text-xl xl:text-2xl text-gray-200  border text-laravel font-bold hidden sm:block md:block lg:block xl:block">Share quantity</p>
-                            <p class="text-center sm:text-sm md:text-lg lg:text-xl xl:text-2xl text-gray-200  border text-laravel font-bold hidden md:block lg:block xl:block">Performance percentage</p>
-                            <p class="text-center sm:text-sm md:text-lg lg:text-xl xl:text-2xl text-gray-200  border text-laravel font-bold hidden sm:block md:block lg:block xl:block">Current share cost</p>
-                            <p class="text-center sm:text-sm md:text-lg lg:text-xl xl:text-2xl text-gray-200  border text-laravel font-bold hidden sm:block md:block lg:block xl:block">24h price change </p>
-                            <p class="text-center sm:text-sm md:text-lg lg:text-xl xl:text-2xl text-gray-200  border text-laravel font-bold hidden xl:block ">Last purchase date</p>
+                            <p class="text-center sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-200  min-w-100 border text-laravel font-bold hidden lg:block xl:block">Company Name</p>
+                            <p class="text-center sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-200  min-w-50 border text-laravel font-bold hidden sm:block md:block lg:block xl:block">Symbol</p>
+                            <p class="text-center sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-200  border text-laravel font-bold hidden xl:block">Sector</p>
+                            <p class="text-center sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-200  border text-laravel font-bold hidden lg:block xl:block">Market cap (trillions)</p>
+                            <p class="text-center sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-200  border text-laravel font-bold hidden sm:block md:block lg:block xl:block">Analytics rating</p>
+                            <p class="text-center sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-200  border text-laravel font-bold hidden sm:block md:block lg:block xl:block">Share quantity</p>
+                            <p class="text-center sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-200  border text-laravel font-bold hidden md:block lg:block xl:block">Performance percentage</p>
+                            <p class="text-center sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-200  border text-laravel font-bold hidden sm:block md:block lg:block xl:block">Current share cost</p>
+                            <p class="text-center sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-200  border text-laravel font-bold hidden sm:block md:block lg:block xl:block">24h price change </p>
+                            <p class="text-center sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-200  border text-laravel font-bold hidden xl:block ">Last purchase date</p>
 
                         </div>
                             @foreach ($companies as $c)
