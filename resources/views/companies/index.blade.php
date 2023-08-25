@@ -1,6 +1,5 @@
 <x-layout>
 
-
     {{-- add hero partial --}}
     @include('partials._hero')
 
