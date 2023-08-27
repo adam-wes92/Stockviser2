@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Company;
 use App\Models\User;
+use App\Models\Company;
 use App\Models\Portfolio;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Validation\Rules\Password;
 
 class UserController extends Controller
@@ -120,34 +121,61 @@ class UserController extends Controller
             return view('users.dashboard', ['companies_in_portfolio'=>[]]);
         }else{
             foreach ($companies_in_portfolio as $cp){
-            $c=Company::find($cp->company_id);
-            array_push($companies, $c);
-            $total_gain+=$cp->gain;
-            $total_invest+=$cp->total_invested;
-            $a_EPS['EPS']=$c->EPS;
-            $a_EPS['ticker']=$c->ticker;
-            $a_perf['perf']=$cp->performance_percentage;
-            $a_perf['ticker']=$c->ticker;
-            array_push($array_EPS, $a_EPS);
-            array_push($array_perf, $a_perf);
-        }
-        usort($array_EPS, function ($a, $b) {
-            return $b["EPS"] <=> $a["EPS"];
-        });
-        usort($array_perf, function ($a, $b) {
-            return $b["perf"] <=> $a["perf"];
-        });
-        return view('users.dashboard', [
-            'companies_in_portfolio'=>$companies_in_portfolio,
-            'companies'=>$companies,
-            'total_gain'=>$total_gain,
-            'total_invest'=>$total_invest,
-            'portfolio_performance'=>$total_gain*100/$total_invest,
-            'delta'=>0,
-            'best_EPS'=>array_slice($array_EPS, 0, 3),
-            'best_perf'=>array_slice($array_perf, 0, 3),
-        ]);
-        }
-               
+                $symbol=$cp->ticker;
+                $response = Http::withHeaders([
+                    'X-RapidAPI-Host' => 'yahoo-finance15.p.rapidapi.com',
+                    'X-RapidAPI-Key' => env('RAPIDAPI_KEY'),
+                ])->get("https://yahoo-finance15.p.rapidapi.com/api/yahoo/mo/module/{$symbol}", [
+                    'module' => 'asset-profile,financial-data,earnings'
+                ]);
+                $response2 = Http::withHeaders([
+                    'X-RapidAPI-Host' => 'yahoo-finance15.p.rapidapi.com',
+                    'X-RapidAPI-Key' => env('RAPIDAPI_KEY'),
+                ])->get("https://yahoo-finance15.p.rapidapi.com/api/yahoo/qu/quote/{$symbol}", [
+                    //'module' => 'asset-profile,financial-data,earnings'
+                ]);
+                $c=Company::find($cp->company_id);
+                if ($response && $response2->successful()) {
+                    $arrayresponse[0] = $response->json();
+                    // $arrayresponse[1] = $response1->json();
+                    $arrayresponse[2] = $response2->json();
+                    $c->fill([
+                        'recomendation' => $arrayresponse[0]['financialData']['recommendationKey']??'no data from API',
+                        'regular_market_price' => $arrayresponse[2][0]['regularMarketPrice']??0,
+                        'regular_market_change' => $arrayresponse[2][0]['regularMarketChange']??0,
+                        'target_mean_price' => $arrayresponse[0]['financialData']['targetMeanPrice']['raw']??0,
+                        'EPS' => $arrayresponse[0]['earnings']['earningsChart']['quarterly'][0]['actual']['raw']??0,
+                        'regular_market_delta' => $arrayresponse[2][0]['regularMarketDayRange']??'no data from API'
+                    ]);
+                    $c->save();                     
+                }else{
+                    //exception
+                }
+                array_push($companies, $c);
+                $total_gain+=$cp->gain;
+                $total_invest+=$cp->total_invested;
+                $a_EPS['EPS']=$c->EPS;
+                $a_EPS['ticker']=$c->ticker;
+                $a_perf['perf']=$cp->performance_percentage;
+                $a_perf['ticker']=$c->ticker;
+                array_push($array_EPS, $a_EPS);
+                array_push($array_perf, $a_perf);
+            }
+            usort($array_EPS, function ($a, $b) {
+                return $b["EPS"] <=> $a["EPS"];
+            });
+            usort($array_perf, function ($a, $b) {
+                return $b["perf"] <=> $a["perf"];
+            });
+            return view('users.dashboard', [
+                    'companies_in_portfolio'=>$companies_in_portfolio->sortByDesc('last_purchase_date'),
+                    'companies'=>$companies,
+                    'total_gain'=>$total_gain,
+                    'total_invest'=>$total_invest,
+                    'portfolio_performance'=>$total_gain*100/$total_invest,
+                    'best_EPS'=>array_slice($array_EPS, 0, 3),
+                    'best_perf'=>array_slice($array_perf, 0, 3),
+            ]);
+            }               
     }
 }

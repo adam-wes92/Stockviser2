@@ -83,32 +83,54 @@ class CompanyController extends Controller
                 ]);
                 $descriptionApiData = $descriptionResponse->json();
                 // dd($descriptionApiData);
-                // dd($descriptionApiData);
-        
+                // dd($descriptionApiData);        
                 $description = $descriptionApiData['assetProfile']['longBusinessSummary'] ?? 'Description not available';
-                
-                // Pass the lowest prices to the view
+
+                $symbol=$company->ticker;
+                $response = Http::withHeaders([
+                    'X-RapidAPI-Host' => 'yahoo-finance15.p.rapidapi.com',
+                    'X-RapidAPI-Key' => env('RAPIDAPI_KEY'),
+                ])->get("https://yahoo-finance15.p.rapidapi.com/api/yahoo/mo/module/{$symbol}", [
+                    'module' => 'asset-profile,financial-data,earnings'
+                ]);
+                $response2 = Http::withHeaders([
+                    'X-RapidAPI-Host' => 'yahoo-finance15.p.rapidapi.com',
+                    'X-RapidAPI-Key' => env('RAPIDAPI_KEY'),
+                ])->get("https://yahoo-finance15.p.rapidapi.com/api/yahoo/qu/quote/{$symbol}", [
+                    //'module' => 'asset-profile,financial-data,earnings'
+                ]);
+                if ($response && $response2->successful()) {
+                    $arrayresponse[0] = $response->json();
+                    // $arrayresponse[1] = $response1->json();
+                    $arrayresponse[2] = $response2->json();
+                    $company->fill([
+                        'recomendation' => $arrayresponse[0]['financialData']['recommendationKey']??'no data from API',
+                        'regular_market_price' => $arrayresponse[2][0]['regularMarketPrice']??0,
+                        'regular_market_change' => $arrayresponse[2][0]['regularMarketChange']??0,
+                        'target_mean_price' => $arrayresponse[0]['financialData']['targetMeanPrice']['raw']??0,
+                        'EPS' => $arrayresponse[0]['earnings']['earningsChart']['quarterly'][0]['actual']['raw']??0,
+                        'regular_market_delta' => $arrayresponse[2][0]['regularMarketDayRange']??'no data from API'
+                    ]);
+                    $company->save();                     
+                }else{
+                    //exception
+                }
                 return view('companies.show', [
                     'company' => $company,
-                    // 'highest0' => $highest0,
-                    // 'highest1' => $highest1,
-                    // 'highest2' => $highest2,
-                    // 'highest3' => $highest3,
-                    // 'highest4' => $highest4,
                     'description' => $description,
-                    // 'noData' => $noData,
                 ]);
             }
 
             public function store(Request $request){
                 $ticker = $request->route('ticker'); // Get the value of the ticker parameter
                 $company = Company::where('ticker', $ticker)->first();
-                $u_id=Auth::id();
+                               $u_id=Auth::id();
                 $qty = $request->validate([
                     'quantity' => 'required|numeric|min:1', 
                 ]);
+                $existed=false;
                 $current_cost=$company->regular_market_price;
-                $companies_in_portfolio = Portfolio::where('user_id', $u_id)->get();
+                $companies_in_portfolio = Portfolio::where('user_id', $u_id)->get(); 
                 if ($companies_in_portfolio->isEmpty()){
                     $formfields = [
                         'user_id'=>$u_id,
@@ -120,39 +142,42 @@ class CompanyController extends Controller
                         'gain'=>0,
                         'performance_percentage'=>0               
                     ];
+                    Portfolio::create($formfields);
                 }else{
-                    $companyIdsInPortfolio = $companies_in_portfolio->pluck('id')->toArray();
-                    $companyAlreadyExists = in_array($company->id, $companyIdsInPortfolio) || count($companyIdsInPortfolio) == 1 && $companyIdsInPortfolio[0] == $company->id;
-                    $formfields = [
-                        'user_id'=>$u_id,
-                        'company_id'=> $company->id,                     
-                        'last_purchase_date'=>Carbon::today()               
-                    ];
-                    dd($formfields);
-                    if ($companyAlreadyExists) {
-                        $ec = Portfolio::where('user_id', $u_id)
+                    foreach($companies_in_portfolio as $cp){
+                        if ($cp->company_id==$company->id){
+                            $ec = Portfolio::where('user_id', $u_id)
                             ->where('company_id', $company->id)
-                            ->first();
-                            
-                        $formfields=[
-                            'shares_qty'=>$ec->shares_quantity + $qty['quantity'],
-                            'current_cost'=>$current_cost,
-                            'total_invested'=> $ec->total_invested + $qty['quantity'] * $current_cost,
-                            'gain'=>$ec->shares_qty*$current_cost-$ec->total_invested,
-                            'performance_percentage'=>$ec->gain * 100/$ec->total_invested
-                        ];
-                    } else {
+                            ->first(); 
+                            $portfolio_id=$cp->id;
+                            $existed=true;                       
+                            $formfields=[
+                                'shares_qty'=>$ec->shares_qty + $qty['quantity'],
+                                'current_cost'=>$current_cost,
+                                'total_invested'=> $ec->total_invested + $qty['quantity'] * $current_cost,
+                                'gain'=>$ec->shares_qty*$current_cost-$ec->total_invested,
+                                'performance_percentage'=>$ec->gain * 100/$ec->total_invested,
+                                'user_id'=>$u_id,
+                                'company_id'=> $company->id,                     
+                                'last_purchase_date'=>Carbon::today()
+                            ];
+                            Portfolio::find($portfolio_id)->update($formfields);
+                        };
+                    }
+                    if (!$existed){
                         $formfields=[
                             'shares_qty'=>$qty['quantity'],
                             'current_cost'=>$current_cost,
                             'total_invested'=> $qty['quantity'] * $current_cost,
                             'gain'=>0,
-                            'performance_percentage'=>0
-                        ];
+                            'performance_percentage'=>0,
+                            'user_id'=>$u_id,
+                            'company_id'=> $company->id,                     
+                            'last_purchase_date'=>Carbon::today()
+                            ];
+                            Portfolio::create($formfields);
+                        }
                     }
-                }
-                
-                Portfolio::create($formfields);
                 return redirect("/users/$u_id/dashboard")->with('message', "The company $company->shortname added to your portfolio");
             }
         }

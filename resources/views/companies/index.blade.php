@@ -11,9 +11,11 @@
 
     {{-- JUST ADJUST THE CODE BELOW IWHTIN THE DIV TO DISPLAY TOUR COMPANY LISTINGS :D--}}
     @auth
+    <div class="flex flex-row flex-wrap justify-center gap-3">
         @foreach ($companies as $company)
             @include('components.company-card')
         @endforeach
+    </div>
     @endauth
 
     {{-- adding new div to add page direct buttons : This is sick and much easier than the way we had to do it in PHP : WOO! --}}

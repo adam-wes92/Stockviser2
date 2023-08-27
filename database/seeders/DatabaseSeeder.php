@@ -51,12 +51,12 @@ class DatabaseSeeder extends Seeder
                     'module' => 'asset-profile,financial-data,earnings'
                 ]);
                 
-                $response1 = Http::withHeaders([
-                    'X-RapidAPI-Host' => 'yahoo-finance15.p.rapidapi.com',
-                    'X-RapidAPI-Key' => env('RAPIDAPI_KEY'),
-                ])->get("https://query1.finance.yahoo.com/v8/finance/chart/{$symbol}", [
-                    //'module' => 'asset-profile,financial-data,earnings'
-                ]);
+                // $response1 = Http::withHeaders([
+                //     'X-RapidAPI-Host' => 'yahoo-finance15.p.rapidapi.com',
+                //     'X-RapidAPI-Key' => env('RAPIDAPI_KEY'),
+                // ])->get("https://query1.finance.yahoo.com/v8/finance/chart/{$symbol}", [
+                //     //'module' => 'asset-profile,financial-data,earnings'
+                // ]);
         
                 $response2 = Http::withHeaders([
                     'X-RapidAPI-Host' => 'yahoo-finance15.p.rapidapi.com',
@@ -65,16 +65,16 @@ class DatabaseSeeder extends Seeder
                     //'module' => 'asset-profile,financial-data,earnings'
                 ]);
                 
-                if ($response && $response1 && $response2->successful()) {
+                if ($response && $response2->successful()) {
                     $arrayresponse[0] = $response->json();
-                    $arrayresponse[1] = $response1->json();
+                    // $arrayresponse[1] = $response1->json();
                     $arrayresponse[2] = $response2->json();
                     Company::create([
                         'shortname' => $arrayresponse[2][0]['shortName']??'no data from API',
                         'fullname' => $arrayresponse[2][0]['longName']??'no data from API',
                         'ticker' => $symbol,
-                        'country' => $arrayresponse[0]['assetProfile']['sector']??'no data from API',
-                        'sector' => $arrayresponse[0]['assetProfile']['country']??'no data from API',
+                        'country' => $arrayresponse[0]['assetProfile']['country']??'no data from API',
+                        'sector' => $arrayresponse[0]['assetProfile']['sector']??'no data from API',
                         'industry' => $arrayresponse[0]['assetProfile']['industry']??'no data from API',
                         'market_cap' => $arrayresponse[2][0]['marketCap']??0,
                         'recomendation' => $arrayresponse[0]['financialData']['recommendationKey']??'no data from API',

@@ -12,8 +12,8 @@
     <div class="">
         <div class="flex xl:flex-row lg:flex-row md:flex-col sm:flex-col flex-wrap gap-4 ">
             <x-card class="mx-auto  mt-24 xl:w-2/5 lg:w-2/3 md:w-2/3 sm:w-3/4 rounded-md bg-opacity-75 border-double min-w-1 shadow-md shadow-laravel3">
-                <div class="p-6  bg-laravel3 h-full ">
-                
+                <div class="p-6  bg-laravel3 h-full flex flex-col justify-between">
+                <div>
                     <h1 class="text-center  pt-2 sm:text-xl md:text-2xl lg:text-3-xl xl:text-4xl font-bold uppercase text-laravel" style="font:family 'Roboto', sans-serif;">
                     Your personal data</h1>
                     <p class="pb-2 sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-200 my-4 text-laravel2 font-bold"><span class="text-laravel">Name:</span> {{ auth()->user()->first_name }} {{ auth()->user()->last_name }}</p>
@@ -29,19 +29,21 @@
                     <p class="pb-2 sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-200 my-4 text-laravel2 font-bold"><span class="text-laravel">E-mail:</span> {{ auth()->user()->email}}</p>
                     <p class="pb-2 sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-200 my-4 text-laravel2 font-bold"><span class="text-laravel">Phone number:</span> {{ auth()->user()->phone_number}}</p>
                     <p class="pb-2 sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-200 my-4 text-laravel2 font-bold"><span class="text-laravel">Adress:</span> {{ auth()->user()->address}}, {{ auth()->user()->city}}, {{ auth()->user()->country}}, {{ auth()->user()->zip}}</p>
-                        <div class="flex space-x-6 mr-6 text-lg ">
-                            <a href="/users/{{ auth()->user()->id }}/edit" class="mx-auto bg-laravel text-white py-2 px-4 rounded sm:text-lg md:text-xl lg:text-2xl xl:text-3xl hover:text-laravel3 text-center">Change my personal data</a>
-                        </div>
+                </div>
+                <div class="flex space-x-6 mr-6 text-lg ">
+                    <a href="/users/{{ auth()->user()->id }}/edit" class="mx-auto bg-laravel text-white py-2 px-4 rounded sm:text-lg md:text-xl lg:text-2xl xl:text-3xl hover:text-laravel3 text-center">Change my personal data</a>
+                </div>
                     
                 
             </div>
             </x-card>
 @if (empty($companies_in_portfolio))
 <x-card class="p-10 mx-auto mt-24 w-1/2 rounded-md shadow-md shadow-laravel">
-    <div class="">
-    <h1 class="text-center pt-2 sm:text-lg md:text-xl lg:text-2-xl xl:text-3xl font-bold uppercase text-laravel t-center" style="font:family 'Roboto', sans-serif;">
-            Portfolio's resume</h1>
-            <p class="pb-2 text-2xl text-gray-200  sm:text-lg md:text-xl lg:text-2-xl xl:text-3xl my-4 text-laravel2"> <span class="font-bold text-laravel">No companies in your portfolio </span></p>
+    <div class="text-center flex flex-col justify-between h-full">
+        <h1 class="text-center pt-2 sm:text-lg md:text-xl lg:text-2-xl xl:text-3xl font-bold uppercase text-laravel" style="font:family 'Roboto', sans-serif;">
+                Portfolio's resume</h1>
+        <p class="pb-2 text-2xl text-gray-200  sm:text-lg md:text-xl lg:text-2-xl xl:text-3xl my-4 text-laravel2"> <span class="font-bold text-laravel">No companies in your portfolio </span></p>
+        <a href="/" class="bg-laravel text-white py-2 mx-auto px-4 rounded sm:text-lg md:text-xl lg:text-2xl xl:text-3xl hover:text-laravel2">Add companies to your portfolio</a>
     </div>
 </x-card>
 @else
@@ -53,22 +55,22 @@
                     <p class="text-center pb-2 sm:text-lg md:text-xl lg:text-2xl xl:text-3xl  text-gray-200 my-4 text-laravel">
                         With the best EPS-index
                     </p>                    
-                    <div class="grid grid-cols-3 gap-4 mx-auto">
+                    <div class="grid grid-cols-3 gap-4 mx-auto flex flex-wrap justify-center">
                         @foreach($best_EPS as $be)
-                        <div class="">
-                            <img src="{{asset('images/stock_market1.jpg')}}" style="width:150px" alt="">
-                            <p>{{$be['EPS']}}</p>
+                        <div class="flex-col items-center m-2 justify-center">
+                            <img src="{{asset('logos/'.$be['ticker'].'.png')}}" class="w-1/4 h-auto" alt="">
+                            <p class="ml-2">{{$be['EPS']}}</p>
                         </div> 
                         @endforeach                    
                     </div>
                     <p class="text-center pb-2 sm:text-lg md:text-xl lg:text-2xl xl:text-3xl  text-gray-200 my-4 text-laravel">
                         With the best performance
                     </p>                    
-                    <div class="grid grid-cols-3 gap-4 mx-auto">
+                    <div class="grid grid-cols-3 gap-4 mx-auto flex flex-wrap justify-center">
                         @foreach($best_perf as $bp)
-                        <div class="">
-                            <img src="{{asset('images/stock_market2.jpg')}}" style="width:150px" alt="">
-                            <p>{{$bp['perf']}}%</p>
+                        <div class="flex-col items-center m-2 justify-center">
+                            <img src="{{asset('logos/'.$bp['ticker'].'.png')}}" class="w-1/4 h-auto" alt="">
+                            <p class="ml-2">{{$bp['perf']}}%</p>
                         </div> 
                         @endforeach                    
                     </div>
