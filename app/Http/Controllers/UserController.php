@@ -116,7 +116,10 @@ class UserController extends Controller
         $companies_in_portfolio=[];
         $companies_in_portfolio = Portfolio::all()->filter(request($user_id));
         
-        foreach ($companies_in_portfolio as $cp){
+        if ($companies_in_portfolio->isEmpty()){
+            return view('users.dashboard', ['companies_in_portfolio'=>[]]);
+        }else{
+            foreach ($companies_in_portfolio as $cp){
             $c=Company::find($cp->company_id);
             array_push($companies, $c);
             $total_gain+=$cp->gain;
@@ -134,15 +137,17 @@ class UserController extends Controller
         usort($array_perf, function ($a, $b) {
             return $b["perf"] <=> $a["perf"];
         });
-         return view('users.dashboard', [
-             'companies_in_portfolio'=>$companies_in_portfolio,
-             'companies'=>$companies,
-             'total_gain'=>$total_gain,
-             'total_invest'=>$total_invest,
-             'portfolio_performance'=>$total_gain*100/$total_invest,
-             'delta'=>0,
-             'best_EPS'=>array_slice($array_EPS, 0, 3),
-             'best_perf'=>array_slice($array_perf, 0, 3),
-         ]);
+        return view('users.dashboard', [
+            'companies_in_portfolio'=>$companies_in_portfolio,
+            'companies'=>$companies,
+            'total_gain'=>$total_gain,
+            'total_invest'=>$total_invest,
+            'portfolio_performance'=>$total_gain*100/$total_invest,
+            'delta'=>0,
+            'best_EPS'=>array_slice($array_EPS, 0, 3),
+            'best_perf'=>array_slice($array_perf, 0, 3),
+        ]);
+        }
+               
     }
 }

@@ -1,23 +1,46 @@
 {{-- @props(['company']) --}}
 
-<x-card>
-    <div class="flex">
+<x-card class="flex flex-col">
+    
+        <div class="flex flex-row">
 
-        {{-- We adjusted the src="{{ asset('images/no-image.png')}}" to src="{{$listing->logo ? asset('storage/' . $listing->logo) : asset('images/no-image.png')}}" --}}
-        {{-- <img class="hidden w-48 mr-6 md:block" src="{{ asset('images/logo.jpg') }}" alt="" />
-        <div> --}}
-            <h3 class="text-2xl">
-                <a href="/companies/{{ $company->id }}">{{ $company->name }}</a>
-            </h3>
-            <div class="text-xl font-bold mb-4">Company Price</div>
+        <img src="logos/{{$company->symbol}}.png" alt="" class="card-img-top img-fluid rounded-circle company-logo p-3 img-thumbnail mx-auto d-block" style="width: 100px; height: 100px;">
+        <h3 class="text-2xl">
+            <a href="/companies/{{ $company->ticker }}">{{ $company->shortname }}</a>
+        </h3>
+        <p class="card-text in-line"><strong>Share Price: </strong>$ {{ $company->regular_market_price}}</p>
+        <p class="card-text in-line">
+            <strong>24H Change: </strong>
+            <span
+                class="{{ $company->regular_market_change >= 0 ? 'text-success' : 'text-danger' }}"
+                style="display: inline-block; margin-right: 5px;">
+                {{ $company->regular_market_change >= 0 ? '+' : '-' }}
+                ${{ number_format(abs($company->regular_market_change), 2) }}
+                <i class="{{ $company->regular_market_change >= 0 ? 'fas fa-arrow-up' : 'fas fa-arrow-down' }}"></i>
+            </span>
+            <hr>
+        </p>
+        <p class="card-text in-line">
+            <strong>Market Cap: </strong>
+            @if ($company->market_cap >= 1000000000000)
+                {{ number_format($company->market_cap / 1000000000000, 2) }} T
+            @elseif ($company->market_cap >= 1000000000)
+                {{ number_format($company->market_cap / 1000000000, 2) }} B
+            @elseif ($company->market_cap >= 1000000)
+                {{ number_format($company->market_cap / 1000000, 2) }} M
+            @else
+                {{ $company->market_cap }}
+            @endif
+            <hr>
+        </p>
+   
+    
 
-            <div class="text-xl font-bold mb-4">Company Description</div>
-            {{-- <form action="{{ route('add.to.cart', $company->id) }}" method="GET">
-                @csrf
-                <button type="submit" class="bg-black mr-3 text-sm text-white px-3 py-1 ml-10 hover:text-laravel rounded">Add to Portfolio</button>
-            </form> --}}
 
-            <?php
+
+            
+{{-- we don'T need so much info... All this we will have in show.blade.php --}}
+            {{-- <?php
             $apiKey = 'c27b5612b9msh8ab4f6395705c09p18166cjsn91e9563d42d2'; // Replace with your actual API key
             $symbol = 'AAPL'; // Replace with the desired stock symbol
             
@@ -74,7 +97,7 @@
             // Display analyst recommendation
             $analystRecommendation = 'Buy'; // Replace with the actual recommendation if available
             echo 'Analyst Recommendation: ' . $analystRecommendation . '<br>';
-            ?>
+            ?> --}}
         
         </div>
 

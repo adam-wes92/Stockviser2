@@ -13,4 +13,5 @@ class PortfolioController extends Controller
         $company->delete();
         return redirect("/users/$user->id/dashboard")->with('message', 'Company was deleted from your portfolio');
     }
+    
 }
