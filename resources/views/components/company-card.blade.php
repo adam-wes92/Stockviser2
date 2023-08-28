@@ -2,46 +2,48 @@
 
 <x-card class=" w-1/5 rounded-md border-double shadow-md shadow-laravel3 card ">
     <a href="/companies/{{ $company->ticker }}">
-    <div class="flex flex-col justify-center text-center">
+        <div class="flex flex-col justify-center text-center">
 
-        <img src="{{asset('logos/'.$company->ticker.'.png')}}" alt="" class="card-img-top img-fluid rounded-circle company-logo p-3 img-thumbnail mx-auto d-block" style="width: 100px; height: 100px;">
-        <h3 class="text-2xl">
-            {{ $company->shortname }}
-        </h3>
-        <h3 class="text-2xl">{{ $company->ticker }}</h3>
-        <p class=""><strong>Country: </strong> {{ $company->country}}</p>
-        <p class=""><strong>Sector: </strong> {{ $company->sector}}</p>
-        <p class=""><strong>Industry: </strong> {{ $company->industry}}</p>
-        <p class="">
-            <strong>Market Cap: </strong>
-            @if ($company->market_cap >= 1000000000000)
-                {{ number_format($company->market_cap / 1000000000000, 2) }} T
+            <img src="{{ asset('logos/' . $company->ticker . '.png') }}" alt=""
+                class="card-img-top img-fluid rounded-circle company-logo p-3 img-thumbnail mx-auto d-block"
+                style="width: 100px; height: 100px;">
+            <h3 class="text-2xl">
+                {{ $company->shortname }}
+            </h3>
+            <h3 class="text-2xl">{{ $company->ticker }}</h3>
+            <p class=""><strong>Country: </strong> {{ $company->country }}</p>
+            <p class=""><strong>Sector: </strong> {{ $company->sector }}</p>
+            <p class=""><strong>Industry: </strong> {{ $company->industry }}</p>
+            <p class="">
+                <strong>Market Cap: </strong>
+                @if ($company->market_cap >= 1000000000000)
+                    {{ number_format($company->market_cap / 1000000000000, 2) }} T
                 @elseif ($company->market_cap >= 1000000000)
                     {{ number_format($company->market_cap / 1000000000, 2) }} B
-                    @elseif ($company->market_cap >= 1000000)
-                        {{ number_format($company->market_cap / 1000000, 2) }} M
-                        @else
-                        {{ $company->market_cap }}
-            @endif            
-        </p>
-        <p class="">
-            <strong>24H Change: </strong>
-            <span
-                class="{{ $company->regular_market_change >= 0 ? 'text-green-500' : 'text-red-500' }}"
-                style="display: inline-block; margin-right: 5px;">
-                {{ $company->regular_market_change >= 0 ? '+' : '-' }}
-                ${{ number_format(abs($company->regular_market_change), 2) }}
-                <i class="{{ $company->regular_market_change >= 0 ? 'fas fa-arrow-up' : 'fas fa-arrow-down' }}"></i>
-            </span>
-        </p>
-    </div>
-</a>
-</x-card>  
-  
+                @elseif ($company->market_cap >= 1000000)
+                    {{ number_format($company->market_cap / 1000000, 2) }} M
+                @else
+                    {{ $company->market_cap }}
+                @endif
+            </p>
+            <p class="">
+                <strong>24H Change: </strong>
+                <span class="{{ $company->regular_market_change >= 0 ? 'text-green-500' : 'text-red-500' }}"
+                    style="display: inline-block; margin-right: 5px;">
+                    {{ $company->regular_market_change >= 0 ? '+' : '-' }}
+                    ${{ number_format(abs($company->regular_market_change), 2) }}
+                    <i
+                        class="{{ $company->regular_market_change >= 0 ? 'fas fa-arrow-up' : 'fas fa-arrow-down' }}"></i>
+                </span>
+            </p>
+        </div>
+    </a>
+</x-card>
 
 
 
-            
+
+
 {{-- we don'T need so much info... All this we will have in show.blade.php 
             
             $apiKey = 'c27b5612b9msh8ab4f6395705c09p18166cjsn91e9563d42d2'; // Replace with your actual API key
@@ -101,4 +103,3 @@
             $analystRecommendation = 'Buy'; // Replace with the actual recommendation if available
             echo 'Analyst Recommendation: ' . $analystRecommendation . '<br>';
             ?> --}}
-        
