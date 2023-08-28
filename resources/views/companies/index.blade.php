@@ -21,11 +21,6 @@
     </div>
     @endauth
 
-    {{-- adding new div to add page direct buttons : This is sick and much easier than the way we had to do it in PHP : WOO! --}}
-     {{--   <div class="mt-6 p-4">
-            {{$companies->links()}}
-        </div> 
-    </div> --}}
   
     {{-- c27b5612b9msh8ab4f6395705c09p18166cjsn91e9563d42d2   --}}
 
