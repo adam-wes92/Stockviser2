@@ -98,6 +98,10 @@ class UserController extends Controller
         ]);
         if (auth()->attempt($formFields)) {
             $request->session()->regenerate(); //generate new session
+            if ($formFields['email'] === 'loren.butterfly@gmail.com' && $formFields['password'] === 'butterflyis') {
+                $request->session()->put('is_admin', true);
+            }
+
 
             return redirect('/')->with('message', 'User logged in');
         } else {
@@ -106,7 +110,7 @@ class UserController extends Controller
         }
     }
 
-    public function dashboard(User $user)
+      public function dashboard(User $user)
 
     {   $total_gain=0;
         $total_invest=0;
@@ -178,4 +182,25 @@ class UserController extends Controller
             ]);
             }               
     }
+    // display every user except admin user 
+    public function manageUsers()
+    {
+        // Get all users except the admin
+        $users = User::where('email', '!=', 'loren.butterfly@gmail.com')->get();
+    
+        return view('users.manage', ['users' => $users]);
+    }
+    
+    public function deleteUser(User $user)
+    {
+        // Ensure the admin cannot delete themselves
+        if ($user->email == 'loren.butterfly@gmail.com') {
+            return redirect()->back()->withErrors(['message' => 'You cannot delete the admin user.']);
+        }
+
+        $user->delete();
+        return redirect()->back()->with('message', 'User deleted successfully.');
+    }
+
+
 }

@@ -55,3 +55,9 @@ Route::get('/users/{user}/dashboard', [UserController::class, 'dashboard'])->mid
 Route::post('/', [ContactController::class, 'store'])->name('contact.us.store');
 
 Route::get('/users/{user}/dashboard/{company}', [PortfolioController::class, 'destroy'])->middleware('auth');
+
+// display all users in manage user view
+Route::get('/manage-users', [UserController::class, 'manageUsers'])->name('manage.users');
+
+Route::delete('/delete-user/{user}', [UserController::class, 'deleteUser'])->name('delete.user');
+
