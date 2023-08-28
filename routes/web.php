@@ -11,6 +11,7 @@ use App\Http\Controllers\PortfolioController;
 // List of all companies & Display News Component
 Route::get('/', [CompanyController::class, 'index']);
 
+// Sends contact form data to contact table in DB
 Route::post('/', [ContactController::class, 'store'])->name('contact.us.store');
 
 // Show edit form for Users
