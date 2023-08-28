@@ -43,7 +43,7 @@ class UserController extends Controller
         auth()->login($user);
 
         // User logged in and... :
-        return redirect('/companies')->with('message', 'User created and logged in');
+        return redirect('/')->with('message', 'User created and logged in');
     }
 
     // This is for the edit form 
