@@ -16,7 +16,7 @@
         @csrf
         <label for="name">Full Name:</label>
         <br>
-        <input class="mb-3 w-80 rounded p-2" type="text" name="name" placeholder="Name" value="{{ old('name') }}">
+        <input class="mb-3 w-80 rounded p-2" type="text" name="name" placeholder="Name" id="name" value="{{ old('name') }}">
         @error('name')
         <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
         @enderror
@@ -24,7 +24,7 @@
 
         <label for="email">Email:</label>
         <br>
-        <input class="w-80 mb-3 rounded p-2" type="text" name="email" placeholder="Email" value="{{ old('email') }}">
+        <input class="w-80 mb-3 rounded p-2" type="text" name="email" placeholder="Email" id="email" value="{{ old('email') }}">
         @error('email')
         <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
         @enderror
@@ -32,7 +32,7 @@
 
         <label for="ticker">Company Ticker/Symbol:</label>
         <br>
-        <input class="w-80 rounded p-2" type="text" name="ticker" placeholder="AAPL, GOOG, ATVI, SQSP..." value="{{ old('ticker') }}">
+        <input class="w-80 rounded p-2" type="text" id="ticker" name="ticker" placeholder="AAPL, GOOG, ATVI, SQSP..." value="{{ old('ticker') }}">
         @error('ticker')
         <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
         @enderror
@@ -40,7 +40,7 @@
 
         <label for="subject">Subject:</label>
         <br>
-        <input class="w-80 mb-3 rounded p-2" type="text" name="subject" placeholder="Subject of message" value="{{ old('subject') }}">
+        <input class="w-80 mb-3 rounded p-2" type="text" name="subject" placeholder="Subject of message" id="subject" value="{{ old('subject') }}">
         @error('subject')
         <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
         @enderror
@@ -48,7 +48,7 @@
 
         <label for="message">Questions for Advisers:</label>
         <br>
-        <textarea class="w-80 rounded p-2" name="message" id="message" rows="5" placeholder="Please type your message to our advisers and we will reply as soon as we can">{{ old('message') }}</textarea>
+        <textarea class="w-80 rounded p-2" id="message" name="message" id="message" rows="5" placeholder="Please type your message to our advisers and we will reply as soon as we can">{{ old('message') }}</textarea>
         @error('message')
         <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
         @enderror

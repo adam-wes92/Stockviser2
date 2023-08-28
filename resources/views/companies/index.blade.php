@@ -17,8 +17,7 @@
        @include('components.company-card')
        {{-- adding new div to add page direct buttons : This is sick and much easier than the way we had to do it in PHP : WOO!--}}
     <div class="mt-6 p-4">
-        {{$companie
-        s->links()}}
+        {{$companies->links()}}
     </div>
     @endauth
 
