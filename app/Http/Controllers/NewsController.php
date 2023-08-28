@@ -29,6 +29,7 @@ class NewsController extends Controller
         // ]);
         // $r=$response->json();
         // $news=$r['data'];
+
 //         $curl = curl_init();
 
 // curl_setopt_array($curl, [
@@ -50,4 +51,5 @@ class NewsController extends Controller
 // return view ('companies.index', [
 //     'news'=>array_slice($news, 0, 5)]);
     }
+
 }
