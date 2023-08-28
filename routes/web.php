@@ -30,7 +30,6 @@ Route::get('/companies/{ticker}', [CompanyController::class, 'show'])->middlewar
 //Daisplay all companies
 
 
-
 // Present the registration form
 Route::get('/register', [UserController::class, 'create']);
 
