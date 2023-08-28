@@ -11,7 +11,6 @@
                         <div class="absolute top-0 left-0 w-full h-full bg-black opacity-70"></div>                        
                         <h1 class="absolute block w-1/2 -translate-x-1/2 -translate-y-1/2 top-1/4 left-1/2 text-white font-bol text-6xl text-center ">{{ $new->title }}</h1>
                         <h3 class="absolute block w-2/3 -translate-x-1/2 -translate-y-1/2 top-3/4 left-1/2 text-white font-bol text-3xl text-center ">{{ $new->description }}</h3>                            
-                        
                     </div>
             @endfor
     </div>
@@ -42,3 +41,4 @@
     </button>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.js"></script>
+

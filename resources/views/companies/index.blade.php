@@ -11,17 +11,18 @@
     <div class="flex flex-row flex-wrap justify-center gap-3">    
     @include('components.news')
     </div>
-    {{-- JUST ADJUST THE CODE BELOW IWHTIN THE DIV TO DISPLAY TOUR COMPANY LISTINGS :D--}}
+
     <div class="h-32"></div>
     @auth
        @include('components.company-card')
+       {{-- adding new div to add page direct buttons : This is sick and much easier than the way we had to do it in PHP : WOO!--}}
+    <div class="mt-6 p-4">
+        {{$companies->links()}}
+    </div>
     @endauth
 
-    {{-- adding new div to add page direct buttons : This is sick and much easier than the way we had to do it in PHP : WOO! --}}
-     {{--   <div class="mt-6 p-4">
-            {{$companies->links()}}
-        </div> 
-    </div> --}}
+    @include('components.aboutUs')
+
   
     {{-- c27b5612b9msh8ab4f6395705c09p18166cjsn91e9563d42d2   --}}
 

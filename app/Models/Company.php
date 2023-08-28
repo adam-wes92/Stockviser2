@@ -30,11 +30,10 @@ class Company extends Model
         if($filters['search'] ?? false) {
             // Make an array of keyword to search for
             $keywords = explode(' ', $filters['search']);
-            // dd($keyword); Check to see if the code is working correcting, like console.log()
+            // dd($keywords); //Check to see if the code is working correcting, like console.log()
 
-            // foreach($keywords as $keyword) {
-            // $query->where('tags', 'like', '%' . $keyword . '%');
-            // }
+            foreach($keywords as $keyword) {
+            $query->where('shortname', 'like', '%' . $keyword . '%')->orWhere('fullname', 'like', '%' . $keyword . '%')->orWhere('ticker', 'like', '%' . $keyword . '%')->orWhere('sector', 'like', '%' . $keyword . '%')->orWhere('industry', 'like', '%' . $keyword . '%');
+            }
         }}
-    
 }
