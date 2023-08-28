@@ -1,34 +1,49 @@
-{{-- This code was originally in our listings.blade.php file inside our foreach. We transferred that code here and will call the prop inside the listings.blade.php file --}}
+{{-- @props(['company']) --}}
 
-<x-card> {{-- This is to connect the card.blade.php in order to replace the card style choices --}}
+<x-card class=" w-1/5 rounded-md border-double shadow-md shadow-laravel3 card ">
+    <a href="/companies/{{ $company->ticker }}">
+    <div class="flex flex-col justify-center text-center">
 
-    {{-- We removed the div with the grey bg color and other card styling elements applied and place it into the card.blade.php --}}
-    <div class="flex">
-        {{-- We updated the image to come from the asset function taht will pull the file we need from the public/images folder --}}
+        <img src="{{asset('logos/'.$company->ticker.'.png')}}" alt="" class="card-img-top img-fluid rounded-circle company-logo p-3 img-thumbnail mx-auto d-block" style="width: 100px; height: 100px;">
+        <h3 class="text-2xl">
+            {{ $company->shortname }}
+        </h3>
+        <h3 class="text-2xl">{{ $company->ticker }}</h3>
+        <p class=""><strong>Country: </strong> {{ $company->country}}</p>
+        <p class=""><strong>Sector: </strong> {{ $company->sector}}</p>
+        <p class=""><strong>Industry: </strong> {{ $company->industry}}</p>
+        <p class="">
+            <strong>Market Cap: </strong>
+            @if ($company->market_cap >= 1000000000000)
+                {{ number_format($company->market_cap / 1000000000000, 2) }} T
+                @elseif ($company->market_cap >= 1000000000)
+                    {{ number_format($company->market_cap / 1000000000, 2) }} B
+                    @elseif ($company->market_cap >= 1000000)
+                        {{ number_format($company->market_cap / 1000000, 2) }} M
+                        @else
+                        {{ $company->market_cap }}
+            @endif            
+        </p>
+        <p class="">
+            <strong>24H Change: </strong>
+            <span
+                class="{{ $company->regular_market_change >= 0 ? 'text-green-500' : 'text-red-500' }}"
+                style="display: inline-block; margin-right: 5px;">
+                {{ $company->regular_market_change >= 0 ? '+' : '-' }}
+                ${{ number_format(abs($company->regular_market_change), 2) }}
+                <i class="{{ $company->regular_market_change >= 0 ? 'fas fa-arrow-up' : 'fas fa-arrow-down' }}"></i>
+            </span>
+        </p>
+    </div>
+</a>
+</x-card>  
+  
 
-        {{-- We adjusted the src="{{ asset('images/no-image.png')}}" to src="{{$listing->logo ? asset('storage/' . $listing->logo) : asset('images/no-image.png')}}" --}}
-        <img class="hidden w-48 mr-6 md:block" src="{{ asset('images/logo.png') }}" alt="" />
-        <div>
-            <h3 class="text-2xl">
-                {{-- Updated this to $listing->title so that it will import the information we need from the  --}}
-                <a href="/">Company Name</a>
-                {{-- <a href="/companies/{{ $company->id }}">{{ $company->name }}</a> --}}
-            </h3>
-            <div class="text-xl font-bold mb-4">Company Price</div>
 
-            <div class="text-xl font-bold mb-4">Company Description</div>
-            {{-- <x-company-tags :tagsCsv="$product->tags" /> --}}
 
-            {{-- <form action="{{ route('add.to.cart', $company->id) }}" method="GET">
-                @csrf
-                <button type="submit" class="bg-black mr-3 text-sm text-white px-3 py-1 ml-10 hover:text-laravel rounded">Add to Portfolio</button>
-            </form> --}}
- 
-
-            {{-- <div class="text-lg mt-4">
-                <i class="fa-solid fa-location-dot"></i>&nbsp&nbsp{{$listing->location}}
-            </div> --}}
-            <?php
+            
+{{-- we don'T need so much info... All this we will have in show.blade.php 
+            
             $apiKey = 'c27b5612b9msh8ab4f6395705c09p18166cjsn91e9563d42d2'; // Replace with your actual API key
             $symbol = 'AAPL'; // Replace with the desired stock symbol
             
@@ -52,8 +67,7 @@
             $percentChange = ($change / $previousClose) * 100;
             echo "Change from Previous Close: $" . $change . '<br>';
             echo 'Percent Change: ' . number_format($percentChange, 2) . '%<br>';
-            
-        
+                   
             
             // Display trading volume
             echo 'Trading Volume: ' . number_format($volume) . ' shares<br>';
@@ -86,9 +100,5 @@
             // Display analyst recommendation
             $analystRecommendation = 'Buy'; // Replace with the actual recommendation if available
             echo 'Analyst Recommendation: ' . $analystRecommendation . '<br>';
-            ?>
+            ?> --}}
         
-        </div>
-
-    </div>
-</x-card>

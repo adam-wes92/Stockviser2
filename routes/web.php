@@ -6,18 +6,29 @@ use App\Http\Controllers\NewsController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\ViewController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\PortfolioController;
 use App\Http\Controllers\UserController;
 
-// Route::get('/', [CompanyController::class, 'index']);
+// List of all companies
+//Route::get('/', [CompanyController::class, 'index']);
+
+// Display News Component
+Route::get('/', [NewsController::class, 'getNews'])->middleware('guest');
+Route::get('/', [CompanyController::class, 'index'])->middleware('auth');
 
 
-Route::get('/', [ViewController::class, 'index']);
-// Route::get('/', [NewsController::class, 'getnews']);
-// This is to show the Contact form
-Route::get('/contact', [ContactController::class, 'showForm'])->name('contact.form');
 
-// This is to submit contact form
-Route::post('/contact', [ContactController::class, 'submitForm'])->name('contact.submit');
+// Show edit form for Users
+Route::get('/users/{user}/edit', [UserController::class, 'edit'])->middleware('auth')->name('user.edit');
+
+// Update User Profile information
+Route::put('/users/{user}', [UserController::class, 'update'])->middleware('auth')->name('user.update');
+Route::post('/companies/add/{ticker}', [CompanyController::class, 'store']);
+// Display one of the companies
+Route::get('/companies/{ticker}', [CompanyController::class, 'show']);
+//Daisplay all companies
+Route::get('/companies', [CompanyController::class, 'index']);
+
 
 // Present the registration form
 Route::get('/register', [UserController::class, 'create']);
@@ -32,14 +43,15 @@ Route::post('/logout', [UserController::class, 'logout'])->middleware('auth');
 Route::get('/login', [UserController::class, 'login'])->name('login')->middleware('guest');
 
 // User logged in
-Route::post('users/authenticate', [UserController::class, 'authenticate']);
-
-// User edit
-Route::post('user/{id}/edit', [UserController::class, 'edit']);
+Route::post('/users/authenticate', [UserController::class, 'authenticate']);
 
 // Display user data
-Route::get('/user/{id}', [UserController::class, 'show']);
+Route::get('/users/{id}', [UserController::class, 'show'])->middleware('auth');
 
-// Display one of the companies
-Route::get('/company/{id}', [CompanyController::class], 'show');
+// Route::get('/contact', [ContactController::class, 'index']);
 
+Route::get('/users/{user}/dashboard', [UserController::class, 'dashboard'])->middleware('auth');
+
+Route::post('/', [ContactController::class, 'store'])->name('contact.us.store');
+
+Route::get('/users/{user}/dashboard/{company}', [PortfolioController::class, 'destroy'])->middleware('auth');

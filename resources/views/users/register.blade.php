@@ -35,7 +35,7 @@
     </div>
     <div class="mb-6">
         <label for="birth_date" class="inline-block text-lg mb-2">
-            Last Name
+            Date of Birth
         </label>
         <input type="date" class="border border-gray-200 rounded p-2 w-full" name="birth_date"
             value="{{ old('birth_date') }}" />
@@ -70,18 +70,21 @@
         @error('address')
             <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
         @enderror
+
         <label for="city" class="inline-block text-lg mb-2">City</label>
         <input type="text" class="border border-gray-200 rounded p-2 w-full" name="city"
             value="{{ old('city') }}" />
         @error('city')
             <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
         @enderror
+
         <label for="country" class="inline-block text-lg mb-2">Country</label>
         <input type="text" class="border border-gray-200 rounded p-2 w-full" name="country"
             value="{{ old('country') }}" />
         @error('country')
             <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
         @enderror
+        
         <label for="zip" class="inline-block text-lg mb-2">Zip Code</label>
         <input type="number" class="border border-gray-200 rounded p-2 w-full" name="zip"
             value="{{ old('zip') }}" />

@@ -1,5 +1,4 @@
 <x-layout>
-    {{-- changed to x-card from div --}}
     <x-card class="p-10 max-w-lg mx-auto mt-24">
         <header class="text-center">
             <h2 class="text-2xl font-bold uppercase mb-1">
@@ -11,7 +10,6 @@
 
                 @csrf
                 @method('PUT')
-
                 {{-- First Name input --}}
                 <div class="mb-6">
                     <label for="first_name" class="inline-block text-lg mb-2">
@@ -47,9 +45,9 @@
 
                 {{-- Inputs for postal_address, zip_code, and city --}}
                 <div class="mb-6">
-                    <label for="postal_address" class="inline-block text-lg mb-2">Street Address</label>
-                    <input type="text" class="border border-gray-200 rounded p-2 w-full" name="postal_address"
-                        value="{{ $user->postal_address }}" />
+                    <label for="address" class="inline-block text-lg mb-2">Street Address</label>
+                    <input type="text" class="border border-gray-200 rounded p-2 w-full" name="address"
+                        value="{{ $user->address }}" />
                     @error('postal_address')
                         <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                         {{-- This will display the validation error message --}}
@@ -65,11 +63,22 @@
                         {{-- This will display the validation error message --}}
                     @enderror
                 </div>
+                
+                <div>
+                    <label for="country" class="inline-block text-lg mb-2">Country
+                    </label>
+                    <input type="text" class="border border-gray-200 rounded p-2 w-full" name="country"
+                        value="{{ $user->country}}" />
+                    @error('city')
+                        <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                        {{-- This will display the validation error message --}}
+                    @enderror
+                </div>
 
                 <div>
-                    <label for="zip_code" class="inline-block text-lg mb-2">Zip Code</label>
-                    <input type="text" class="border border-gray-200 rounded p-2 w-full" name="zip_code"
-                        value="{{ $user->zip_code }}" />
+                    <label for="zip" class="inline-block text-lg mb-2">Zip Code</label>
+                    <input type="text" class="border border-gray-200 rounded p-2 w-full" name="zip"
+                        value="{{ $user->zip}}" />
                     @error('zip_code')
                         <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                         {{-- This will display the validation error message --}}
