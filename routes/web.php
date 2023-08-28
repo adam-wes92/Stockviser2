@@ -9,15 +9,10 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\PortfolioController;
 use App\Http\Controllers\UserController;
 
-// List of all companies
-//Route::get('/', [CompanyController::class, 'index']);
-
-// Display News Component
-
+// List of all companies & Display News Component
 Route::get('/', [CompanyController::class, 'index']);
 
-
-
+Route::get('/', [CompanyController::class, 'index'])->middleware('auth');
 
 // Show edit form for Users
 Route::get('/users/{user}/edit', [UserController::class, 'edit'])->middleware('auth')->name('user.edit');
@@ -28,7 +23,6 @@ Route::post('/companies/add/{ticker}', [CompanyController::class, 'store']);
 // Display one of the companies
 Route::get('/companies/{ticker}', [CompanyController::class, 'show'])->middleware('auth');
 //Daisplay all companies
-
 
 
 // Present the registration form

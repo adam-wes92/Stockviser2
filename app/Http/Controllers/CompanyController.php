@@ -36,12 +36,12 @@ $response = curl_exec($curl);
 $news=json_decode($response)->item;
             $companies = Company::all();
             return view('companies.index', [
+
                 'companies'=>$companies,
                 'news'=>array_slice($news, 0, 5)
             ]);
-        
-            
-                             
+               // 'companies' => Company::latest()->filter(request(['search']))->simplepaginate(4),]);                            
+
         }
         
             public function show($ticker){
