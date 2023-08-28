@@ -1,6 +1,4 @@
 <x-layout>
-
-
     {{-- add hero partial --}}
     @include('partials._hero')
 
@@ -24,10 +22,6 @@
             {{$companies->links()}}
         </div> 
     </div> --}}
-
-    {{-- News Api --}}
-   
-    
   
     {{-- c27b5612b9msh8ab4f6395705c09p18166cjsn91e9563d42d2   --}}
 

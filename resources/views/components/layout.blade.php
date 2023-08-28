@@ -46,8 +46,6 @@
             {{-- Adding this auth directive so that it doesn't display the register and login links after the user has been logged in --}}
              @auth {{-- content to be displayed when user is logged in --}}
 
-
-
                 <li>
                     <a href="/users/{{ auth()->user()->id }}/dashboard" class="bg-black text-white py-2 px-4 rounded text-sm hover:text-laravel2">My Dashboard</a>
 
