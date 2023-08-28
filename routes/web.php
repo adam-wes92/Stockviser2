@@ -8,6 +8,7 @@ use App\Http\Controllers\ViewController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\PortfolioController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ChatBotController;
 
 // List of all companies
 //Route::get('/', [CompanyController::class, 'index']);
@@ -62,3 +63,5 @@ Route::get('/manage-users', [UserController::class, 'manageUsers'])->name('manag
 
 Route::delete('/delete-user/{user}', [UserController::class, 'deleteUser'])->name('delete.user');
 
+// AI chatbox - sendChat
+Route::post('send', [ChatBotController::class, 'sendChat']);
