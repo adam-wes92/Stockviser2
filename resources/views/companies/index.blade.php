@@ -12,7 +12,7 @@
     @include('components.news')
     </div>
     {{-- JUST ADJUST THE CODE BELOW IWHTIN THE DIV TO DISPLAY TOUR COMPANY LISTINGS :D--}}
-   
+    <div class="h-32"></div>
     @auth
        @include('components.company-card')
     @endauth
