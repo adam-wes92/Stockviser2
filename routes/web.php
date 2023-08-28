@@ -9,11 +9,8 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\PortfolioController;
 use App\Http\Controllers\UserController;
 
-// List of all companies
-//Route::get('/', [CompanyController::class, 'index']);
-
-// Display News Component
-Route::get('/', [NewsController::class, 'getNews'])->middleware('guest');
+// List of all companies & Display News Component
+Route::get('/', [CompanyController::class, 'index']);
 
 Route::get('/', [CompanyController::class, 'index'])->middleware('auth');
 
@@ -24,9 +21,9 @@ Route::get('/users/{user}/edit', [UserController::class, 'edit'])->middleware('a
 Route::put('/users/{user}', [UserController::class, 'update'])->middleware('auth')->name('user.update');
 Route::post('/companies/add/{ticker}', [CompanyController::class, 'store']);
 // Display one of the companies
-Route::get('/companies/{ticker}', [CompanyController::class, 'show']);
+Route::get('/companies/{ticker}', [CompanyController::class, 'show'])->middleware('auth');
 //Daisplay all companies
-Route::get('/companies', [CompanyController::class, 'index']);
+
 
 // Present the registration form
 Route::get('/register', [UserController::class, 'create']);
@@ -53,3 +50,9 @@ Route::get('/users/{user}/dashboard', [UserController::class, 'dashboard'])->mid
 Route::post('/', [ContactController::class, 'store'])->name('contact.us.store');
 
 Route::get('/users/{user}/dashboard/{company}', [PortfolioController::class, 'destroy'])->middleware('auth');
+
+// display all users in manage user view
+Route::get('/manage-users', [UserController::class, 'manageUsers'])->name('manage.users');
+
+Route::delete('/delete-user/{user}', [UserController::class, 'deleteUser'])->name('delete.user');
+

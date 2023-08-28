@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $user = User::factory()->create([
+        User::factory()->create([
             'first_name' => 'Banana',
             'last_name' => 'Man', 
             'address' => '456 Somewhere Ave.', 
@@ -31,6 +31,18 @@ class DatabaseSeeder extends Seeder
             'phone_number' => '123-123-123',
             'email' => 'banana.man@gmail.com',
             'password' => 'Pa$$word123?'
+        ]);
+        User::factory()->create([
+            'first_name' => 'Loren',
+            'last_name' => 'Butterfly', 
+            'address' => '456 Somewhere Ave.', 
+            'city' => 'Luxembourg City', 
+            'country' => 'Luxembourg',
+            'zip' => '2222', 
+            'birth_date' => '1998-01-27',
+            'phone_number' => '123-123-222',
+            'email' => 'loren.butterfly@gmail.com',
+            'password' => 'butterflyis'
         ]);
         $this->call(SymbolSeeder::class);
         $companies = Symbol::all();
@@ -51,13 +63,7 @@ class DatabaseSeeder extends Seeder
                     'module' => 'asset-profile,financial-data,earnings'
                 ]);
                 
-                // $response1 = Http::withHeaders([
-                //     'X-RapidAPI-Host' => 'yahoo-finance15.p.rapidapi.com',
-                //     'X-RapidAPI-Key' => env('RAPIDAPI_KEY'),
-                // ])->get("https://query1.finance.yahoo.com/v8/finance/chart/{$symbol}", [
-                //     //'module' => 'asset-profile,financial-data,earnings'
-                // ]);
-        
+                       
                 $response2 = Http::withHeaders([
                     'X-RapidAPI-Host' => 'yahoo-finance15.p.rapidapi.com',
                     'X-RapidAPI-Key' => env('RAPIDAPI_KEY'),
