@@ -42,12 +42,11 @@ class CompanyController extends Controller
                 ]);
             }
             $news_to_show = News::all();
-            $companies = Company::all();
             return view('companies.index', [
-                'companies'=>$companies,
+                'companies' => Company::latest()->filter(request(['search']))->simplepaginate(4),
                 'news'=>$news_to_show
             ]);
-               // 'companies' => Company::latest()->filter(request(['search']))->simplepaginate(4),]);                            
+                                           
 
         }
         

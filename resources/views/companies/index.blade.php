@@ -11,10 +11,15 @@
     <div class="flex flex-row flex-wrap justify-center gap-3">    
     @include('components.news')
     </div>
-    {{-- JUST ADJUST THE CODE BELOW IWHTIN THE DIV TO DISPLAY TOUR COMPANY LISTINGS :D--}}
+
     <div class="h-32"></div>
     @auth
        @include('components.company-card')
+       {{-- adding new div to add page direct buttons : This is sick and much easier than the way we had to do it in PHP : WOO!--}}
+    <div class="mt-6 p-4">
+        {{$companie
+        s->links()}}
+    </div>
     @endauth
 
     {{-- adding new div to add page direct buttons : This is sick and much easier than the way we had to do it in PHP : WOO! --}}
