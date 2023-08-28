@@ -21,6 +21,8 @@
     </div>
     @endauth
 
+    @include('components.aboutUs')
+
   
     {{-- c27b5612b9msh8ab4f6395705c09p18166cjsn91e9563d42d2   --}}
 
