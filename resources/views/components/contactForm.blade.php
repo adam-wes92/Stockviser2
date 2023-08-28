@@ -1,10 +1,21 @@
-<div class="flex justify-center align-center text-xl bg-gray-50 border border-gray-200 text-laravel2  rounded p-10 bg-laravel">
-    <x-flash-message />
-    <form action="{{ route('contact.us.store') }}" method="POST" class="w-80 text-lrg">
-        @csrf
-        <h1 class="mb-3 text-2xl underline">Contact Us</h1>
+<x-flash-message />
 
+<section class="relative bg-laravel flex pb-5 justify-center align-center space-y-4 mb-4">
+    
+    <div class="absolute top-0 left-0 w-full h-full opacity-10 bg-center"
+        style="background-image: url('images/Arrows.jpg'); bg-repeat: repeat; background-size: 25%"></div>
+
+<div class="flex flex-col justify-center align-center text-xl text-laravel2 w-2/3 rounded p-10 bg-laravel">
+
+    <h1 class="pb-7 text-center text-6xl font-bold uppercase text-white" style="font:family 'Roboto', sans-serif;">
+        <!-- {{-- changed from Lara to Cap4 and from Gigs to Jobs --}} -->
+        Contact<span class="text-laravel2">Us
+    </h1>
+
+    <form action="{{ route('contact.us.store') }}" method="POST" class="w-80   text-lrg mx-auto">
+        @csrf
         <label for="name">Full Name:</label>
+        <br>
         <input class="mb-3 w-80 rounded p-2" type="text" name="name" placeholder="Name" value="{{ old('name') }}">
         @error('name')
         <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
@@ -12,6 +23,7 @@
         <br>
 
         <label for="email">Email:</label>
+        <br>
         <input class="w-80 mb-3 rounded p-2" type="text" name="email" placeholder="Email" value="{{ old('email') }}">
         @error('email')
         <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
@@ -19,6 +31,7 @@
         <br>
 
         <label for="ticker">Company Ticker/Symbol:</label>
+        <br>
         <input class="w-80 rounded p-2" type="text" name="ticker" placeholder="AAPL, GOOG, ATVI, SQSP..." value="{{ old('ticker') }}">
         @error('ticker')
         <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
@@ -26,6 +39,7 @@
         <br>
 
         <label for="subject">Subject:</label>
+        <br>
         <input class="w-80 mb-3 rounded p-2" type="text" name="subject" placeholder="Subject of message" value="{{ old('subject') }}">
         @error('subject')
         <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
@@ -43,3 +57,4 @@
         <button type="submit" class="bg-black text-white py-2 px-4 rounded text-sm">Submit</button>
     </form>
 </div>
+</section>

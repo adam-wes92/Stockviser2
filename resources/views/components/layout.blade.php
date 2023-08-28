@@ -30,8 +30,9 @@
     <title>StockViser | Track the Market with Confidence</title>
 </head>
 
+<x-flash-message />
 <body class="mb-48">
-    <x-flash-message /> 
+ 
     
     <nav class="flex justify-between bg-laravel items-center mb-4">
 
@@ -43,12 +44,6 @@
         <ul class="flex space-x-6 mr-6 text-lg">
             {{-- Adding this auth directive so that it doesn't display the register and login links after the user has been logged in --}}
              @auth {{-- content to be displayed when user is logged in --}}
-
-
-              {{-- Create product Button --}}
-                {{-- <li>
-                    <a href="/" class="bg-black text-white py-2 px-4 rounded text-sm">Create Portfolio</a>
-                </li> --}}
 
                 <li>
                     <a href="/users/{{ auth()->user()->id }}/dashboard" class="bg-black text-white py-2 px-4 rounded text-sm hover:text-laravel2">My Dashboard</a>
