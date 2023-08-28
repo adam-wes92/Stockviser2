@@ -57,16 +57,6 @@
                 <li>
                     <a href="/" class=" text-sm bg-black text-white px-5 py-2 hover:text-laravel2 rounded"><i class="fa-solid fa-house"></i> Home</a>
                 </li>
-
-                {{-- <li>
-                    <a href="{{ route('cart.show') }}" class="hover:text-laravel"><i class="fa-sharp fa-solid fa-lg fa-cart-shopping"></i>&nbsp
-                       My Cart</a>
-                </li> --}}
-               
-               {{-- <li>
-                    <a href="/" class="hover:text-laravel"><i class="fa-sharp fa-solid fa-lg fa-tag"></i>&nbsp
-                        My Portfolio</a>
-                </li> --}}
                 
                 {{-- Display "Manage Users" button if logged-in user is admin --}}
                 @if(session('is_admin'))
