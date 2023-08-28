@@ -1,5 +1,6 @@
 {{-- @props(['company']) --}}
-
+<div class="flex flex-row flex-wrap justify-center gap-3">
+@foreach ($companies as $company)
 <x-card class=" w-1/5 rounded-md border-double shadow-md shadow-laravel3 card ">
     <a href="/companies/{{ $company->ticker }}">
     <div class="flex flex-col justify-center text-center">
@@ -37,8 +38,8 @@
     </div>
 </a>
 </x-card>  
-  
-
+@endforeach 
+</div>
 
 
             
