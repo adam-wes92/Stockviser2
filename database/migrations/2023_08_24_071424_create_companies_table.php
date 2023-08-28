@@ -13,19 +13,19 @@ return new class extends Migration
     {
         Schema::create('companies', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('shortname');
+            $table->string('fullname');
             $table->string('ticker');
             $table->string('country');
             $table->string('sector');
             $table->string('industry');
             $table->decimal('market_cap', 15, 2);
-            $table->string('average_analyst_rating');
+            $table->string('recomendation');
             $table->float('regular_market_price');            
-            $table->float('one_year_target');
-            $table->float('one_year_lowest');
-            $table->float('one_year_highest');
-            $table->float('volatility'); //beta
+            $table->float('regular_market_change');
+            $table->float('target_mean_price');
             $table->float('EPS');
+            $table->string('regular_market_delta');
             $table->timestamps();
         });
     }

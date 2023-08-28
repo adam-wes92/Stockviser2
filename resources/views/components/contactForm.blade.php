@@ -57,4 +57,3 @@
         <button type="submit" class="bg-black text-white py-2 px-4 rounded text-sm">Submit</button>
     </form>
 </div>
-</section>

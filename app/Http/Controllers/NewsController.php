@@ -48,7 +48,6 @@ curl_setopt_array($curl, [
 $response = curl_exec($curl);
 $news=json_decode($response)->item;
 return view ('companies.index', [
-    'news'=>array_slice($news, 0, 6)
-]);
+    'news'=>array_slice($news, 0, 5)]);
     }
 }
