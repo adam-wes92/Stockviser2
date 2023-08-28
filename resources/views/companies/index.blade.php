@@ -33,8 +33,4 @@
 
     @include('components.contactForm')
 
-    @auth
-    @include('components.AIchatbox')
-    @endauth
-
 </x-layout>

@@ -114,6 +114,9 @@
 
         </li>
     </ul>
+    @auth
+    @include('components.AIchatbox')
+    @endauth
     </footer>
 </body>
 
