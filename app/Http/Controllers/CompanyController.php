@@ -43,7 +43,7 @@ class CompanyController extends Controller
             }
             $news_to_show = News::all();
             return view('companies.index', [
-                'companies' => Company::latest()->filter(request(['search']))->simplepaginate(4),
+                'companies' => Company::oldest()->filter(request(['search']))->simplepaginate(4),
 
                 'news'=>$news_to_show
             ]);
@@ -111,6 +111,7 @@ class CompanyController extends Controller
                 ]);
                 $existed=false;
                 $current_cost=$company->regular_market_price;
+                
                 $companies_in_portfolio = Portfolio::where('user_id', $u_id)->get(); 
                 if ($companies_in_portfolio->isEmpty()){
                     $formfields = [
