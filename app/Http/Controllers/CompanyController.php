@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Carbon\Carbon;
+use App\Models\News;
 use App\Models\Symbol;
 use App\Models\Company;
 use App\Models\Portfolio;
@@ -32,16 +33,22 @@ class CompanyController extends Controller
                 ],
             ]);
 
-$response = curl_exec($curl);
-$news=json_decode($response)->item;
-            $companies = Company::all();
+            $response = curl_exec($curl);
+            $news=json_decode($response)->item;
+            foreach($news as $new){
+                News::create([
+                    'title'=>$new->title,
+                    'description'=>$new->description
+                ]);
+            }
+            $news_to_show = News::all();
             return view('companies.index', [
-                'companies'=>$companies,
-                'news'=>array_slice($news, 0, 5)
+                'companies' => Company::latest()->filter(request(['search']))->simplepaginate(4),
+
+                'news'=>$news_to_show
             ]);
-        
-            
-                             
+                                           
+
         }
         
             public function show($ticker){
