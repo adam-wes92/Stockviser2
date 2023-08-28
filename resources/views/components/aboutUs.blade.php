@@ -1,3 +1,4 @@
+<x-flash-message/>
 <section class="relative bg-laravel flex justify-center align-center mt-10  space-y-4 mb-4">
 
     <div class="absolute top-0 left-0 w-full h-full opacity-10 bg-center"
