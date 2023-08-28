@@ -12,7 +12,6 @@ use App\Http\Controllers\UserController;
 // List of all companies & Display News Component
 Route::get('/', [CompanyController::class, 'index']);
 
-Route::get('/', [CompanyController::class, 'index'])->middleware('auth');
 
 // Show edit form for Users
 Route::get('/users/{user}/edit', [UserController::class, 'edit'])->middleware('auth')->name('user.edit');
