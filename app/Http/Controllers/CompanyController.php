@@ -41,10 +41,8 @@ class CompanyController extends Controller
             // Fetch all tickers from the database
 
             $companies = Company::all();
-            return view('companies.index', ['companies'=>$companies]);
-        
-            
-                             
+            return view('companies.index', [
+                'companies' => Company::latest()->filter(request(['search']))->simplepaginate(4),]);                            
         }
         
             public function show($ticker){

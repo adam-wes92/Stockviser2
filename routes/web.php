@@ -14,9 +14,8 @@ use App\Http\Controllers\UserController;
 
 // Display News Component
 Route::get('/', [NewsController::class, 'getNews'])->middleware('guest');
+
 Route::get('/', [CompanyController::class, 'index'])->middleware('auth');
-
-
 
 // Show edit form for Users
 Route::get('/users/{user}/edit', [UserController::class, 'edit'])->middleware('auth')->name('user.edit');
@@ -28,7 +27,6 @@ Route::post('/companies/add/{ticker}', [CompanyController::class, 'store']);
 Route::get('/companies/{ticker}', [CompanyController::class, 'show']);
 //Daisplay all companies
 Route::get('/companies', [CompanyController::class, 'index']);
-
 
 // Present the registration form
 Route::get('/register', [UserController::class, 'create']);

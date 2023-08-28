@@ -49,19 +49,10 @@
                     <a href="/users/{{ auth()->user()->id }}/dashboard" class="bg-black text-white py-2 px-4 rounded text-sm hover:text-laravel2">My Dashboard</a>
 
                 </li>
+                
                 <li>
                     <a href="/users/{{ auth()->user()->id }}/edit" class=" text-sm bg-black text-white px-5 py-2 hover:text-laravel2 rounded"><i class="fa-sharp fa-solid fa-user"></i>&nbsp My Profile</a>
                 </li>
-
-                {{-- <li>
-                    <a href="{{ route('cart.show') }}" class="hover:text-laravel"><i class="fa-sharp fa-solid fa-lg fa-cart-shopping"></i>&nbsp
-                       My Cart</a>
-          </li> --}}
-               
-               {{-- <li>
-                    <a href="/" class="hover:text-laravel"><i class="fa-sharp fa-solid fa-lg fa-tag"></i>&nbsp
-                        My Portfolio</a>
-                </li> --}}
 
                 <li> {{-- added this LI to incorporate Logout ability --}}
                 <form class=" text-white inline" method="POST" action="/logout">
