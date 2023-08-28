@@ -11,7 +11,8 @@
     </section>
 
     <div class="flex flex-row sm:text-lg md:text-xl lg:text-2xl">
-        <img class="w-1/4 h-1/4 px-3" src="{{ asset('images/users.jpg') }}" alt="" />
+        <img class="w-1/4 h-1/4 px-3
+        " src="{{ asset('images/users.jpg') }}" alt="" />
 
         <h3 class="text-black bg-white text-right pr-10">
         <b>Welcome to StockViser<br>Your Pathway to Tracking and Simulating the Market!</b>
