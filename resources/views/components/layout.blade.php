@@ -73,6 +73,7 @@
                 <li>
                     <a href="/manage-users" class="hover:text-laravel2 text-white "><i class="fa-solid fa-gear"></i> Manage Users</a>
                 </li>
+                
             @endif
 
                 <li> {{-- added this LI to incorporate Logout ability --}}
