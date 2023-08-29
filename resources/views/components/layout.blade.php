@@ -68,7 +68,7 @@
     <nav class="flex justify-between bg-laravel items-center mb-4 p-4 md:px-0">
         <div class="flex items-center">
             <a href="/">
-                <img class="w-20 logo ml-5" src="{{ asset('images/logo.png') }}" alt="" />
+                <img class="w-20 logo ml-2" src="{{ asset('images/logo.png') }}" alt="" />
             </a>
         </div> 
         
@@ -109,7 +109,7 @@
                     <li>
                         <a href="/users/{{ auth()->user()->id }}/edit" class="text-white hover:text-laravel2 hover:no-underline"><button class="hover:text-laravel2"><i class="fa-sharp fa-solid fa-user"></i>&nbsp My Profile</button></a>
                     </li>
-                    
+
                     <li>
                         <a href="/" class="text-white hover:text-laravel2 hover:no-underline"><button class="hover:text-laravel2"><i class="fa-solid fa-house"></i> Home</button></a>
                     </li>
