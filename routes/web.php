@@ -9,12 +9,6 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\PortfolioController;
 use App\Http\Controllers\ChatBotController;
 
-// List of all companies
-//Route::get('/', [CompanyController::class, 'index']);
-
-// Display News Component
-
-
 // List of all companies & Display News Component
 Route::get('/', [CompanyController::class, 'index']);
 
@@ -27,11 +21,13 @@ Route::get('/users/{user}/edit', [UserController::class, 'edit'])->middleware('a
 // Update User Profile information
 Route::put('/users/{user}', [UserController::class, 'update'])->middleware('auth')->name('user.update');
 
+// Adds ticker to companies
 Route::post('/companies/add/{ticker}', [CompanyController::class, 'store']);
 
 // display all users in manage user view
 Route::get('/manage-users', [UserController::class, 'manageUsers'])->name('manage.users');
 
+// Admin deletes users
 Route::delete('/delete-user/{user}', [UserController::class, 'deleteUser'])->name('delete.user');
 
 // Display one of the companies
@@ -55,14 +51,11 @@ Route::post('/users/authenticate', [UserController::class, 'authenticate']);
 // Display user data
 Route::get('/users/{id}', [UserController::class, 'show'])->middleware('auth');
 
-// Route::get('/contact', [ContactController::class, 'index']);
-
+// Display user Dashboard
 Route::get('/users/{user}/dashboard', [UserController::class, 'dashboard'])->middleware('auth');
 
-
-
+// Delete companies from user portfolio
 Route::get('/users/{user}/dashboard/{company}', [PortfolioController::class, 'destroy'])->middleware('auth');
-
 
 // AI chatbox - sendChat
 Route::post('send', [ChatBotController::class, 'sendChat']);

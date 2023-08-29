@@ -40,6 +40,7 @@
                     </div>
                 </div>
             </x-card>
+
             @if (empty($companies_in_portfolio))
                 <x-card class="mx-auto my-10 rounded-lg bg-gray-100 border shadow-md xl:w-5/12 lg:w-5/12 md:w-11/12 sm:w-11/12">
                     <div class="text-center flex flex-col justify-between h-full">
@@ -48,6 +49,7 @@
                         <a href="/" class="bg-laravel text-white py-2 mx-auto px-4 rounded sm:text-lg md:text-xl lg:text-2xl xl:text-3xl hover:text-laravel2 hover:no-underline">Add companies to your portfolio</a>
                     </div>
                 </x-card>
+
             @else    
                 <x-card class="mx-auto my-10 rounded-lg bg-gray-100 border shadow-md xl:w-5/12 lg:w-5/12 md:w-11/12 sm:w-11/12 ">
                     <div class="p-6">
@@ -187,6 +189,3 @@
             });
         });
     </script>
-    
-</body>
-</html>
