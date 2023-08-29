@@ -9,7 +9,7 @@
 </head>
 <body class="bg-gray-100 font-sans mb-40">
     <x-layout>
-        <section class="bg-gradient-to-r from-blue-900 to-blue-700 text-white py-20">
+        <section class="bg-gradient-to-r from-laravel via-blue-700 to-laravel text-white py-20">
             <div class="text-center">
                 <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
                     Welcome {{ auth()->user()->first_name }} to your portfolio
@@ -19,12 +19,11 @@
                 </p>
             </div>
         </section>
+
         
-        
-    
         <div class="">
             <div class="flex xl:flex-row lg:flex-row md:flex-col sm:flex-col flex-wrap ">
-                <x-card class="mx-auto mt-8 md:mt-12 lg:mt-16 xl:w-3/7 lg:w-3/7 md:w-6/7 sm:w-67 rounded-lg bg-gray-100 border min-w-1 shadow-md">
+                <x-card class="mx-auto mt-8 md:mt-12 lg:mt-16 xl:w-2/5 lg:w-2/5  rounded-lg bg-gray-100 border min-w-1 shadow-md">
                     <div class=" flex flex-col h-full justify-between p-6">
                         <h1 class="text-center text-2xl md:text-3xl lg:text-4xl font-bold mb-4">
                             Your Personal Data
@@ -60,7 +59,7 @@
                     </div>
                 </x-card>
                 @if (empty($companies_in_portfolio))
-                <x-card class="p-10 mx-auto mt-24 xl:w-3/7 lg:w-3/7 md:w-6/7 sm:w-67  rounded-md shadow-md min-w-1">
+                <x-card class="p-10 mx-auto mt-24 xl:w-2/5 lg:w-2/5  rounded-md shadow-md min-w-1">
                     <div class="text-center flex flex-col justify-between h-full">
                         <h1 class="text-center pt-2 sm:text-lg md:text-xl lg:text-2-xl xl:text-3xl font-bold uppercase text-laravel" style="font:family 'Roboto', sans-serif;">
                                 Portfolio's resume</h1>
@@ -69,7 +68,7 @@
                     </div>
                 </x-card>
                 @else    
-                <x-card class="mx-auto mt-12 md:mt-16 lg:mt-20 xl:w-3/7 lg:w-3/7 md:w-6/7 sm:w-67 rounded-lg bg-gray-100 shadow-md min-w-1">
+                <x-card class="mx-auto mt-12 md:mt-16 lg:mt-20 xl:w-2/5 lg:w-2/5 rounded-lg bg-gray-100 shadow-md min-w-1">
                     <div class="p-6">
                         <h1 class="text-center text-2xl md:text-3xl lg:text-4xl font-bold mb-4">
                             Top 3 Companies in Your Portfolio
@@ -103,7 +102,7 @@
             </div>
             <div class="flex flex-col items-center mt-8">
 
-                <x-card class="p-10  rounded-lg bg-white shadow-lg mx-auto w-6/7">
+                <x-card class="p-10  rounded-lg bg-white shadow-lg mx-auto xl:w-2/5 lg:w-2/5">
                     <div class="">
                     <h1 class="text-center text-2xl md:text-3xl lg:text-4xl font-bold mb-4 text-laravel">
                         Portfolio's Resume
@@ -135,7 +134,7 @@
             </div>
         
 
-    <x-card class="p-10 mt-24 w-6/7 mx-auto rounded-md shadow-md shadow-laravel" >
+    <x-card class="p-10 mt-24 w-5/6 mx-auto rounded-md shadow-md shadow-laravel" >
         <div class="flex justify-between mb-2">
             <h1 class="text-2xl font-bold">Your portfolio</h1>
 
@@ -226,8 +225,3 @@
     
 </body>
 </html>
-
-
-
-
-
