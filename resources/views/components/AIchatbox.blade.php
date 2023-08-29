@@ -15,7 +15,7 @@
             <div style="display: block;">
                 <div style="display: flex; align-items: center;">
                     <div style="width: 50px; height: 50px; margin-right: 10px;">
-                        <img src="images/logo.png" width="100%" height="100%" style="border-radius: 50px;">
+                        <img src="{{asset('images/logo.png')}}" width="100%" height="100%" style="border-radius: 50px;">
                     </div>
                     <div class="text-white font-weight-bold">
                         StockViser AI Assistant
@@ -88,7 +88,7 @@ $.ajaxSetup({
         $('#content-box').append(`
             <div class="d-flex mb-2">
                 <div class="mr-2" style="width: 45px; height: 45px;">
-                    <img src="images/Avatar.png" width="100%" height="100%" style="border-radius: 50px;">
+                    <img src="{{asset('images/Avatar.png')}}" width="100%" height="100%" style="border-radius: 50px;">
                 </div>
                 <div class="text-white px-3 py-2" style="width: 270px;background: #13254b;border-radius: 10px;font-size: 85%;">
                     Hello {{ auth()->user()->first_name }}, how can I help you?
