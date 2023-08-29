@@ -10,9 +10,6 @@
 <x-layout>
 
     {{-- Display other information about the company --}}
-
-    {{-- ... other company details ... --}}
-
     <x-card class="mx-auto w-4/5 rounded-md border-double shadow-lg shadow-laravel card ">
         <div class="flex flex-row flex-between p-10 rounded border">
             <div class="">
@@ -32,18 +29,17 @@
                     </p>
                 </div>
             </div>
-            {{-- <h5 class="card-title">{{ $company->name }}</h5>  --}}
             <img src="{{ asset('logos/' . $company->ticker . '.png') }}" alt=""
                 class="card-img-top img-fluid rounded-circle company-logo p-3 img-thumbnail mx-auto d-block"
                 style="width: 150px; height: 150px;">
         </div>
-        <form action='/companies/add/{{ $company->ticker }}' method='POST' class="">
+        <form action='/companies/add/{{ $company->ticker }}' method='POST' class="mt-5">
             @csrf
             @method('post')
             <input type="hidden" name="company_id" value="{{ $company->id }}">
-            <input type="number" name="quantity" class="h-10 rounded border" required placeholder="Quantity">
+            <input type="number" name="quantity" class="h-8 rounded border" required placeholder="Quantity">
             <button type="submit"
-                class="btn btn-primary mx-auto bg-laravel text-white py-2 px-4 rounded sm:text-lg hover:text-laravel3 text-center">Add
+                class="btn btn-primary mx-auto bg-laravel text-white py-1 px-2 rounded sm:text-lg hover:text-laravel3 text-center">Add
                 to Portfolio</button>
         </form>
 
@@ -208,11 +204,12 @@
             @if (strlen($description) > 200)
                 <span id="dots">...</span> <!-- Dots to indicate truncation -->
                 <span id="more" style="display: none;">{{ substr($description, 200) }}</span>
-                <!-- Rest of description -->
+                <!-- Rest of description onclick-->
                 <button onclick="readMore()" id="read-more-btn" class="btn btn-link text-laravel2">Read more</button>
             @endif
         </p>
 
+        {{-- Extend the description function --}}
         <script>
             function readMore() {
                 var dots = document.getElementById("dots");
@@ -230,6 +227,7 @@
             }
         </script>
         <script>
+            // Chart data settings
             try {
                 var ctx = document.getElementById('priceChart').getContext('2d');
                 var data = {
@@ -243,11 +241,12 @@
                         pointRadius: 0,
                     }]
                 };
+
                 var myChart = new Chart(ctx, {
                     type: 'line',
                     data: data,
                     options: {
-                        responsive: true, // Change to true for responsiveness
+                        responsive: true, // responsive size for mobile 
                         scales: {
                             x: {
                                 title: {

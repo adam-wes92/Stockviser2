@@ -10,11 +10,11 @@
     </h1>
     </section>
 
-    <div class="flex flex-row sm:text-lg md:text-xl lg:text-2xl">
+    <div class="flex flex-row sm:text-lg md:text-xl lg:text-4xl lg:flex lg:px-10">
         <img class="w-1/4 h-1/4 px-3
         " src="{{ asset('images/users.jpg') }}" alt="" />
 
-        <h3 class="text-black bg-white text-right pr-10">
+        <h3 class="text-black bg-white text-right sm:pr-10 lg:pr-5 lg:pt-20 sm:text-right pr-10">
         <b>Welcome to StockViser<br>Your Pathway to Tracking and Simulating the Market!</b>
         <br>
         At StockViser, we're dedicated to demystifying the world of investing, empowering beginner and intermediate investors like you to take charge of your financial future with confidence. Our user-friendly web application is tailor-made to simplify the complexities of the financial markets and make investing accessible to everyone.
@@ -22,9 +22,9 @@
     </div>
     <br>
     
-    <div class="flex flex-row sm:text-lg md:text-xl lg:text-2xl">
+    <div class="flex flex-row sm:text-lg md:text-xl lg:text-4xl lg:flex lg:px-10">
         <div class="">
-        <h3 class="text-black bg-white text-left pb-5 pl-10">
+        <h3 class="text-black bg-white text-left sm:pl-10 lg:pt-20 pb-3 lg:pb-0 lg:pl-5 sm:text-left pl-10">
         <b>Our Mission</b>
         <br>
         Our mission at StockViser is clear: to provide you with the tools and knowledge you need to make informed investment decisions. We understand that the world of stocks and portfolios can seem daunting, but we're here to bridge that gap. Whether you're a newbie taking your first steps into investing or an intermediate investor looking to fine-tune your strategies, StockViser has got you covered.
