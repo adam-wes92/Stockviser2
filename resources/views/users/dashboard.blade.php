@@ -79,27 +79,31 @@
         <x-card class="mx-auto my-10 rounded-lg bg-gray-100 border shadow-md w-11/12">
             <div class="">
                 <h1 class="text-center text-2xl md:text-3xl lg:text-4xl font-bold mb-4 text-laravel">Portfolio's Resume</h1>
-                <p class="text-center text-lg md:text-xl lg:text-2xl text-gray-700 mb-6">Companies in Portfolio: {{ count($companies) }}</p>
-                <p class="text-center lg:text-xl xl:text-3xl md:text-3xl sm:text-base text-gray-700 mb-4">
-                        <span class="font-bold text-laravel">Total Investment:</span> {{number_format($total_invest, 2, '.', ' ')}} $
-                </p>
-                <p class="text-center lg:text-xl xl:text-3xl md:text-3xl sm:text-base mb-4">
+                    @if (!empty($companies_in_portfolio))
+                        <p class="text-center text-lg md:text-xl lg:text-2xl text-gray-700 mb-6">Companies in Portfolio: {{ count($companies) }}</p>
+                        <p class="text-center lg:text-xl xl:text-3xl md:text-3xl sm:text-base text-gray-700 mb-4">
+                            <span class="font-bold text-laravel">Total Investment:</span> {{number_format($total_invest, 2, '.', ' ')}} $
+                        </p>
+                        <p class="text-center lg:text-xl xl:text-3xl md:text-3xl sm:text-base mb-4">
                         <span class="font-bold text-laravel">Portfolio Gain:</span>
-                        @if ($total_gain >= 0)
-                            <span class="text-green-600">{{ number_format($total_gain, 2, '.', ' ') }} $</span>
-                        @else
-                            <span class="text-red-600">{{ number_format($total_gain, 2, '.', ' ') }} $</span>
-                        @endif
-                </p>
-                <p class="text-center lg:text-xl xl:text-3xl md:text-3xl sm:text-base mb-6">
-                    <span class="font-bold text-laravel">Portfolio Performance:</span>
-                        @if ($portfolio_performance >= 0)
-                            <span class="text-green-600">{{ number_format($portfolio_performance, 2) }}%</span>
-                        @else
-                            <span class="text-red-600">{{ number_format($portfolio_performance, 2) }}%</span>
-                        @endif
-                </p>
-            </div>
+                            @if ($total_gain >= 0)
+                                <span class="text-green-600">{{ number_format($total_gain, 2, '.', ' ') }} $</span>
+                            @else
+                                <span class="text-red-600">{{ number_format($total_gain, 2, '.', ' ') }} $</span>
+                            @endif
+                        </p>
+                        <p class="text-center lg:text-xl xl:text-3xl md:text-3xl sm:text-base mb-6">
+                            <span class="font-bold text-laravel">Portfolio Performance:</span>
+                                @if ($portfolio_performance >= 0)
+                                    <span class="text-green-600">{{ number_format($portfolio_performance, 2) }}%</span>
+                                @else
+                                    <span class="text-red-600">{{ number_format($portfolio_performance, 2) }}%</span>
+                                @endif
+                        </p>
+                    @else
+                    <p class="pb-2 text-gray-200  sm:text-lg md:text-xl lg:text-2xl xl:text-3xl my-4 text-laravel2 text-center"> <span class="font-bold text-laravel">No companies in your portfolio </span></p>
+                    @endif
+                </div>
         </x-card>
     </div>
         
@@ -126,6 +130,7 @@
                             <th class="py-2 px-4 text-center text-sm md:text-base lg:text-lg xl:text-xl font-bold border">Delete/Sale</th>
                         </tr>
                     </thead>
+                    @if (!empty($companies_in_portfolio))
                     <tbody>
                         @foreach ($companies as $c)
                             <tr class="hover:bg-gray-100 portfolio-row" >
@@ -154,6 +159,7 @@
                             </tr>
                         @endforeach
                     </tbody>
+                    @endif
                 </table>
             </div>
             <div class="flex justify-center mt-6">

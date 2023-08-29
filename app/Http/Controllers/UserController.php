@@ -121,6 +121,7 @@ class UserController extends Controller
         $array_EPS = [];
         $array_perf = [];
         $companies = [];
+        $users_port=[];
         $companies_in_portfolio = Portfolio::where('user_id', Auth::id())->get();
         if ($companies_in_portfolio->isEmpty()) {
             return view('users.dashboard', ['companies_in_portfolio' => []]);
@@ -163,6 +164,7 @@ class UserController extends Controller
                 $c_show = Company::find($cp->company_id);
                 $rmp = $c_show->regular_market_price;
                 $cp_refresh = Portfolio::find($cp->id);
+
                 $gain = $cp_refresh->current_cost * $cp_refresh->shares_qty - $cp_refresh->total_invested;
                 $pp = $gain *100/ $cp_refresh->total_invested;
                 $cp_refresh->fill([
@@ -176,6 +178,7 @@ class UserController extends Controller
                 
                 $cp_show = Portfolio::find($cp->id);
                 array_push($companies, $c_show);
+                array_push($users_port, $cp_show);
                 $total_gain += $cp_show->gain;
                 $total_invest += $cp_show->total_invested;
                 $a_EPS['EPS'] = $c_show->EPS;
@@ -191,8 +194,9 @@ class UserController extends Controller
             usort($array_perf, function ($a, $b) {
                 return $b["perf"] <=> $a["perf"];
             });
+        
             return view('users.dashboard', [
-                'companies_in_portfolio' => Portfolio::where('user_id', Auth::id())->get()->sortByDesc('last_purchase_date'),
+                'companies_in_portfolio' => $users_port,
                 'companies' => $companies,
                 'total_gain' => $total_gain,
                 'total_invest' => $total_invest,

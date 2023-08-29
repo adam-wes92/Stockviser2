@@ -57,11 +57,12 @@ Route::get('/users/{id}', [UserController::class, 'show'])->middleware('auth');
 
 // Route::get('/contact', [ContactController::class, 'index']);
 
+Route::get('/users/{user}/dashboard/{company}', [PortfolioController::class, 'destroy'])->middleware('auth');
 Route::get('/users/{user}/dashboard', [UserController::class, 'dashboard'])->middleware('auth');
 
 
 
-Route::get('/users/{user}/dashboard/{company}', [PortfolioController::class, 'destroy'])->middleware('auth');
+
 
 
 // AI chatbox - sendChat
