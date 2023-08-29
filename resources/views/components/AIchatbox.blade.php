@@ -35,7 +35,7 @@
     </style>
 <body style="background: #05113b;">
     <div>
-        <div id="chatOpen" class="container-fluid p-2" style="position: fixed; bottom: 37.8vh; right: 0; width: 40vh; height: 4vh; background-color: rgba(57, 192, 237, 0.8); overflow-y: scroll; border-radius: 15px;">
+        <div id="chatOpen" class="container-fluid p-2" style="position: fixed; bottom: 37.8vh; right: 0; width: 50vh; height: 4vh; background-color: rgba(57, 192, 237, 0.8); overflow-y: scroll; border-radius: 15px;">
             <div style="display: flex; justify-content: space-between; align-items: center;">
                 <div style="margin-right: 5px;">
                     <!-- Add an ID to the arrow down icon for click event -->
@@ -46,7 +46,7 @@
                 </div>
             </div>
         </div>
-        <div id="chatContent" class="container-fluid p-2" style="position: fixed; bottom: 7.598vh; right: 0; width: 40vh; height: 30vh; background-color: rgba(19, 31, 69, 0.8); overflow-y: scroll; border-radius: 15px;">
+        <div id="chatContent" class="container-fluid p-2" style="position: fixed; bottom: 7.598vh; right: 0; width: 50vh; height: 30vh; background-color: rgba(19, 31, 69, 0.8); overflow-y: scroll; border-radius: 15px;">
             <div style="display: block;">
                 <div style="display: flex; align-items: center;">
                     <div style="width: 50px; height: 50px; margin-right: 10px;">
@@ -102,7 +102,7 @@
                 chatboxContent.show();
                 chatLabel.text('Hide Chat');
                 chatbox.css({
-                    width: '40vh', // Set original width when expanded
+                    width: '50vh', // Set original width when expanded
                     bottom: '37.8vh',
                 });
                 chatboxText.css({
