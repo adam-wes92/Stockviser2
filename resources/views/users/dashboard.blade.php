@@ -38,7 +38,7 @@
                         </p>
                     </div>
                     <div class="flex justify-center ">
-                        <a href="/users/{{ auth()->user()->id }}/edit" class="bg-laravel hover:bg-blue-600 text-white py-2 px-4 rounded-lg text-lg no-underline">Change My Personal Data</a>
+                        <a href="/users/{{ auth()->user()->id }}/edit" class="bg-laravel hover:bg-blue-600 text-white py-2 px-4 rounded-lg text-lg hover:no-underline">Change My Personal Data</a>
                     </div>
                 </div>
             </x-card>
@@ -47,7 +47,7 @@
                     <div class="text-center flex flex-col justify-between h-full">
                         <h1 class="text-center pt-2 sm:text-lg md:text-xl lg:text-2-xl xl:text-3xl font-bold uppercase text-laravel" style="font:family 'Roboto', sans-serif;">Portfolio's resume</h1>
                         <p class="pb-2 text-gray-200  sm:text-lg md:text-xl lg:text-2xl xl:text-3xl my-4 text-laravel2"> <span class="font-bold text-laravel">No companies in your portfolio </span></p>
-                        <a href="/" class="bg-laravel text-white py-2 mx-auto px-4 rounded sm:text-lg md:text-xl lg:text-2xl xl:text-3xl hover:text-laravel2 no-underline">Add companies to your portfolio</a>
+                        <a href="/" class="bg-laravel text-white py-2 mx-auto px-4 rounded sm:text-lg md:text-xl lg:text-2xl xl:text-3xl hover:text-laravel2 hover:no-underline">Add companies to your portfolio</a>
                     </div>
                 </x-card>
             @else    
@@ -149,7 +149,7 @@
                                         <td class="py-2 px-4 text-center text-sm md:text-base lg:text-lg xl:text-xl border current-cost">{{ $cp->current_cost }} $</td>
                                         <td class="py-2 px-4 text-center text-sm md:text-base lg:text-lg xl:text-xl border">{{ $cp->last_purchase_date }}</td>
                                         <td class="py-2 px-4 text-center text-sm md:text-base lg:text-lg xl:text-xl border">
-                                            <a href="/users/{{ auth()->user()->id }}/dashboard/{{ $cp->id }}" class="bg-laravel hover:bg-blue-600 text-white py-2 px-4 rounded-lg text-lg">Delete</a>
+                                            <a href="/users/{{ auth()->user()->id }}/dashboard/{{ $cp->id }}" class="bg-laravel hover:bg-blue-600 text-white py-2 px-4 rounded-lg text-lg hover:no-underline">Delete</a>
                                         </td>
                                     @endif
                                 @endforeach
@@ -159,7 +159,7 @@
                 </table>
             </div>
             <div class="flex justify-center mt-6">
-                <a href="/" class="bg-laravel hover:bg-blue-600 text-white py-2 px-4 rounded-lg text-lg">Add companies to your portfolio</a>
+                <a href="/" class="bg-laravel hover:bg-blue-600 text-white py-2 px-4 rounded-lg text-lg hover:no-underline">Add companies to your portfolio</a>
             </div>
         </x-card>    
     </div>
