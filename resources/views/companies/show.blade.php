@@ -16,16 +16,18 @@
                 <h1 class="pt-2 text-4xl font-bold uppercase text-laravel text-center"
                     style="font:family 'Roboto', sans-serif;">
                     {{ $company->fullname }}</h1>
+                <h1 class="pt-2 text-xl font-bold uppercase text-laravel text-center"
+                style="font:family 'Roboto', sans-serif;">Last 30 days the highest price: </h1>
                 <div style=" color: {{ $classInd }};">
-                    <h1 class="pt-2 text-4xl font-bold uppercase text-left">
-                        {{ $highPricesLast30[0] }}</h1>
+                    <h1 class=" pt-2 text-4xl font-bold uppercase text-left">
+                        {{ number_format($highPricesLast30[0] , 2, '.', ' ')}}$</h1>
                     <p>
                         @if ($difference >= 0)
                             <i class="fa-solid fa-arrow-up"></i>
                         @else
                             <i class="fa-solid fa-arrow-down"></i>
                         @endif
-                        {{ $difference }}%
+                        {{ $difference*100 }}%
                     </p>
                 </div>
             </div>
