@@ -10,7 +10,7 @@
         
     
     <div class="w-6/7">
-        <div class="flex xl:flex-row lg:flex-row md:flex-col sm:flex-col gap-0">
+        <div class="flex xl:flex-row lg:flex-row md:flex-col sm:flex-col flex-wrap">
             <x-card class="mx-auto my-10 rounded-lg bg-gray-100 border shadow-md xl:w-5/12 lg:w-5/12 md:w-11/12 sm:w-11/12">
                 <div class=" flex flex-col h-full justify-between p-6">
                     <h1 class="text-center text-2xl md:text-3xl lg:text-4xl font-bold mb-4">Your Personal Data</h1>                        
@@ -51,14 +51,14 @@
                     </div>
                 </x-card>
             @else    
-                <x-card class="mx-auto my-10 rounded-lg bg-gray-100 border shadow-md xl:w-5/12 lg:w-5/12 md:w-11/12 sm:w-11/12 ">
+                <x-card class="mx-auto my-10 rounded-lg bg-gray-100 border shadow-md xl:w-5/12 lg:w-5/12 md:w-11/12 sm:w-11/12">
                     <div class="p-6">
                         <h1 class="text-center text-2xl md:text-3xl lg:text-4xl font-bold mb-4">Top 3 Companies in Your Portfolio</h1>
                         <p class="text-center text-lg md:text-xl lg:text-2xl text-gray-700 mb-6">With the Best EPS-index</p>
                         <div class="grid grid-cols-3 gap-6 justify-center">
                             @foreach($best_EPS as $be)
                                 <div class="flex flex-col items-center justify-center p-4 border rounded-lg shadow-md bg-white">
-                                    <img src="{{ asset('logos/'.$be['ticker'].'.png') }}" class="w-15 h-auto mb-2" alt="">
+                                    <img src="{{ asset('logos/'.$be['ticker'].'.png') }}" class="w-3/4 h-auto mb-2" alt="">
                                     <p class="text-lg text-gray-700">{{ $be['EPS'] }}</p>
                                 </div>
                             @endforeach
@@ -67,7 +67,7 @@
                         <div class="grid grid-cols-3 gap-6 justify-center">
                             @foreach($best_perf as $bp)
                             <div class="flex flex-col items-center justify-center p-4 border rounded-lg shadow-md bg-white">
-                                <img src="{{ asset('logos/'.$bp['ticker'].'.png') }}" class="w-15 h-auto mb-2" alt="">
+                                <img src="{{ asset('logos/'.$bp['ticker'].'.png') }}" class="w-3/4 h-auto mb-2" alt="">
                                 <p class="text-lg text-gray-700">{{ $bp['perf'] }}%</p>
                             </div>
                             @endforeach
