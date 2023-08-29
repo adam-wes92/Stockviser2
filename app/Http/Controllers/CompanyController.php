@@ -51,20 +51,27 @@ class CompanyController extends Controller
         // creating fake numbers in case of API crashes or doesnt provide full package of data
         $highPricesLast30 = [];
 
-        $min = 150;
-        $max = 160;
+        // $min = 150;
+        // $max = 160;
 
-        $previousNumber = rand($min * 100, $max * 100) / 100; // Initial number with two decimals
-        $highPricesLast30[] = $previousNumber;
+        // $previousNumber = rand($min * 100, $max * 100) / 100; // Initial number with two decimals
+        // $highPricesLast30[] = $previousNumber;
 
-        foreach (range(1, 29) as $i) {
-            $minValue = max($min, $previousNumber - 1);
-            $maxValue = min($max, $previousNumber + 1);
 
-            $randomNumber = rand($minValue * 100, $maxValue * 100) / 100;
-            $highPricesLast30[] = $randomNumber;
+        // foreach (range(1, 29) as $i) {
+        //     $minValue = max($min, $previousNumber - 1);
+        //     $maxValue = min($max, $previousNumber + 1);
 
-            $previousNumber = $randomNumber;
+        //     $randomNumber = rand($minValue * 100, $maxValue * 100) / 100;
+        //     $highPricesLast30[] = $randomNumber;
+
+        //     $previousNumber = $randomNumber;
+        // }
+        if (count($highPrices) >= 30) {
+            $startIndex = count($highPrices) - 30;
+            for ($i = $startIndex; $i < count($highPrices); $i++) {
+                $highPricesLast30[] = $highPrices[$i];
+            }
         }
         // high prices reverse for the chart to dislay it from left to right
         $highPricesLast30reverse = array_reverse($highPricesLast30);
