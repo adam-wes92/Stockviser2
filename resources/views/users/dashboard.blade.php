@@ -55,7 +55,7 @@
                             </p>
                         </div>
                         <div class="flex justify-center ">
-                            <a href="/users/{{ auth()->user()->id }}/edit" class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-lg text-lg">Change My Personal Data</a>
+                            <a href="/users/{{ auth()->user()->id }}/edit" class="bg-laravel hover:bg-blue-600 text-white py-2 px-4 rounded-lg text-lg">Change My Personal Data</a>
                         </div>
                     </div>
                 </x-card>
@@ -149,7 +149,7 @@
                         <th class="py-2 px-4 text-center text-sm md:text-base lg:text-lg xl:text-xl font-bold border">Company Name</th>
                         <th class="py-2 px-4 text-center text-sm md:text-base lg:text-lg xl:text-xl font-bold border">Symbol</th>
                         <th class="py-2 px-4 text-center text-sm md:text-base lg:text-lg xl:text-xl font-bold border">Sector</th>
-                        <th class="py-2 px-4 text-center text-sm md:text-base lg:text-lg xl:text-xl font-bold border">Market Cap (trillions)</th>
+                        <th class="py-2 px-4 text-center text-sm md:text-base lg:text-lg xl:text-xl font-bold border">Market Cap (trillions $)</th>
                         <th class="py-2 px-4 text-center text-sm md:text-base lg:text-lg xl:text-xl font-bold border">Analytics Rating</th>
                         <th class="py-2 px-4 text-center text-sm md:text-base lg:text-lg xl:text-xl font-bold border">24h Price Change</th>
                         <th class="py-2 px-4 text-center text-sm md:text-base lg:text-lg xl:text-xl font-bold border">Share Quantity</th>
@@ -165,7 +165,7 @@
                         <td class="py-2 px-4 text-center text-sm md:text-base lg:text-lg xl:text-xl border">{{ $c->shortname }}</td>
                         <td class="py-2 px-4 text-center text-sm md:text-base lg:text-lg xl:text-xl border">{{ $c->ticker }}</td>
                         <td class="py-2 px-4 text-center text-sm md:text-base lg:text-lg xl:text-xl border">{{ $c->sector }}</td>
-                        <td class="py-2 px-4 text-center text-sm md:text-base lg:text-lg xl:text-xl border">{{ number_format($c->market_cap/1000000000000, 2) }}</td>
+                        <td class="py-2 px-4 text-center text-sm md:text-base lg:text-lg xl:text-xl border">{{ number_format($c->market_cap/1000000000000, 2) }} T</td>
                         <td class="py-2 px-4 text-center text-sm md:text-base lg:text-lg xl:text-xl border">{{ $c->recomendation }}</td>
                         <td class="py-2 px-4 text-center text-sm md:text-base lg:text-lg xl:text-xl border">{{ $c->regular_market_delta }}</td>
                         <!-- Add more table data cells here -->
@@ -173,14 +173,14 @@
                             @if ($cp->company_id == $c->id)
                                 <td class="py-2 px-4 text-center text-sm md:text-base lg:text-lg xl:text-xl border">{{ $cp->shares_qty }}</td>
                                 @if ($cp->performance_percentage >= 0)
-                                    <td class="py-2 px-4 text-center text-sm md:text-base lg:text-lg xl:text-xl border bg-gray-100">{{ $cp->performance_percentage }}</td>
+                                    <td class="py-2 px-4 text-center text-sm md:text-base lg:text-lg xl:text-xl border bg-green-100">{{ $cp->performance_percentage }}%</td>
                                 @elseif ($cp->performance_percentage < 0)
-                                    <td class="py-2 px-4 text-center text-sm md:text-base lg:text-lg xl:text-xl border bg-red-100">{{ $cp->performance_percentage }}</td>
+                                    <td class="py-2 px-4 text-center text-sm md:text-base lg:text-lg xl:text-xl border bg-red-100">{{ $cp->performance_percentage }}%</td>
                                 @endif
-                                <td class="py-2 px-4 text-center text-sm md:text-base lg:text-lg xl:text-xl border current-cost">{{ $cp->current_cost }}</td>
+                                <td class="py-2 px-4 text-center text-sm md:text-base lg:text-lg xl:text-xl border current-cost">{{ $cp->current_cost }} $</td>
                                 <td class="py-2 px-4 text-center text-sm md:text-base lg:text-lg xl:text-xl border">{{ $cp->last_purchase_date }}</td>
                                 <td class="py-2 px-4 text-center text-sm md:text-base lg:text-lg xl:text-xl border">
-                                    <a href="/users/{{ auth()->user()->id }}/dashboard/{{ $cp->id }}" class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-lg text-lg">Delete</a>
+                                    <a href="/users/{{ auth()->user()->id }}/dashboard/{{ $cp->id }}" class="bg-laravel hover:bg-blue-600 text-white py-2 px-4 rounded-lg text-lg">Delete</a>
                                 </td>
                             @endif
                         @endforeach
@@ -190,7 +190,7 @@
             </table>
         </div>
         <div class="flex justify-center mt-6">
-            <a href="/" class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-lg text-lg">Add companies to your portfolio</a>
+            <a href="/" class="bg-laravel hover:bg-blue-600 text-white py-2 px-4 rounded-lg text-lg">Add companies to your portfolio</a>
         </div>
     </x-card>
     @endif
