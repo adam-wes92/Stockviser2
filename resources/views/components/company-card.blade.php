@@ -13,12 +13,15 @@
         .shadow-red {
             box-shadow: 0 4px 6px rgba(255, 0, 0, 0.1);
         }
+        .card:hover {
+            filter: brightness(95%);
+        }
     </style>
 </head>
 <body>
     <div class="flex flex-wrap justify-center gap-3 mb-10 mt-10">
         @foreach ($companies as $company)
-        <x-card id="company-card-{{ $company->ticker }}" class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 rounded-md shadow-md card">
+        <x-card id="company-card-{{ $company->ticker }}" class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 rounded-md shadow-md card {{ $company->regular_market_change >= 0 ? 'shadow-green' : 'shadow-red' }}">
             <a href="/companies/{{ $company->ticker }}">
                 <div class="flex flex-col justify-center text-center">
     
@@ -30,8 +33,11 @@
                     </h3>
                     <h3 class="text-2xl">{{ $company->ticker }}</h3>
                     <p class=""><strong>Country: </strong> {{ $company->country }}</p>
+                    <hr>
                     <p class=""><strong>Sector: </strong> {{ $company->sector }}</p>
+                    <hr>
                     <p class=""><strong>Industry: </strong> {{ $company->industry }}</p>
+                    <hr>
                     <p class="">
                         <strong>Market Cap: </strong>
                         @if ($company->market_cap >= 1000000000000)
@@ -44,6 +50,7 @@
                             {{ $company->market_cap }}
                         @endif
                     </p>
+                    <hr>
                     <p class="">
                         <strong>24H Change: </strong>
                         <span class="{{ $company->regular_market_change >= 0 ? 'text-green-500' : 'text-red-500' }}"
@@ -58,26 +65,6 @@
         </x-card>
         @endforeach
     </div>
-    
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const companies = @json($companies); // Pass your companies data here
-            
-            companies.forEach(company => {
-                const card = document.querySelector(`#company-card-${company.ticker}`);
-                const changeValue = company.regular_market_change;
-                
-                if (card) {
-                    if (changeValue >= 0) {
-                        card.classList.add('shadow-green');
-                        card.classList.remove('shadow-red');
-                    } else {
-                        card.classList.add('shadow-red');
-                        card.classList.remove('shadow-green');
-                    }
-                }
-            });
-        });
-    </script>
+ 
 </body>
 </html>
