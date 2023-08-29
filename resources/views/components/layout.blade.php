@@ -65,58 +65,127 @@
 <body class="mb-48">
  
     
-    <nav class="flex justify-between bg-laravel items-center mb-4">
-
-        <a href="/">
-            <img class="w-20 logo ml-5" src="{{ asset('images/logo.png') }}" alt="" />
-            
-        </a>        
-
-        <ul class="flex space-x-6 mr-6 text-lg">
-            {{-- Adding this auth directive so that it doesn't display the register and login links after the user has been logged in --}}
-             @auth {{-- content to be displayed when user is logged in --}}
-
-                <li>
-                    <a href="/users/{{ auth()->user()->id }}/dashboard" class="bg-black text-white py-2 px-4 rounded text-sm hover:text-laravel2">My Dashboard</a>
-
-                </li>
-                
-                <li>
-                    <a href="/users/{{ auth()->user()->id }}/edit" class=" text-sm bg-black text-white px-5 py-2 hover:text-laravel2 rounded"><i class="fa-sharp fa-solid fa-user"></i>&nbsp My Profile</a>
-                </li>
-                <li>
-                    <a href="/" class=" text-sm bg-black text-white px-5 py-2 hover:text-laravel2 rounded"><i class="fa-solid fa-house"></i> Home</a>
-                </li>
-                
-                {{-- Display "Manage Users" button if logged-in user is admin --}}
-                @if(session('is_admin'))
-                <li>
-                    <a href="/manage-users" class="hover:text-laravel2 text-white "><i class="fa-solid fa-gear"></i> Manage Users</a>
-                </li>
-            @endif
-
-                <li> {{-- added this LI to incorporate Logout ability --}}
-                <form class=" text-white inline" method="POST" action="/logout">
-                        @csrf
-                        <button class="hover:text-laravel2">
-                            <i class="fa-solid fa-sharp fa-door-closed " ></i>&nbsp Logout
-                        </button>
-                    </form>
-                </li>  
-
-            @else {{-- content to be displayed when user is loggeed out --}} 
-                <li>
-                    <a href="/register" class="hover:text-laravel2 text-white"><i class="fa-solid fa-user-plus"></i>
-                        Register</a>
-                </li>
-                
-                <li>
-                    <a href="/login" class="hover:text-laravel2 text-white"><i class="fa-solid fa-arrow-right-to-bracket"></i>
-                        Login</a>
-                </li>
-             @endauth 
+    <nav class="flex justify-between bg-laravel items-center mb-4 p-4 md:px-0">
+        <div class="flex items-center">
+            <a href="/">
+                <img class="w-20 logo ml-5" src="{{ asset('images/logo.png') }}" alt="" />
+            </a>
+        </div> 
         
+        <div class="md:hidden">
+            <button id="mobile-menu-button"
+            class="text-white hover:text-laravel2 focus:outline-none text-2xl px-4 py-2">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+
+        <ul class="hidden md:flex space-x-6 mr-6 text-lg ">
+            {{-- Adding this auth directive so that it doesn't display the register and login links after the user has been logged in --}}
+            @auth {{-- content to be displayed when user is logged in --}}
+                @if(session('is_admin'))
+                    {{-- Display other navigation links for admin --}}
+                    <li>
+                        <a href="/users/{{ auth()->user()->id }}/edit" class="hover:no-underline text-sm bg-black text-white px-5 py-2 hover:text-laravel2 rounded"><i class="fa-sharp fa-solid fa-user"></i>&nbsp My Profile</a>
+                    </li>
+                    <li>
+                        <a href="/" class="hover:no-underline text-sm bg-black text-white px-5 py-2 hover:text-laravel2 rounded"><i class="fa-solid fa-house"></i> Home</a>
+                    </li>
+                    <li>
+                        <a href="/manage-users" class="hover:no-underline hover:text-laravel2 text-white "><i class="fa-solid fa-gear"></i> Manage Users</a>
+                    </li>
+                    <li> {{-- added this LI to incorporate Logout ability --}}
+                        <form class=" text-white inline" method="POST" action="/logout">
+                            @csrf
+                            <button class="hover:text-laravel2">
+                                <i class="fa-solid fa-sharp fa-door-closed " ></i>&nbsp Logout
+                            </button>
+                        </form>
+                    </li>
+                @else
+                    {{-- Display "My Dashboard" button for non-admin users --}}
+                    <li>
+                        <a href="/users/{{ auth()->user()->id }}/dashboard" class=" hover:no-underline bg-black text-white py-2 px-4 rounded text-sm hover:text-laravel2"><i class="fa-solid fa-money-bill-1-wave"></i>My Dashboard</a>
+                    </li>
+                    <li>
+                        <a href="/users/{{ auth()->user()->id }}/edit" class="hover:no-underline text-sm bg-black text-white px-5 py-2 hover:text-laravel2 rounded"><i class="fa-sharp fa-solid fa-user"></i>&nbsp My Profile</a>
+                    </li>
+                    <li>
+                        <a href="/" class="hover:no-underline text-sm bg-black text-white px-5 py-2 hover:text-laravel2 rounded"><i class="fa-solid fa-house"></i> Home</a>
+                    </li>
+                    <li> {{-- added this LI to incorporate Logout ability --}}
+                        <form class=" text-white inline" method="POST" action="/logout">
+                            @csrf
+                            <button class="hover:text-laravel2 ">
+                                <i class="fa-solid fa-sharp fa-door-closed " ></i>&nbsp Logout
+                            </button>
+                        </form>
+                    </li>
+                @endif
+            @else {{-- content to be displayed when user is logged out --}} 
+                <li>
+                    <a href="/register" class="hover:text-laravel2 text-white"><i class="fa-solid fa-user-plus"></i> Register</a>
+                </li>
+                <li>
+                    <a href="/login" class="hover:text-laravel2 text-white"><i class="fa-solid fa-arrow-right-to-bracket"></i> Login</a>
+                </li>
+            @endauth
         </ul>
+
+        <div id="mobile-menu" class="hidden md:hidden absolute top-16 right-0 bg-laravel opacity-90 text-white py-4 px-6 z-20">
+    <ul class="space-y-4 text-white flex flex-col items-center justify-center text-center">
+                @auth
+                    <!-- ... your auth mobile menu links here ... -->
+                    @if(session('is_admin'))
+                    {{-- Display other navigation links for admin --}}
+                    <li>
+                        <a href="/users/{{ auth()->user()->id }}/edit" class=" hover:no-underline text-sm  text-white px-5 py-2 hover:text-laravel2 rounded"><i class="fa-sharp fa-solid fa-user"></i>&nbsp My Profile</a>
+                    </li>
+                    <li>
+                        <a href="/" class=" hover:no-underline text-sm  text-white px-5 py-2 hover:text-laravel2 rounded"><i class="fa-solid fa-house"></i> Home</a>
+                    </li>
+                    <li>
+                        <a href="/manage-users" class="hover:no-underline hover:text-laravel2 text-white "><i class="fa-solid fa-gear"></i> Manage Users</a>
+                    </li>
+                    <li> {{-- added this LI to incorporate Logout ability --}}
+                        <form class=" text-white inline" method="POST" action="/logout">
+                            @csrf
+                            <button class="hover:text-laravel2">
+                                <i class="fa-solid fa-sharp fa-door-closed " ></i>&nbsp Logout
+                            </button>
+                        </form>
+                    </li>
+                @else
+                    {{-- Display "My Dashboard" button for non-admin users --}}
+                    <li>
+                        <a href="/users/{{ auth()->user()->id }}/dashboard" class=" hover:no-underline text-white py-2 px-4 rounded text-sm hover:text-laravel2"><i class="fa-solid fa-money-bill-1-wave"></i> My Dashboard</a>
+                    </li>
+                    <li>
+                        <a href="/users/{{ auth()->user()->id }}/edit" class=" hover:no-underline text-sm text-white px-5 py-2 hover:text-laravel2 rounded"><i class="fa-sharp fa-solid fa-user"></i>&nbsp My Profile</a>
+                    </li>
+                    <li>
+                        <a href="/" class="hover:no-underline text-sm text-white px-5 py-2 hover:text-laravel2 rounded"><i class="fa-solid fa-house"></i> Home</a>
+                    </li>
+                    <li> {{-- added this LI to incorporate Logout ability --}}
+                        <form class=" text-white inline" method="POST" action="/logout">
+                            @csrf
+                            <button class="hover:text-laravel2">
+                                <i class="fa-solid fa-sharp fa-door-closed " ></i>&nbsp Logout
+                            </button>
+                        </form>
+                    </li>
+                @endif
+                @else
+                    <!-- ... your non-auth mobile menu links here ... -->
+                    <li>
+                        <a href="/register" class="hover:text-laravel2 text-white"><i class="fa-solid fa-user-plus"></i> Register</a>
+                    </li>
+                    <li>
+                        <a href="/login" class="hover:text-laravel2 text-white"><i class="fa-solid fa-arrow-right-to-bracket"></i> Login</a>
+                    </li>
+                @endauth
+            </ul>
+        </div>
+
     </nav>
     
     <main>
@@ -138,6 +207,18 @@
     @include('components.AIchatbox')
     @endauth
     </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        });
+    </script>
 </body>
 
 </html>
