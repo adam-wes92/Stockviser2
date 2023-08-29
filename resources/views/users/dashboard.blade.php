@@ -1,6 +1,5 @@
-
 <x-layout>
-    <section class="bg-gradient-to-r from-blue-900 to-blue-700 text-white py-20">
+    <section class="bg-gradient-to-r from-laravel via-blue-700 to-laravel text-white py-20">
         <div class="text-center">
             <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">Welcome {{ auth()->user()->first_name }} to your portfolio</h1>
             <p class="text-xl md:text-2xl lg:text-3xl">Get ready to manage your stock investments and financial future.</p>
@@ -18,6 +17,7 @@
                         <p class="pb-2 lg:text-xl xl:text-3xl md:text-3xl sm:text-base my-2">
                             <span class="font-semibold">Name:</span> {{ auth()->user()->first_name }} {{ auth()->user()->last_name }}</p>
                         <p class="pb-2 lg:text-xl xl:text-3xl md:text-3xl sm:text-base my-2">
+
                                 <span class="font-semibold">Age:</span> 
                                     @php
                                         $bd = auth()->user()->birth_date;
@@ -188,10 +188,7 @@
                 rows.forEach(row => portfolioTable.appendChild(row));
             });
         });
-</script>
-
-
-
-
-
-
+    </script>
+    
+</body>
+</html>
