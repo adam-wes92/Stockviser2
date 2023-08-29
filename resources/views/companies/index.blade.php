@@ -25,5 +25,8 @@
     @endguest
  
 
+
+
    @include('components.contactForm')
 </x-layout>
+
