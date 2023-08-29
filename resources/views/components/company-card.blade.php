@@ -13,15 +13,19 @@
         .shadow-red {
             box-shadow: 0 4px 6px rgba(255, 0, 0, 0.1);
         }
+
         .card:hover {
             filter: brightness(95%);
         }
+
     </style>
 </head>
 <body>
     <div class="flex flex-wrap justify-center gap-3 mb-10 mt-10">
         @foreach ($companies as $company)
+
         <x-card id="company-card-{{ $company->ticker }}" class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 rounded-md shadow-md card {{ $company->regular_market_change >= 0 ? 'shadow-green' : 'shadow-red' }}">
+
             <a href="/companies/{{ $company->ticker }}">
                 <div class="flex flex-col justify-center text-center">
     
@@ -65,6 +69,6 @@
         </x-card>
         @endforeach
     </div>
- 
+
 </body>
 </html>

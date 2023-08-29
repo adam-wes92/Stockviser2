@@ -110,17 +110,17 @@ class UserController extends Controller
         }
     }
 
-      public function dashboard(User $user)
+      public function dashboard()
 
-    {   $total_gain=0;
+    {   
+        $total_gain=0;
         $total_invest=0;
         $array_EPS=[];
         $array_perf=[];
-        $user_id=$user->id;
         $companies=[];
         $companies_in_portfolio=[];
-        $companies_in_portfolio = Portfolio::all()->filter(request($user_id));
-        
+        $companies_in_portfolio = Portfolio::where('user_id', Auth::id())->get();
+
         if ($companies_in_portfolio->isEmpty()){
             return view('users.dashboard', ['companies_in_portfolio'=>[]]);
         }else{
