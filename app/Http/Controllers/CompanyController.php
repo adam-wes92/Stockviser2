@@ -34,20 +34,22 @@ class CompanyController extends Controller
             ],
         ]);
 
-            $response = curl_exec($curl);
-            $news=json_decode($response)->item;
-            foreach($news as $new){
-                News::create([
-                    'title'=>$new->title,
-                    'description'=>$new->description
-                ]);
-            }
-            $news_to_show = News::all();
-            
-        $companies = Company::all();
-        return view('companies.index', [
-          'companies' => $companies, 
-          'news'=>$news_to_show]);
+        $response = curl_exec($curl);
+        $news = json_decode($response)->item;
+        foreach ($news as $new) {
+            News::create([
+                'title' => $new->title,
+                'description' => $new->description
+            ]);
+        }
+        $news_to_show = News::all();
+        return view(
+            'companies.index',
+            [
+                'companies' => Company::oldest()->filter(request(['search']))->paginate(8),
+                'news' => $news_to_show
+            ]
+        );
     }
 
 
@@ -194,8 +196,9 @@ class CompanyController extends Controller
 
 
 
-            public function store(Request $request){
-                $ticker = $request->route('ticker'); // Get the value of the ticker parameter
+    public function store(Request $request)
+    {
+        $ticker = $request->route('ticker'); // Get the value of the ticker parameter
                 $company = Company::where('ticker', $ticker)->first();
                 $u_id=Auth::id();
                 $qty = $request->validate([
@@ -206,7 +209,6 @@ class CompanyController extends Controller
                 
                 $companies_in_portfolio = Portfolio::where('user_id', $u_id)->get(); 
                 if ($companies_in_portfolio->isEmpty()){
-
                     $formfields = [
                         'user_id'=>$u_id,
                         'company_id'=> $company->id,                     
