@@ -5,8 +5,6 @@
             <p class="text-xl md:text-2xl lg:text-3xl">Get ready to manage your stock investments and financial future.</p>
         </div>
     </section>
-        
-        
     
     <div class="w-6/7">
         <div class="flex xl:flex-row lg:flex-row md:flex-col sm:flex-col gap-0">
