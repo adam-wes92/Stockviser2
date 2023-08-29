@@ -1,41 +1,6 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-        <meta name="csrf-token" content="{{ csrf_token()}}">
-    </head>
-    <style>
-        *{
-            margin: 0;
-            padding: 0;
-        }
-        ::-webkit-scrollbar{
-            width: 5px;
-        }
-        ::-webkit-scrollbar-track{
-            background: #13254c;
-        }
-        ::-webkit-scrollbar-thumb{
-            background: #061128;
-        }
 
-        #chatOpen {
-        transition: width 0.5s ease-in-out; /* Add transition property */
-        }
-
-        @media (max-width: 768px) { /* Adjust the breakpoint as needed */
-        #chatOpen {
-            width: 80%; /* Adjust the width for smaller screens */
-            height: 20vh; /* Adjust the height for smaller screens */
-            font-size: 14px; /* Adjust the font size for smaller screens */
-        }
-    }
-
-    </style>
-<body style="background: #05113b;">
     <div>
-        <div id="chatOpen" class="container-fluid p-2" style="position: fixed; bottom: 37.8vh; right: 0; width: 50vh; height: 4vh; background-color: rgba(57, 192, 237, 0.8); overflow-y: scroll; border-radius: 15px;">
+        <div id="chatOpen" class="container-fluid p-2" style="position: fixed; bottom: 37.8vh; right: 0; width: 50vh; height: 4vh; background-color: rgb(57, 192, 237); overflow-y: scroll; border-radius: 15px;">
             <div style="display: flex; justify-content: space-between; align-items: center;">
                 <div style="margin-right: 5px;">
                     <!-- Add an ID to the arrow down icon for click event -->
@@ -46,7 +11,7 @@
                 </div>
             </div>
         </div>
-        <div id="chatContent" class="container-fluid p-2" style="position: fixed; bottom: 7.598vh; right: 0; width: 50vh; height: 30vh; background-color: rgba(19, 31, 69, 0.8); overflow-y: scroll; border-radius: 15px;">
+        <div id="chatContent" class="container-fluid p-2" style="position: fixed; bottom: 7.598vh; right: 0; width: 50vh; height: 30vh; background-color: rgb(19, 31, 69); overflow-y: scroll; border-radius: 15px;">
             <div style="display: block;">
                 <div style="display: flex; align-items: center;">
                     <div style="width: 50px; height: 50px; margin-right: 10px;">
@@ -71,8 +36,7 @@
             </div>    
         </div>
     </div>
-</body>
-</html>
+
 {{-- Jquery Ajax --}}
 {{-- Jquery Ajax --}}
 <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
