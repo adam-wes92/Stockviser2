@@ -9,11 +9,6 @@ use Illuminate\Support\Facades\Mail;
 
 class ContactController extends Controller
 {
-    // public function index()
-    // {
-    //     return view('companies.index');
-    // }
-
     public function store(Request $request)
     {
         // Validate the request data
