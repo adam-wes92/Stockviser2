@@ -83,14 +83,14 @@
                 <h1 class="text-center text-2xl md:text-3xl lg:text-4xl font-bold mb-4 text-laravel">Portfolio's Resume</h1>
                 <p class="text-center text-lg md:text-xl lg:text-2xl text-gray-700 mb-6">Companies in Portfolio: {{ count($companies) }}</p>
                 <p class="text-center lg:text-xl xl:text-3xl md:text-3xl sm:text-base text-gray-700 mb-4">
-                        <span class="font-bold text-laravel">Total Investment:</span> {{ $total_invest }} $
+                        <span class="font-bold text-laravel">Total Investment:</span> {{number_format($total_invest, 2, '.', ' ')}} $
                 </p>
                 <p class="text-center lg:text-xl xl:text-3xl md:text-3xl sm:text-base mb-4">
                         <span class="font-bold text-laravel">Portfolio Gain:</span>
                         @if ($total_gain >= 0)
-                            <span class="text-green-600">{{ $total_gain }} $</span>
+                            <span class="text-green-600">{{ number_format($total_gain, 2, '.', ' ') }} $</span>
                         @else
-                            <span class="text-red-600">{{ $total_gain }} $</span>
+                            <span class="text-red-600">{{ number_format($total_gain, 2, '.', ' ') }} $</span>
                         @endif
                 </p>
                 <p class="text-center lg:text-xl xl:text-3xl md:text-3xl sm:text-base mb-6">
