@@ -1,16 +1,15 @@
 <section class="relative bg-laravel flex pb-5 justify-center align-center space-y-4 mb-4">
     
-    <div class="absolute top-0 left-0 w-full h-full opacity-10 bg-center"
+    <div class="absolute top-0 left-0 w-full h-full opacity-10 bg-center z-0"
         style="background-image: url('images/Arrows.jpg'); bg-repeat: repeat; background-size: 25%"></div>
 
 <div class="flex flex-col justify-center align-center text-xl text-laravel2 w-2/3 rounded p-10 bg-laravel ">
 
-    <h1 class="pb-7 text-center text-6xl font-bold uppercase text-white" style="font:family 'Roboto', sans-serif;">
-        <!-- {{-- changed from Lara to Cap4 and from Gigs to Jobs --}} -->
+    <h1 class="pb-7 text-center text-6xl font-bold uppercase text-white">
         Contact<span class="text-laravel2">Us
     </h1>
 
-    <form action="{{ route('contact.us.store') }}" method="POST" class="z-10 w-80   text-lrg mx-auto">
+    <form action="{{ route('contact.us.store') }}" method="POST" class="z-10 relative w-80 text-lrg mx-auto">
         @csrf
         <label for="name">Full Name:</label>
         <br>

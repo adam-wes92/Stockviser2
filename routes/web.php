@@ -7,6 +7,13 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\PortfolioController;
+use App\Http\Controllers\ChatBotController;
+
+// List of all companies
+//Route::get('/', [CompanyController::class, 'index']);
+
+// Display News Component
+
 
 // List of all companies & Display News Component
 Route::get('/', [CompanyController::class, 'index']);
@@ -57,4 +64,5 @@ Route::get('/users/{user}/dashboard', [UserController::class, 'dashboard'])->mid
 Route::get('/users/{user}/dashboard/{company}', [PortfolioController::class, 'destroy'])->middleware('auth');
 
 
-
+// AI chatbox - sendChat
+Route::post('send', [ChatBotController::class, 'sendChat']);
