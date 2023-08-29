@@ -26,7 +26,7 @@
 
         <x-card id="company-card-{{ $company->ticker }}" class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 rounded-md shadow-md card {{ $company->regular_market_change >= 0 ? 'shadow-green' : 'shadow-red' }}">
 
-            <a href="/companies/{{ $company->ticker }}">
+            <a href="/companies/{{ $company->ticker }}" class="hover:no-underline">
                 <div class="flex flex-col justify-center text-center">
     
                     <img src="{{ asset('logos/'.$company->ticker.'.png') }}" alt="{{ $company->shortname }} Logo"
