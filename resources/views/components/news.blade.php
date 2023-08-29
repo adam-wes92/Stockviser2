@@ -9,8 +9,8 @@
                     <div class="hidden duration-5000 ease-in-out h-auto" data-carousel-item>
                         <img src="{{ asset('images/stock_market' . $i . '.jpg') }}" alt="" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
                         <div class="absolute top-0 left-0 w-full h-full bg-black opacity-70"></div>                        
-                        <h1 class="absolute block w-1/2 -translate-x-1/2 -translate-y-1/2 top-1/4 left-1/2 text-white font-bol text-6xl text-center ">{{ $new->title }}</h1>
-                        <h3 class="absolute block w-2/3 -translate-x-1/2 -translate-y-1/2 top-3/4 left-1/2 text-white font-bol text-3xl text-center ">{{ $new->description }}</h3>                            
+                        <h1 class="absolute block w-1/2 -translate-x-1/2 -translate-y-1/2 top-1/4 left-1/2 text-white font-bol xl:text-5xl lg:text-3xl md:text-xl sm:text-base text-center ">{{ $new->title }}</h1>
+                        <h3 class="absolute block w-2/3 -translate-x-1/2 -translate-y-1/2 top-3/4 left-1/2 text-white font-bol xl:text-3xl lg:text-xl md:text-base sm:text-sm text-center ">{{ $new->description }}</h3>                              
                     </div>
             @endfor
     </div>

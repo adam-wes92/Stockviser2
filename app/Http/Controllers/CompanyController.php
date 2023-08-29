@@ -43,7 +43,7 @@ class CompanyController extends Controller
             }
             $news_to_show = News::all();
             return view('companies.index', [
-                'companies' => Company::latest()->filter(request(['search']))->simplepaginate(4),
+                'companies' => Company::oldest()->filter(request(['search']))->simplepaginate(4),
 
                 'news'=>$news_to_show
             ]);
