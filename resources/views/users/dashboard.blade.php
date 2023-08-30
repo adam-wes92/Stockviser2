@@ -9,7 +9,7 @@
 </head>
 <body class="bg-gray-100 font-sans mb-40">
     <x-layout>
-        <section class="bg-gradient-to-r from-blue-900 to-blue-700 text-white py-20">
+        <section class="bg-gradient-to-r from-laravel via-blue-700 to-laravel text-white py-20">
             <div class="text-center">
                 <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
                     Welcome {{ auth()->user()->first_name }} to your portfolio
@@ -206,11 +206,11 @@
             let sortByCostDescending = true; // Initial sort order
             
             const sortByProperty = (property) => (a, b) => {
-                const valueA = a.querySelector(`.${property}`).textContent;
-                const valueB = b.querySelector(`.${property}`).textContent;
+                const valueA = parseFloat(a.querySelector(`.${property}`).textContent);
+                const valueB = parseFloat(b.querySelector(`.${property}`).textContent);
                 return sortByCostDescending
-                    ? valueB.localeCompare(valueA) // Descending order
-                    : valueA.localeCompare(valueB); // Ascending order
+                    ? valueB - valueA // Descending order
+                    : valueA - valueB; // Ascending order
             };
     
             const portfolioTable = document.querySelector('#portfolio-table');
