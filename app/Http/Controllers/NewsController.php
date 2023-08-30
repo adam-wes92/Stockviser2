@@ -10,28 +10,19 @@ class NewsController extends Controller
 {
     // Shows news from API
     public function getNews() {
-         $apiToken='jdR7kSJJlDzInE3Xy6JuFt7tyU2ESXkZsMWaB9tR';
-         $response=Http::get("https://api.marketaux.com/v1/news/all", [
-             'api_token'=>$apiToken,
-             'symbols' => 'AAPL,TSLA',
-             'filter_entities' => 'true',
-             'limit'=>10
-         ]);
-         $r=$response->json();
-         $news=$r['data'];
+        //  $apiToken='jdR7kSJJlDzInE3Xy6JuFt7tyU2ESXkZsMWaB9tR';
+        //  $response=Http::get("https://api.marketaux.com/v1/news/all", [
+        //      'api_token'=>$apiToken,
+        //      'symbols' => 'AAPL,TSLA',
+        //      'filter_entities' => 'true',
+        //      'limit'=>10
+        //  ]);
+        //  $r=$response->json();
+        //  $news=$r['data'];
 
-          $apiToken='jdR7kSJJlDzInE3Xy6JuFt7tyU2ESXkZsMWaB9tR';
-         $response=Http::get("https://api.marketaux.com/v1/news/all", [
-             'api_token'=>$apiToken,
-             'symbols' => 'AAPL,TSLA',
-             'filter_entities' => 'true',
-             'limit'=>10
-         ]);
-         $r=$response->json();
-         $news=$r['data'];
-
-         $curl = curl_init();
-
+        //  $curl = curl_init();
+        //  return view ('companies.index', [
+        //     'news'=>array_slice($news, 0, 5)])
 // curl_setopt_array($curl, [
 // 	CURLOPT_URL => "https://yahoo-finance15.p.rapidapi.com/api/yahoo/ne/news/TSLA",
 // 	CURLOPT_RETURNTRANSFER => true,

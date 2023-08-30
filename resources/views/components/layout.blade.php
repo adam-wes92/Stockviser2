@@ -63,10 +63,12 @@
 
 <x-flash-message />
 <body class="mb-48">
+
     <nav class="flex justify-between bg-laravel items-center mb-4 p-4 md:px-0">
         <div class="flex items-center">
             <a href="/">
                 <img class="w-20 logo ml-2" src="{{ asset('images/logo.png') }}" alt="" />
+
             </a>
         </div> 
         
@@ -83,6 +85,7 @@
                 @if(session('is_admin'))
                     {{-- Display other navigation links for admin --}}
                     <li>
+
                         <a href="/users/{{ auth()->user()->id }}/edit" class="hover:no-underline text-white"><button class="hover:text-laravel2"><i class="fa-sharp fa-solid fa-user"></i>&nbsp My Profile</button></a>
                     </li>
                     <li>
@@ -94,6 +97,7 @@
                     </li>
                     <li> {{-- added this LI to incorporate Logout ability --}}
                         <form class="text-white inline" method="POST" action="/logout">
+
                             @csrf
                             <button class="hover:text-laravel2">
                                 <i class="fa-solid fa-sharp fa-door-closed " ></i>&nbsp Logout
@@ -102,6 +106,7 @@
                     </li>
                 @else
                     {{-- Display "My Dashboard" button for non-admin users --}}
+
                     <li  class="hover:text-laravel2">
                         <a href="/users/{{ auth()->user()->id }}/dashboard" class="text-white hover:no-underline"><button class="hover:text-laravel2"><i class="fa-solid fa-money-bill-1-wave"></i> My Dashboard</button></a>
                     </li>
@@ -111,6 +116,7 @@
 
                     <li>
                         <a href="/" class="text-white hover:no-underline"><button class="hover:text-laravel2"><i class="fa-solid fa-house"></i> Home</button></a>
+
                     </li>
                     <li> {{-- added this LI to incorporate Logout ability --}}
                         <form class=" text-white inline" method="POST" action="/logout">
@@ -127,6 +133,7 @@
                 </li>
                 <li>
                     <a href="/login" class="hover:no-underline text-white"><button class="hover:text-laravel2"><i class="fa-solid fa-arrow-right-to-bracket"></i> Login</button></a>
+
                 </li>
             @endauth
         </ul>
@@ -134,11 +141,13 @@
         {{-- Mobile menu view --}}
         <div id="mobile-menu" class="hidden md:hidden absolute top-16 right-0 bg-laravel opacity-90 text-white py-4 px-6 z-20">
     <ul class="space-y-4 text-white flex flex-col items-center justify-center text-center 2">
+
                 @auth
                     <!-- ... your auth mobile menu links here ... -->
                     @if(session('is_admin'))
                     {{-- Display other navigation links for admin --}}
                     <li>
+
                         <a href="/users/{{ auth()->user()->id }}/edit" class="hover:no-underline text-white"><button class="hover:text-laravel2"><i class="fa-sharp fa-solid fa-user"></i>&nbsp My Profile</button></a>
                     </li>
                     <li>
@@ -146,6 +155,7 @@
                     </li>
                     <li>
                         <a href="/manage-users" class="hover:no-underline text-white "><button class="hover:text-laravel2"><i class="fa-solid fa-gear"></i> Manage Users</button></a>
+
                     </li>
                     <li> {{-- added this LI to incorporate Logout ability --}}
                         <form class=" text-white inline" method="POST" action="/logout">
@@ -158,6 +168,7 @@
                 @else
                     {{-- Display "My Dashboard" button for non-admin users --}}
                     <li>
+
                          <a href="/users/{{ auth()->user()->id }}/dashboard" class="text-white  hover:no-underline"><button class="hover:text-laravel2"><i class="fa-solid fa-money-bill-1-wave"></i> My Dashboard</button></a>
                     </li>
                     <li>
@@ -165,6 +176,7 @@
                     </li>
                     <li>
                         <a href="/" class="text-white hover:no-underline"><button class="hover:text-laravel2"><i class="fa-solid fa-house"></i> Home</button></a>
+
                     </li>
                     <li> {{-- added this LI to incorporate Logout ability --}}
                         <form class=" text-white inline" method="POST" action="/logout">
@@ -178,10 +190,12 @@
                 @else
                     <!-- ... your non-auth mobile menu links here ... -->
                     <li>
+
                         <a href="/register" class="hover:no-underline text-white"><button class="hover:text-laravel2"><i class="fa-solid fa-user-plus"></i> Register</button></a>
                     </li>
                     <li>
                         <a href="/login" class="hover:no-underline text-white"><button class="hover:text-laravel2"><i class="fa-solid fa-arrow-right-to-bracket"></i> Login</button></a>
+
                     </li>
                 @endauth
             </ul>

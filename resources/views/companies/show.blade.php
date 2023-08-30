@@ -21,12 +21,16 @@
 <x-layout>
     {{-- Display other information about the company --}}
     <x-card class="mx-auto w-4/5 rounded-md border-double shadow-lg shadow-laravel card ">
+
         <div id="flexy" class="flex flex-between p-10 rounded border">
             <div>
                 <h1 class="pt-2 text-4xl font-bold uppercase text-laravel text-center"
                     style="font:family 'Roboto', sans-serif;">
                     {{ $company->fullname }}</h1>
+                <h1 class="pt-2 text-xl font-bold uppercase text-laravel text-center"
+                style="font:family 'Roboto', sans-serif;">Last 30 days the highest price: </h1>
                 <div style=" color: {{ $classInd }};">
+
                     <h1 class="pt-2 text-4xl font-bold uppercase text-center">
                         ${{ number_format($highPricesLast30[0], 4) }}</h1>
                     <p class="text-center">
@@ -35,7 +39,7 @@
                         @else
                             <i class="fa-solid fa-arrow-down"></i>
                         @endif
-                        {{ $difference }}%
+                        {{ $difference*100 }}%
                     </p>
                 </div>
             </div>
