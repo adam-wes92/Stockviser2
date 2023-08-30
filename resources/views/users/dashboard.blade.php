@@ -40,6 +40,7 @@
                     </div>
                 </div>
             </x-card>
+
             @if (empty($companies_in_portfolio))
                 <x-card class="mx-auto my-10 rounded-lg bg-gray-100 border shadow-md w-11/12 xl:w-5/12 lg:w-5/12">
                     <div class="text-center flex flex-col justify-between h-full">
@@ -50,6 +51,7 @@
                         </div>
                     </div>
                 </x-card>
+
             @else    
                 <x-card class="mx-auto my-10 rounded-lg bg-gray-100 border shadow-md w-11/12 xl:w-5/12 lg:w-5/12">
                     <div class="p-6">
@@ -202,3 +204,4 @@
     
 </body>
 </html>
+
