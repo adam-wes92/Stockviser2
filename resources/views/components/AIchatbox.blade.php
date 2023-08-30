@@ -7,7 +7,7 @@
                     <i id="toggleChat" class="fa fa-angle-down text-white"></i>
                 </div>
                 <div style="margin-left: 10px;">
-                    <span id="chatLabel" class="text-white">Open Chat</span>
+                    <span id="chatLabel" class="text-white">Hide Chat</span>
                 </div>
             </div>
         </div>
