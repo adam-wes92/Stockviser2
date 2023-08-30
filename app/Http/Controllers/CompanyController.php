@@ -59,6 +59,7 @@ class CompanyController extends Controller
 
         $noData = '// missing data //'; // missing data error code
 
+        //Calculate the dates of last 5 days to display with prices
         $businessDays = [];
         $date = new DateTime();
         while (count($businessDays) < 5) {
@@ -78,31 +79,42 @@ class CompanyController extends Controller
         // fetch high prices for the last 30 days
         $highPrices = $data['chart']['result'][0]['indicators']['quote'][0]['high'];
 
-        // creating fake numbers in case of API crashes or doesnt provide full package of data
-        $highPricesLast30 = [];
+        $highPricesLast30 = []; // create an empty array
 
-        // $min = 150;
-        // $max = 160;
-
-        // $previousNumber = rand($min * 100, $max * 100) / 100; // Initial number with two decimals
-        // $highPricesLast30[] = $previousNumber;
-
-
-        // foreach (range(1, 29) as $i) {
-        //     $minValue = max($min, $previousNumber - 1);
-        //     $maxValue = min($max, $previousNumber + 1);
-
-        //     $randomNumber = rand($minValue * 100, $maxValue * 100) / 100;
-        //     $highPricesLast30[] = $randomNumber;
-
-        //     $previousNumber = $randomNumber;
-        // }
-        if (count($highPrices) >= 30) {
-            $startIndex = count($highPrices) - 30;
-            for ($i = $startIndex; $i < count($highPrices); $i++) {
-                $highPricesLast30[] = $highPrices[$i];
+        // checking if the response is full to fit the chart and other fields
+        foreach ($highPrices as $price) {
+            if ($price !== null) {
+                $highPricesLast30[] = $price;
+                if (count($highPricesLast30) >= 30) {
+                    break; // Stop once you have 30 values
+                }
+            } else {
+                // Skip NULL values, continue to the next non-NULL value
+                continue;
             }
         }
+        // filling the data with random numbers to make it display some values
+        $remainingSlots = 30 - count($highPricesLast30);
+        if ($remainingSlots > 0) {
+            $min = 150;
+            $max = 160;
+
+            $previousNumber = rand($min * 100, $max * 100) / 100; // Initial number with two decimals
+            $highPricesLast30[] = $previousNumber;
+
+            foreach (range(1, $remainingSlots - 1) as $i) { // Fill remaining slots
+                $minValue = max($min, $previousNumber - 1);
+                $maxValue = min($max, $previousNumber + 1);
+
+                $randomNumber = rand($minValue * 100, $maxValue * 100) / 100;
+                if ($randomNumber !== null) {
+                    $highPricesLast30[] = $randomNumber;
+                }
+
+                $previousNumber = $randomNumber;
+            }
+        }
+
         // high prices reverse for the chart to dislay it from left to right
         $highPricesLast30reverse = array_reverse($highPricesLast30);
         // fill labelsArray with numbers for each fetched high price data to have chart labeled correctly
@@ -173,11 +185,11 @@ class CompanyController extends Controller
                 'regular_market_delta' => $arrayresponse[2][0]['regularMarketDayRange'] ?? 'no data from API'
             ]);
             $company->save();
-        } else {
-            //exception
         }
+
         return view('companies.show', [
             'company' => $company,
+            'data' => $data,
             'description' => $description,
             'highPricesLast30reverse' => $highPricesLast30reverse,
             'highPricesLast30' => $highPricesLast30,
@@ -199,62 +211,62 @@ class CompanyController extends Controller
     public function store(Request $request)
     {
         $ticker = $request->route('ticker'); // Get the value of the ticker parameter
-                $company = Company::where('ticker', $ticker)->first();
-                $u_id=Auth::id();
-                $qty = $request->validate([
-                    'quantity' => 'required|numeric|min:1', 
-                ]);
-                $existed=false;
-                $current_cost=$company->regular_market_price;
-                
-                $companies_in_portfolio = Portfolio::where('user_id', $u_id)->get(); 
-                if ($companies_in_portfolio->isEmpty()){
+        $company = Company::where('ticker', $ticker)->first();
+        $u_id = Auth::id();
+        $qty = $request->validate([
+            'quantity' => 'required|numeric|min:1',
+        ]);
+        $existed = false;
+        $current_cost = $company->regular_market_price;
+
+        $companies_in_portfolio = Portfolio::where('user_id', $u_id)->get();
+        if ($companies_in_portfolio->isEmpty()) {
+            $formfields = [
+                'user_id' => $u_id,
+                'company_id' => $company->id,
+                'last_purchase_date' => Carbon::today(),
+                'shares_qty' => $qty['quantity'],
+                'current_cost' => $current_cost,
+                'total_invested' => $qty['quantity'] * $current_cost,
+                'gain' => 0,
+                'performance_percentage' => 0
+            ];
+            Portfolio::create($formfields);
+        } else {
+            foreach ($companies_in_portfolio as $cp) {
+                if ($cp->company_id == $company->id) {
+                    $ec = Portfolio::where('user_id', $u_id)
+                        ->where('company_id', $company->id)
+                        ->first();
+                    $portfolio_id = $cp->id;
+                    $existed = true;
                     $formfields = [
-                        'user_id'=>$u_id,
-                        'company_id'=> $company->id,                     
-                        'last_purchase_date'=>Carbon::today(),
-                        'shares_qty'=>$qty['quantity'],
-                        'current_cost'=>$current_cost,
-                        'total_invested'=> $qty['quantity'] * $current_cost,
-                        'gain'=>0,
-                        'performance_percentage'=>0               
+                        'shares_qty' => $ec->shares_qty + $qty['quantity'],
+                        'current_cost' => $current_cost,
+                        'total_invested' => $ec->total_invested + $qty['quantity'] * $current_cost,
+                        'gain' => $ec->shares_qty * $current_cost - $ec->total_invested,
+                        'performance_percentage' => $ec->gain * 100 / $ec->total_invested,
+                        'user_id' => $u_id,
+                        'company_id' => $company->id,
+                        'last_purchase_date' => Carbon::today()
                     ];
-                    Portfolio::create($formfields);
-                }else{
-                    foreach($companies_in_portfolio as $cp){
-                        if ($cp->company_id==$company->id){
-                            $ec = Portfolio::where('user_id', $u_id)
-                            ->where('company_id', $company->id)
-                            ->first(); 
-                            $portfolio_id=$cp->id;
-                            $existed=true;                       
-                            $formfields=[
-                                'shares_qty'=>$ec->shares_qty + $qty['quantity'],
-                                'current_cost'=>$current_cost,
-                                'total_invested'=> $ec->total_invested + $qty['quantity'] * $current_cost,
-                                'gain'=>$ec->shares_qty*$current_cost-$ec->total_invested,
-                                'performance_percentage'=>$ec->gain * 100/$ec->total_invested,
-                                'user_id'=>$u_id,
-                                'company_id'=> $company->id,                     
-                                'last_purchase_date'=>Carbon::today()
-                            ];
-                            Portfolio::find($portfolio_id)->update($formfields);
-                        };
-                    }
-                    if (!$existed){
-                        $formfields=[
-                            'shares_qty'=>$qty['quantity'],
-                            'current_cost'=>$current_cost,
-                            'total_invested'=> $qty['quantity'] * $current_cost,
-                            'gain'=>0,
-                            'performance_percentage'=>0,
-                            'user_id'=>$u_id,
-                            'company_id'=> $company->id,                     
-                            'last_purchase_date'=>Carbon::today()
-                            ];
-                            Portfolio::create($formfields);
-                        }
-                    }
-                return redirect("/users/$u_id/dashboard")->with('message', "The company $company->shortname added to your portfolio");
+                    Portfolio::find($portfolio_id)->update($formfields);
+                };
+            }
+            if (!$existed) {
+                $formfields = [
+                    'shares_qty' => $qty['quantity'],
+                    'current_cost' => $current_cost,
+                    'total_invested' => $qty['quantity'] * $current_cost,
+                    'gain' => 0,
+                    'performance_percentage' => 0,
+                    'user_id' => $u_id,
+                    'company_id' => $company->id,
+                    'last_purchase_date' => Carbon::today()
+                ];
+                Portfolio::create($formfields);
+            }
+        }
+        return redirect("/users/$u_id/dashboard")->with('message', "The company $company->shortname added to your portfolio");
     }
 }

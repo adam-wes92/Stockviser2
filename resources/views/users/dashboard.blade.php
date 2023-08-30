@@ -5,7 +5,7 @@
             <p class="text-xl md:text-2xl lg:text-3xl">Get ready to manage your stock investments and financial future.</p>
         </div>
     </section>
-    
+
     
         <div class="flex xl:flex-row lg:flex-row md:flex-col sm:flex-col flex-wrap">
             <x-card class="mx-auto my-10 rounded-lg bg-gray-100 border shadow-md w-11/12 xl:w-5/12 lg:w-5/12">
@@ -198,6 +198,7 @@
             sortByCostDescending = !sortByCostDescending; // Toggle the sort order
             rows.sort(sortByProperty('current-cost'));
             rows.forEach(row => portfolioTable.appendChild(row));
+
         });
     });
     </script>
