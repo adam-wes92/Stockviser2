@@ -11,7 +11,7 @@
 
     {{-- Display other information about the company --}}
     <x-card class="mx-auto w-4/5 rounded-md border-double shadow-lg shadow-laravel card ">
-        <div class="flex flex-row flex-between p-10 rounded border">
+        <div class="flex flex-row flex-between p-10 rounded border flex-wrap">
             <div class="">
                 <h1 class="pt-2 text-4xl font-bold uppercase text-laravel text-center"
                     style="font:family 'Roboto', sans-serif;">
