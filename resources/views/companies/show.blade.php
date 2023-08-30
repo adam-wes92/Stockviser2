@@ -1,27 +1,39 @@
 <?php
-// dd($labelsArray);
-
-// dd($classInd);
+// dd($highPricesLast30);
 ?>
 
 <head>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        /* Use a media query to add a breakpoint at 800px: */
+        @media screen and (max-width: 871px) {
+            #flexy {
+                display: flex;
+                flex-direction: column-reverse;
+            }
+
+            #flegzy {
+                display: inline;
+            }
+        }
+    </style>
 </head>
 <x-layout>
-
     {{-- Display other information about the company --}}
     <x-card class="mx-auto w-4/5 rounded-md border-double shadow-lg shadow-laravel card ">
-        <div class="flex flex-row flex-between p-10 rounded border flex-wrap">
-            <div class="">
+
+        <div id="flexy" class="flex flex-between p-10 rounded border">
+            <div>
                 <h1 class="pt-2 text-4xl font-bold uppercase text-laravel text-center"
                     style="font:family 'Roboto', sans-serif;">
                     {{ $company->fullname }}</h1>
                 <h1 class="pt-2 text-xl font-bold uppercase text-laravel text-center"
                 style="font:family 'Roboto', sans-serif;">Last 30 days the highest price: </h1>
                 <div style=" color: {{ $classInd }};">
-                    <h1 class=" pt-2 text-4xl font-bold uppercase text-left">
-                        {{ number_format($highPricesLast30[0] , 2, '.', ' ')}}$</h1>
-                    <p>
+
+                    <h1 class="pt-2 text-4xl font-bold uppercase text-center">
+                        ${{ number_format($highPricesLast30[0], 4) }}</h1>
+                    <p class="text-center">
                         @if ($difference >= 0)
                             <i class="fa-solid fa-arrow-up"></i>
                         @else
@@ -39,19 +51,19 @@
             @csrf
             @method('post')
             <input type="hidden" name="company_id" value="{{ $company->id }}">
-            <input type="number" name="quantity" class="h-8 rounded border" required placeholder="Quantity">
+            <input type="number" name="quantity" class="h-10 rounded border text-center" required
+                placeholder="Quantity">
             <button type="submit"
-                class="btn btn-primary mx-auto bg-laravel text-white py-1 px-2 rounded sm:text-lg hover:text-laravel3 text-center">Add
+                class="btn btn-primary mx-auto bg-laravel text-white h-10 py-1 px-2 rounded sm:text-lg hover:text-laravel3 text-center">Add
                 to Portfolio</button>
         </form>
-
         <canvas id="priceChart"></canvas>
-        <div class="flex flex-row flex-wrap justify-around gap-3">
-            <ul class="list-unstyled">
+        <div id="flegzy" class="flex flex-row flex-wrap justify-around gap-3 border">
+            <ul class="list-unstyled p-3">
                 <li>
                     <p
                         class="pb-2 sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-200 my-4 text-laravel font-bold">
-                        <span class="text-laravel2">Company full name:</span> {{ $company->fullname }}
+                        <span class="text-laravel2">Full company name:</span> {{ $company->fullname }}
                     </p>
                 </li>
                 <li>
@@ -89,37 +101,38 @@
                 </li>
                 <li>
                     <p
-                        class="pb-2 sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-200 my-4 text-laravel font-bold">
+                        class="pb-2 sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-200 my-4 text-laravel font-bold no-padding">
                         <span class="text-laravel2">Analytics recomendation:</span> {{ $company->recomendation }}
                     </p>
                 </li>
                 <li>
                     <p
-                        class="pb-2 sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-200 my-4 text-laravel font-bold">
-                        <span class="text-laravel2">Regular market price:</span> ${{ $company->regular_market_price }}
+                        class="pb-2 sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-200 my-4 text-laravel font-bold no-padding">
+                        <span class="text-laravel2">Regular market price:</span>
+                        ${{ $company->regular_market_price }}
                     </p>
                 </li>
                 <li>
                     <p
-                        class="pb-2 sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-200 my-4 text-laravel font-bold">
+                        class="pb-2 sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-200 my-4 text-laravel font-bold no-padding">
                         <span class="text-laravel2">Regular market change:</span>
                         ${{ $company->regular_market_change }}
                     </p>
                 </li>
                 <li>
                     <p
-                        class="pb-2 sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-200 my-4 text-laravel font-bold">
+                        class="pb-2 sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-200 my-4 text-laravel font-bold no-padding">
                         <span class="text-laravel2">Target mean price:</span> ${{ $company->target_mean_price }}
                     </p>
                 </li>
                 <li>
                     <p
-                        class="pb-2 sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-200 my-4 text-laravel font-bold">
+                        class="pb-2 sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-200 my-4 text-laravel font-bold no-padding">
                         <span class="text-laravel2">Earnings per share:</span> ${{ $company->EPS }}
                     </p>
                 </li>
             </ul>
-            <ul class="list-unstyled">
+            <ul class="list-unstyled p-3">
                 <li>
                     <p
                         class="pb-2 sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-200 my-4 text-laravel font-bold">
@@ -200,14 +213,17 @@
                     </p>
                 </li>
 
+
         </div>
+
         <p class="card-text text-center pb-2 sm:text-lg text-gray-200 my-4 text-laravel">
             {{ substr($description, 0, 200) }} <!-- Display first 200 characters of description -->
             @if (strlen($description) > 200)
                 <span id="dots">...</span> <!-- Dots to indicate truncation -->
                 <span id="more" style="display: none;">{{ substr($description, 200) }}</span>
                 <!-- Rest of description onclick-->
-                <button onclick="readMore()" id="read-more-btn" class="btn btn-link text-laravel2">Read more</button>
+                <button onclick="readMore()" id="read-more-btn" class="btn btn-link text-laravel2">Read
+                    more</button>
             @endif
         </p>
 
@@ -248,7 +264,7 @@
                     type: 'line',
                     data: data,
                     options: {
-                        responsive: true, // responsive size for mobile 
+                        responsive: true, // responsive size for mobile view
                         scales: {
                             x: {
                                 title: {
