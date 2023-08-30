@@ -6,10 +6,10 @@
         </div>
     </section>
     
-    <div class="w-6/7">
-        <div class="flex xl:flex-row lg:flex-row md:flex-col sm:flex-col gap-0">
-            <x-card class="mx-auto my-10 rounded-lg bg-gray-100 border shadow-md xl:w-5/12 lg:w-5/12 md:w-11/12 sm:w-11/12">
-                <div class=" flex flex-col h-full justify-between p-6">
+    
+        <div class="flex xl:flex-row lg:flex-row md:flex-col sm:flex-col flex-wrap">
+            <x-card class="mx-auto my-10 rounded-lg bg-gray-100 border shadow-md w-11/12 xl:w-5/12 lg:w-5/12">
+                <div class=" flex flex-col justify-between h-full">
                     <h1 class="text-center text-2xl md:text-3xl lg:text-4xl font-bold mb-4">Your Personal Data</h1>                        
                     <div class="text-gray-700">
                         <p class="pb-2 lg:text-xl xl:text-3xl md:text-3xl sm:text-base my-2">
@@ -42,23 +42,25 @@
             </x-card>
 
             @if (empty($companies_in_portfolio))
-                <x-card class="mx-auto my-10 rounded-lg bg-gray-100 border shadow-md xl:w-5/12 lg:w-5/12 md:w-11/12 sm:w-11/12">
+                <x-card class="mx-auto my-10 rounded-lg bg-gray-100 border shadow-md w-11/12 xl:w-5/12 lg:w-5/12">
                     <div class="text-center flex flex-col justify-between h-full">
-                        <h1 class="text-center pt-2 sm:text-lg md:text-xl lg:text-2-xl xl:text-3xl font-bold uppercase text-laravel" style="font:family 'Roboto', sans-serif;">Portfolio's resume</h1>
+                        <h1 class="text-center pt-2 sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-bold uppercase text-laravel" style="font:family 'Roboto', sans-serif;">Portfolio's resume</h1>
                         <p class="pb-2 text-gray-200  sm:text-lg md:text-xl lg:text-2xl xl:text-3xl my-4 text-laravel2"> <span class="font-bold text-laravel">No companies in your portfolio </span></p>
-                        <a href="/" class="bg-laravel text-white py-2 mx-auto px-4 rounded sm:text-lg md:text-xl lg:text-2xl xl:text-3xl hover:text-laravel2 hover:no-underline">Add companies to your portfolio</a>
+                        <div class="flex justify-center ">
+                            <a href="/" class="bg-laravel hover:bg-blue-600 text-white py-2 px-4 rounded-lg text-lg hover:no-underline">Add companies to your portfolio</a>
+                        </div>
                     </div>
                 </x-card>
 
             @else    
-                <x-card class="mx-auto my-10 rounded-lg bg-gray-100 border shadow-md xl:w-5/12 lg:w-5/12 md:w-11/12 sm:w-11/12 ">
+                <x-card class="mx-auto my-10 rounded-lg bg-gray-100 border shadow-md w-11/12 xl:w-5/12 lg:w-5/12">
                     <div class="p-6">
                         <h1 class="text-center text-2xl md:text-3xl lg:text-4xl font-bold mb-4">Top 3 Companies in Your Portfolio</h1>
                         <p class="text-center text-lg md:text-xl lg:text-2xl text-gray-700 mb-6">With the Best EPS-index</p>
-                        <div class="grid grid-cols-3 gap-6 justify-center">
+                        <div class="grid grid-cols-3 gap-4 justify-center">
                             @foreach($best_EPS as $be)
                                 <div class="flex flex-col items-center justify-center p-4 border rounded-lg shadow-md bg-white">
-                                    <img src="{{ asset('logos/'.$be['ticker'].'.png') }}" class="w-15 h-auto mb-2" alt="">
+                                    <img src="{{ asset('logos/'.$be['ticker'].'.png') }}" class="w-3/4 h-auto mb-2" alt="">
                                     <p class="text-lg text-gray-700">{{ $be['EPS'] }}</p>
                                 </div>
                             @endforeach
@@ -67,7 +69,7 @@
                         <div class="grid grid-cols-3 gap-6 justify-center">
                             @foreach($best_perf as $bp)
                             <div class="flex flex-col items-center justify-center p-4 border rounded-lg shadow-md bg-white">
-                                <img src="{{ asset('logos/'.$bp['ticker'].'.png') }}" class="w-15 h-auto mb-2" alt="">
+                                <img src="{{ asset('logos/'.$bp['ticker'].'.png') }}" class="w-3/4 h-auto mb-2" alt="">
                                 <p class="text-lg text-gray-700">{{ $bp['perf'] }}%</p>
                             </div>
                             @endforeach
@@ -76,33 +78,37 @@
                 </x-card>
             @endif
         </div>                
-    </div>
+    
     <div class="flex flex-col items-center">
+        @if (!empty($companies_in_portfolio))
         <x-card class="mx-auto my-10 rounded-lg bg-gray-100 border shadow-md w-11/12">
             <div class="">
                 <h1 class="text-center text-2xl md:text-3xl lg:text-4xl font-bold mb-4 text-laravel">Portfolio's Resume</h1>
-                <p class="text-center text-lg md:text-xl lg:text-2xl text-gray-700 mb-6">Companies in Portfolio: {{ count($companies) }}</p>
-                <p class="text-center lg:text-xl xl:text-3xl md:text-3xl sm:text-base text-gray-700 mb-4">
-                        <span class="font-bold text-laravel">Total Investment:</span> {{number_format($total_invest, 2, '.', ' ')}} $
-                </p>
-                <p class="text-center lg:text-xl xl:text-3xl md:text-3xl sm:text-base mb-4">
+                    
+                        <p class="text-center text-lg md:text-xl lg:text-2xl text-gray-700 mb-6">Companies in Portfolio: {{ count($companies) }}</p>
+                        <p class="text-center lg:text-xl xl:text-3xl md:text-3xl sm:text-base text-gray-700 mb-4">
+                            <span class="font-bold text-laravel">Total Investment:</span> {{number_format($total_invest, 2, '.', ' ')}} $
+                        </p>
+                        <p class="text-center lg:text-xl xl:text-3xl md:text-3xl sm:text-base mb-4">
                         <span class="font-bold text-laravel">Portfolio Gain:</span>
-                        @if ($total_gain >= 0)
-                            <span class="text-green-600">{{ number_format($total_gain, 2, '.', ' ') }} $</span>
-                        @else
-                            <span class="text-red-600">{{ number_format($total_gain, 2, '.', ' ') }} $</span>
-                        @endif
-                </p>
-                <p class="text-center lg:text-xl xl:text-3xl md:text-3xl sm:text-base mb-6">
-                    <span class="font-bold text-laravel">Portfolio Performance:</span>
-                        @if ($portfolio_performance >= 0)
-                            <span class="text-green-600">{{ number_format($portfolio_performance, 2) }}%</span>
-                        @else
-                            <span class="text-red-600">{{ number_format($portfolio_performance, 2) }}%</span>
-                        @endif
-                </p>
-            </div>
+                            @if ($total_gain >= 0)
+                                <span class="text-green-600">{{ number_format($total_gain, 2, '.', ' ') }} $</span>
+                            @else
+                                <span class="text-red-600">{{ number_format($total_gain, 2, '.', ' ') }} $</span>
+                            @endif
+                        </p>
+                        <p class="text-center lg:text-xl xl:text-3xl md:text-3xl sm:text-base mb-6">
+                            <span class="font-bold text-laravel">Portfolio Performance:</span>
+                                @if ($portfolio_performance >= 0)
+                                    <span class="text-green-600">{{ number_format($portfolio_performance, 2) }}%</span>
+                                @else
+                                    <span class="text-red-600">{{ number_format($portfolio_performance, 2) }}%</span>
+                                @endif
+                        </p>
+                    
+                </div>
         </x-card>
+        @endif
     </div>
         
     <div>
@@ -128,6 +134,7 @@
                             <th class="py-2 px-4 text-center text-sm md:text-base lg:text-lg xl:text-xl font-bold border">Delete/Sale</th>
                         </tr>
                     </thead>
+                    @if (!empty($companies_in_portfolio))
                     <tbody>
                         @foreach ($companies as $c)
                             <tr class="hover:bg-gray-100 portfolio-row" >
@@ -146,7 +153,7 @@
                                         @elseif ($cp->performance_percentage < 0)
                                             <td class="py-2 px-4 text-center text-sm md:text-base lg:text-lg xl:text-xl border bg-red-100">{{ $cp->performance_percentage }}%</td>
                                         @endif
-                                        <td class="py-2 px-4 text-center text-sm md:text-base lg:text-lg xl:text-xl border current-cost">{{ $cp->current_cost }} $</td>
+                                        <td class="py-2 px-4 text-center text-sm md:text-base lg:text-lg xl:text-xl border current-cost">{{ $cp->current_cost }}</td>
                                         <td class="py-2 px-4 text-center text-sm md:text-base lg:text-lg xl:text-xl border">{{ $cp->last_purchase_date }}</td>
                                         <td class="py-2 px-4 text-center text-sm md:text-base lg:text-lg xl:text-xl border">
                                             <a href="/users/{{ auth()->user()->id }}/dashboard/{{ $cp->id }}" class="bg-laravel hover:bg-blue-600 text-white py-2 px-4 rounded-lg text-lg hover:no-underline">Delete</a>
@@ -156,6 +163,7 @@
                             </tr>
                         @endforeach
                     </tbody>
+                    @endif
                 </table>
             </div>
             <div class="flex justify-center mt-6">
@@ -168,24 +176,32 @@
 
 <script>
         document.addEventListener('DOMContentLoaded', function () {
-            const rows = Array.from(document.querySelectorAll('.portfolio-row'));
-            let sortByCostDescending = true; // Initial sort order
+        const rows = Array.from(document.querySelectorAll('.portfolio-row'));
+        let sortByCostDescending = true; // Initial sort order
+        
+        const sortByProperty = (property) => (a, b) => {
+            const valueA = parseFloat(a.querySelector(`.${property}`).textContent.replace(/[^\d.-]/g, '')); // Convert to number
+            const valueB = parseFloat(b.querySelector(`.${property}`).textContent.replace(/[^\d.-]/g, '')); // Convert to number
             
-            const sortByProperty = (property) => (a, b) => {
-                const valueA = a.querySelector(`.${property}`).textContent;
-                const valueB = b.querySelector(`.${property}`).textContent;
-                return sortByCostDescending
-                    ? valueB.localeCompare(valueA) // Descending order
-                    : valueA.localeCompare(valueB); // Ascending order
-            };
-    
-            const portfolioTable = document.querySelector('#portfolio-table');
-            const sortByCostButton = document.querySelector('#sort-by-cost');
-    
-            sortByCostButton.addEventListener('click', function () {
-                sortByCostDescending = !sortByCostDescending; // Toggle the sort order
-                rows.sort(sortByProperty('current-cost'));
-                rows.forEach(row => portfolioTable.appendChild(row));
-            });
+            if (isNaN(valueA)) return 1; // Handle non-numeric values
+            if (isNaN(valueB)) return -1; // Handle non-numeric values
+            
+            return sortByCostDescending
+                ? valueB - valueA // Descending order
+                : valueA - valueB; // Ascending order
+        };
+
+        const portfolioTable = document.querySelector('#portfolio-table');
+        const sortByCostButton = document.querySelector('#sort-by-cost');
+
+        sortByCostButton.addEventListener('click', function () {
+            sortByCostDescending = !sortByCostDescending; // Toggle the sort order
+            rows.sort(sortByProperty('current-cost'));
+            rows.forEach(row => portfolioTable.appendChild(row));
         });
+    });
     </script>
+    
+</body>
+</html>
+

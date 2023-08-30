@@ -51,11 +51,16 @@ Route::post('/users/authenticate', [UserController::class, 'authenticate']);
 // Display user data
 Route::get('/users/{id}', [UserController::class, 'show'])->middleware('auth');
 
-// Display user Dashboard
-Route::get('/users/{user}/dashboard', [UserController::class, 'dashboard'])->middleware('auth');
+
+// Route::get('/contact', [ContactController::class, 'index']);
 
 // Delete companies from user portfolio
 Route::get('/users/{user}/dashboard/{company}', [PortfolioController::class, 'destroy'])->middleware('auth');
+
+// Display user Dashboard
+Route::get('/users/{user}/dashboard', [UserController::class, 'dashboard'])->middleware('auth');
+
+
 
 // AI chatbox - sendChat
 Route::post('send', [ChatBotController::class, 'sendChat']);
