@@ -46,7 +46,7 @@ class CompanyController extends Controller
         return view(
             'companies.index',
             [
-                'companies' => Company::oldest()->filter(request(['search']))->simplepaginate(8),
+                'companies' => Company::oldest()->filter(request(['search']))->paginate(8),
                 'news' => $news_to_show
             ]
         );

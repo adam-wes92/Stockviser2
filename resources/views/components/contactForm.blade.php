@@ -50,8 +50,9 @@
         <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
         @enderror
         <br>
-
-        <button type="submit" class="bg-black text-white py-2 px-4 rounded text-sm">Submit</button>
+        <div class="text-white">
+        <button class="hover:text-laravel2" type="submit">Submit</button>
+        </div>
     </form>
 </div>
     
