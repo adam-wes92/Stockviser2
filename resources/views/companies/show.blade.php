@@ -1,6 +1,5 @@
 <?php
-// dd($labelsArray);
-// dd($classInd);
+// dd($highPricesLast30);
 ?>
 
 <head>
